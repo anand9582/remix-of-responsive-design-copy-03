@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Diamond, Train, Factory, Landmark, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
 import industryRailways from "@/assets/industry-railways.jpg";
 import industryManufacturing from "@/assets/industry-manufacturing.jpg";
@@ -63,81 +64,185 @@ const industries = [
   },
 ];
 
+const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
+
+const sidebarVariants = {
+  hidden: { opacity: 0, x: -32 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: EASE_OUT_EXPO,
+      staggerChildren: 0.05,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -18 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: EASE_OUT_EXPO },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 44, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: EASE_OUT_EXPO },
+  },
+};
+
 const IndustriesWeServe = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = industries[activeIndex];
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isClickScroll = useRef(false);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    sectionRefs.current.forEach((el, i) => {
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isClickScroll.current) {
+            setActiveIndex(i);
+          }
+        },
+        {
+          threshold: 0,
+          rootMargin: "-40% 0px -40% 0px",
+        }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((observer) => observer.disconnect());
+  }, []);
+
+  const handleTabClick = useCallback((index: number) => {
+    setActiveIndex(index);
+    isClickScroll.current = true;
+
+    const element = sectionRefs.current[index];
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(() => {
+        isClickScroll.current = false;
+      }, 900);
+    }
+  }, []);
 
   return (
-    <section className="bg-background py-16 sm:py-24">
+    <section className="bg-background py-16 sm:py-24" id="industries">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          {/* Left side - Badge, Heading & Tabs */}
-          <div className="lg:w-[340px] flex-shrink-0">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
+          <motion.div
+            className="lg:w-[320px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start"
+            variants={sidebarVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
               <Diamond className="w-3.5 h-3.5 text-primary" fill="currentColor" />
               <span className="text-xs font-semibold tracking-widest uppercase text-primary">
                 Industries We Serve
               </span>
-            </div>
+            </motion.div>
 
-            {/* Heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-foreground leading-snug mb-8">
-              Security That{" "}
-              <span className="text-primary italic">Adapts</span> to Every Industry
-            </h2>
+            <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-foreground leading-snug mb-8">
+              Security That <span className="text-primary italic">Adapts</span> to Every Industry
+            </motion.h2>
 
-            {/* Tab list */}
             <div className="space-y-1">
-              {industries.map((industry, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveIndex(i)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-medium transition-all duration-200 ${
-                    i === activeIndex
-                      ? "bg-primary text-primary-foreground shadow-md"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
-                >
-                  <industry.icon className="w-4 h-4 flex-shrink-0" strokeWidth={1.5} />
-                  {industry.label}
-                </button>
-              ))}
+              {industries.map((industry, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <motion.button
+                    key={industry.label}
+                    variants={itemVariants}
+                    onClick={() => handleTabClick(index)}
+                    whileHover={{ x: isActive ? 0 : 4 }}
+                    whileTap={{ scale: 0.99 }}
+                    className={`relative w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-medium transition-colors duration-300 z-10 ${isActive
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTabPill"
+                        className="absolute inset-0 bg-primary rounded-lg z-[-1] shadow-md"
+                        initial={false}
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <industry.icon className="w-4 h-4 flex-shrink-0" strokeWidth={1.5} />
+                    <span>{industry.label}</span>
+                  </motion.button>
+                );
+              })}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right side - Content */}
-          <div className="flex-1 min-w-0">
-            {/* Title row */}
-            <div className="flex items-start justify-between mb-3">
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground">
-                {active.title}
-              </h3>
-              <a
-                href="#"
-                className="flex items-center gap-1 text-primary text-sm font-medium hover:underline flex-shrink-0 mt-1"
+          <div className="flex-1 min-w-0 space-y-24 lg:space-y-32">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={industry.title}
+                ref={(el) => {
+                  sectionRefs.current[index] = el;
+                }}
+                className="scroll-mt-24 lg:scroll-mt-32"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
               >
-                Learn more
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground">
+                    {industry.title}
+                  </h3>
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-primary text-sm font-medium hover:underline flex-shrink-0 mt-1"
+                  >
+                    Learn more
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
 
-            {/* Description */}
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
-              {active.description}
-            </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
+                  {industry.description}
+                </p>
 
-            {/* Dashboard image */}
-            <div className="rounded-xl overflow-hidden border border-border shadow-lg">
-              <img
-                src={active.image}
-                alt={active.title}
-                className="w-full object-cover"
-                loading="lazy"
-                width={960}
-                height={640}
-              />
-            </div>
+                <motion.div
+                  className="rounded-xl overflow-hidden border border-border shadow-lg"
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0.6, y: 24, scale: 0.95 }}
+                  transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 0.08 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <img
+                    src={industry.image}
+                    alt={industry.title}
+                    className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
+                    width={960}
+                    height={640}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

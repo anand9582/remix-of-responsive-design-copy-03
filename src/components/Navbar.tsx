@@ -1,19 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowUpRight, Train, Factory, Landmark, Fuel, Warehouse, ShoppingCart, GraduationCap, Heart } from "lucide-react";
 import { useScrolledPast } from "@/hooks/use-scroll-animation";
+import logo from "@/assets/logo.png";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { label: "About us", href: "#about" },
@@ -25,75 +20,87 @@ const navLinks = [
 ];
 
 const industryItems = [
-  "Railways & Transport Infrastructure",
-  "Manufacturing & Industrial Facilities",
-  "Banking & Financial Institutions",
-  "Oil & Gas",
-  "Logistics & Warehousing",
-  "Retail & Smart Stores",
-  "Education Campuses & Universities",
-  "Hospitals & Healthcare Networks",
+  { name: "Railways & Transport Infrastructure", desc: "Real-time crowd monitoring & intrusion detection.", icon: Train },
+  { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory },
+  { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark },
+  { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel },
+  { name: "Logistics & Warehousing", desc: "Theft prevention & inventory surveillance.", icon: Warehouse },
+  { name: "Retail & Large Commercial Chains", desc: "Loss prevention & customer behavior insights.", icon: ShoppingCart },
+  { name: "Education Campuses & Universities", desc: "Campus-wide safety & access management.", icon: GraduationCap },
+  { name: "Hospitals & Healthcare Networks", desc: "Patient safety & restricted area monitoring.", icon: Heart },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const scrolled = useScrolledPast(50);
 
   return (
     <nav
-      className={`w-full z-50 fixed top-0 left-0 right-0 transition-all duration-300 ${
-        scrolled
-          ? "bg-hero/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-white/5"
-          : "bg-transparent"
-      }`}
+      className={`w-full z-50 fixed top-0 left-0 right-0 transition-all duration-300 ${scrolled
+        ? ""
+        : "bg-transparent"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="flex items-center justify-between transition-all duration-300 px-6 h-16 bg-white border border-white/20 rounded-full mt-4 shadow-lg"
-        >
+        <div className="flex items-center justify-between transition-all duration-300 px-6 h-16 bg-white border border-white/20 rounded-full mt-4 shadow-lg">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-sm">C</span>
-            </div>
             <div>
-              <span className="text-gray-900 font-display font-bold text-lg tracking-tight">CAMPULSE</span>
-              <p className="text-gray-500 text-[10px] leading-none -mt-0.5">By Transline Technologies</p>
+              <img
+                src={logo}
+                alt="logo"
+                className="h-9 w-auto object-contain"
+              />
             </div>
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) =>
               link.hasDropdown ? (
-                <DropdownMenu key={link.label}>
-                  <DropdownMenuTrigger asChild>
-                    <button className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors flex items-center gap-1 outline-none">
-                      {link.label}
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    className="bg-white border-gray-200 shadow-lg min-w-[240px]"
-                    sideOffset={12}
-                  >
-                    {industryItems.map((item) => (
-                      <DropdownMenuItem
-                        key={item}
-                        className="text-gray-600 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-100 cursor-pointer text-sm py-2.5"
-                        asChild
-                      >
-                        <a href="#industries">{item}</a>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setDesktopDropdownOpen(true)}
+                  onMouseLeave={() => setDesktopDropdownOpen(false)}
+                >
+                  <button className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors flex items-center gap-1 outline-none">
+                    {link.label}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${desktopDropdownOpen ? "rotate-180" : ""}`} />
+                  </button>
+
+                  {desktopDropdownOpen && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
+                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 min-w-[560px] grid grid-cols-2 gap-1">
+                        {industryItems.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <a
+                              key={item.name}
+                              href="#industries"
+                              className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-accent hover:text-accent-foreground transition-colors"
+                            >
+                              <div className="w-9 h-9 rounded-lg bg-gray-100 group-hover/item:bg-accent-foreground/20 flex items-center justify-center flex-shrink-0 transition-colors">
+                                <Icon className="w-[18px] h-[18px] text-accent group-hover/item:text-accent-foreground transition-colors" />
+                              </div>
+                              <div>
+                                <p className="text-sm font-semibold text-gray-900 group-hover/item:text-accent-foreground leading-tight">{item.name}</p>
+                                <p className="text-xs text-gray-500 group-hover/item:text-accent-foreground/70 mt-0.5 leading-snug">{item.desc}</p>
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors flex items-center gap-1"
+                  className="font-roboto font-regular text-slate-700 hover:text-slate-900 text-sm transition-colors flex items-center gap-1"
                 >
                   {link.label}
                 </a>
@@ -106,34 +113,30 @@ const Navbar = () => {
             <a href="#login" className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors">
               Login
             </a>
-            <Button className="group bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-5 text-sm font-semibold gap-2 transition-all duration-300">
+            <Button className="group h-9 
+              bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] 
+              hover:bg-primary hover:text-primary-foreground
+              text-accent-foreground rounded-full px-4 text-sm font-semibold gap-2 
+              transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] 
+              hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.04] active:scale-[0.97]">
               Book a Demo
-              <span className="w-5 h-5 rounded-full bg-accent-foreground/20 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
-                <ArrowUpRight className="w-3 h-3 text-accent-foreground transition-transform duration-300 group-hover:-translate-y-0.5" />
-              </span>
             </Button>
           </div>
 
-          {/* Mobile sidebar toggle */}
+          {/* Mobile sidebar */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <button className="lg:hidden text-gray-900">
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-[280px] bg-hero border-l border-white/10 p-0 flex flex-col"
-            >
-              {/* Sidebar header */}
+            <SheetContent side="right" className="w-[280px] bg-hero border-l border-white/10 p-0 flex flex-col">
               <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
                     <span className="text-accent-foreground font-bold text-sm">C</span>
                   </div>
-                  <span className="text-hero-foreground font-display font-bold text-lg tracking-tight">
-                    CAMPULSE
-                  </span>
+                  <span className="text-hero-foreground font-display font-bold text-lg tracking-tight">CAMPULSE</span>
                 </div>
                 <SheetClose asChild>
                   <button className="text-hero-muted hover:text-hero-foreground transition-colors">
@@ -142,7 +145,6 @@ const Navbar = () => {
                 </SheetClose>
               </div>
 
-              {/* Sidebar links */}
               <div className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
                 {navLinks.map((link) =>
                   link.hasDropdown ? (
@@ -155,17 +157,24 @@ const Navbar = () => {
                         <ChevronDown className={`w-3.5 h-3.5 ml-auto transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`} />
                       </button>
                       {industriesOpen && (
-                        <div className="ml-4 space-y-0.5 mt-1">
-                          {industryItems.map((item) => (
-                            <a
-                              key={item}
-                              href="#industries"
-                              onClick={() => setMobileOpen(false)}
-                              className="block text-hero-muted hover:text-hero-foreground hover:bg-white/5 text-xs font-medium py-2 px-4 rounded-lg transition-all"
-                            >
-                              {item}
-                            </a>
-                          ))}
+                        <div className="ml-2 space-y-0.5 mt-1">
+                          {industryItems.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <a
+                                key={item.name}
+                                href="#industries"
+                                onClick={() => setMobileOpen(false)}
+                                className="flex items-start gap-3 text-hero-muted hover:text-hero-foreground hover:bg-white/5 text-xs font-medium py-2.5 px-3 rounded-lg transition-all"
+                              >
+                                <Icon className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                                <div>
+                                  <p className="font-semibold text-xs">{item.name}</p>
+                                  <p className="text-[10px] opacity-60 mt-0.5">{item.desc}</p>
+                                </div>
+                              </a>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -182,7 +191,6 @@ const Navbar = () => {
                 )}
               </div>
 
-              {/* Sidebar footer */}
               <div className="px-4 pb-6 space-y-3 border-t border-white/10 pt-4">
                 <a
                   href="#login"

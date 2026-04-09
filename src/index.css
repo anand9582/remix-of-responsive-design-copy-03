@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Calistoga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Calistoga&family=Roboto:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,13 +46,11 @@
     --nav-bg: 222 40% 12%;
     --nav-border: 222 30% 20%;
     --gradient-hero: linear-gradient(180deg, hsl(222 47% 8%) 0%, hsl(222 47% 14%) 100%);
-    --gradient-stripes: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 3px,
-      hsl(222 30% 15%) 3px,
-      hsl(222 30% 15%) 4px
-    );
+    --gradient-stripes: repeating-linear-gradient(90deg,
+        transparent,
+        transparent 3px,
+        hsl(222 30% 15%) 3px,
+        hsl(222 30% 15%) 4px);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -103,7 +102,12 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display;
   }
 }

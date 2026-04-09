@@ -1,7 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
-import dashboardMain from "@/assets/dashboard-main.png";
+import { motion } from "framer-motion";
+import dashboardMain from "@/assets/dashboard-main.mp4";
 import alertCard from "@/assets/alert-card.png";
 import statsCard from "@/assets/stats-card.png";
 import gridCard from "@/assets/grid-card.png";
@@ -9,25 +8,57 @@ import faceMatchCard from "@/assets/face-match-card.png";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
 import { useEffect, useState, useCallback } from "react";
 
-const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
+const EASE_SMOOTH = [0.16, 1, 0.3, 1] as const;
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
+const textContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, filter: "blur(2px)", y: 12, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: EASE_OUT
+    },
+  },
+};
+
+const renderWords = (text: string, className: string = "") => {
+  return text.split(" ").map((word, index) => (
+    <motion.span
+      key={`${word}-${index}`}
+      variants={wordVariants}
+      className={`inline-block ${className}`}
+      style={{ marginRight: "0.25em", marginBottom: "0.1em" }}
+    >
+      {word}
+    </motion.span>
+  ));
+};
 
 const HeroSection = () => {
   const [stage, setStage] = useState(0);
-  const [cycle, setCycle] = useState(0);
 
   const runAnimation = useCallback(() => {
     setStage(0);
     const timers = [
-      setTimeout(() => setStage(1), 200),
-      setTimeout(() => setStage(2), 900),
-      setTimeout(() => setStage(3), 1400),
-      setTimeout(() => setStage(4), 1800),
-      // Hold for 3s then fade out
-      setTimeout(() => setStage(5), 5000),
-      // Reset and replay
-      setTimeout(() => {
-        setCycle((c) => c + 1);
-      }, 6200),
+      setTimeout(() => setStage(1), 100),
+      setTimeout(() => setStage(2), 800),
+      setTimeout(() => setStage(3), 1500),
+      setTimeout(() => setStage(4), 2200),
     ];
     return timers;
   }, []);
@@ -35,193 +66,141 @@ const HeroSection = () => {
   useEffect(() => {
     const timers = runAnimation();
     return () => timers.forEach(clearTimeout);
-  }, [cycle, runAnimation]);
+  }, [runAnimation]);
 
-  const isVisible = stage >= 2 && stage < 5;
-  const showDashboard = stage >= 4 && stage < 5;
-  const showButton = stage >= 3 && stage < 5;
   const showStripes = stage >= 1;
+  const showHeading = stage >= 2;
+  const showCTA = stage >= 3;
+  const showDashboard = stage >= 4;
 
   return (
     <section
-      className="relative overflow-hidden pb-20"
+      className="relative overflow-hidden"
       style={{
         background:
           "radial-gradient(ellipse at center top, hsl(222 60% 18%) 0%, hsl(222 47% 8%) 70%)",
       }}
     >
-      {/* Background image sweep */}
+      {/* Background */}
       <motion.div
-        key={`stripes-${cycle}`}
-        className="absolute inset-0 origin-left will-change-transform"
+        className="absolute inset-0 origin-left"
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{
           scaleX: showStripes ? 1 : 0,
           opacity: showStripes ? 1 : 0,
         }}
         transition={{
-          duration: 2.2,
-          ease: [0.16, 1, 0.3, 1],
-          opacity: { duration: 1.2, ease: "easeOut" },
+          scaleX: { duration: 2.8, ease: EASE_SMOOTH },
+          opacity: { duration: 1.6 },
         }}
         style={{
           backgroundImage: `url(${heroBgStripes})`,
           backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-44 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-36 text-center">
         {/* Heading */}
         <motion.h1
-          key={`h1-${cycle}`}
-          className="text-hero-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{
-            opacity: isVisible ? 1 : 0,
-            y: isVisible ? 0 : 40,
-          }}
-          transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
+          className="text-white font-calistoga font-normal not-italic text-[46px] leading-[1.24] tracking-[0.035em] mb-[14px]"
+          variants={textContainerVariants}
+          initial="hidden"
+          animate={showHeading ? "visible" : "hidden"}
         >
-          AI-Powered VMS That
-          <br />
-          Integrates Security Systems.
+          {renderWords("AI-Powered VMS That")} <br /> {renderWords("Integrates Security Systems")}
         </motion.h1>
-
-        {/* Subtitle */}
         <motion.p
-          key={`sub-${cycle}`}
-          className="text-hero-muted mt-5 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
-          initial={{ opacity: 0, y: 25 }}
-          animate={{
-            opacity: isVisible ? 1 : 0,
-            y: isVisible ? 0 : 25,
-          }}
-          transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: isVisible ? 0.15 : 0 }}
+          className="font-roboto font-regular text-white text-sm md:text-lg font-light leading-relaxed max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={showHeading ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
         >
-          Video surveillance with seamless access control, IoT & analytics that
-          predicts threats, responds instantly.
+          Video surveillance with seamless access control, IoT & analytics that predicts threats, responds instantly.
         </motion.p>
 
         {/* CTA Button */}
         <motion.div
-          key={`cta-${cycle}`}
-          className="mt-8"
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
-          animate={{
-            opacity: showButton ? 1 : 0,
-            y: showButton ? 0 : 20,
-            scale: showButton ? 1 : 0.95,
-          }}
-          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+          className="mt-4"
+          initial={{ opacity: 0, y: 24, scale: 0.92 }}
+          animate={showCTA ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.9, ease: EASE_OUT }}
         >
-          <Button className="group bg-background text-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-6 py-3 text-sm font-semibold gap-2 h-auto transition-all duration-300">
-            Book a Demo
-            <span className="w-6 h-6 rounded-full bg-accent group-hover:bg-accent-foreground/20 flex items-center justify-center transition-all duration-300">
-              <ArrowUpRight className="w-3.5 h-3.5 text-accent-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </Button>
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 22 }}
+            className="inline-block"
+          >
+            <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+
+              {/* Gradient Overlay */}
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+
+              {/* Circle */}
+              <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+              </span>
+
+              {/* Text */}
+              <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                Book a Demo
+              </span>
+
+            </button>
+          </motion.div>
         </motion.div>
-
-        {/* Dashboard showcase */}
+        {/* DASHBOARD SECTION */}
         <motion.div
-          key={`dash-${cycle}`}
-          className="relative mt-16 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 80, scale: 0.95 }}
-          animate={{
-            opacity: showDashboard ? 1 : 0,
-            y: showDashboard ? 0 : 80,
-            scale: showDashboard ? 1 : 0.95,
-          }}
-          transition={{ duration: 1.2, ease: EASE_OUT_EXPO }}
+          className="relative mt-5 max-w-5xl mx-auto flex justify-center items-center"
+          initial={{ opacity: 0, y: 100 }}
+          animate={showDashboard ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.4 }}
         >
-          {/* Left floating cards */}
-          <motion.div
-            className="hidden lg:block absolute -left-32 top-8 z-20"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{
-              opacity: showDashboard ? 1 : 0,
-              x: showDashboard ? 0 : -50,
-            }}
-            transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: showDashboard ? 0.3 : 0 }}
-          >
-            <img
-              src={alertCard}
-              alt="AI Alert - Unattended Baggage Detected"
-              className="w-52 rounded-2xl shadow-2xl animate-float"
-              loading="lazy"
-              width={208}
-              height={260}
-            />
-          </motion.div>
-          <motion.div
-            className="hidden lg:block absolute -left-24 bottom-0 z-20"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{
-              opacity: showDashboard ? 1 : 0,
-              x: showDashboard ? 0 : -50,
-            }}
-            transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: showDashboard ? 0.5 : 0 }}
-          >
-            <img
-              src={statsCard}
-              alt="Camera Status Statistics"
-              className="w-48 rounded-2xl shadow-2xl animate-float-delayed"
-              loading="lazy"
-              width={192}
-              height={120}
-            />
-          </motion.div>
+          {/* LEFT CARDS */}
+          <motion.img
+            src={alertCard}
+            className="hidden lg:block absolute -left-[4rem] top-[20%] w-45 rounded-xl shadow-xl"
+            initial={{ opacity: 0, y: 80 }}
+            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.1 }}
+          />
 
-          {/* Main dashboard */}
-          <div className="rounded-xl overflow-hidden shadow-2xl border border-nav-border">
-            <img
+          <motion.img
+            src={statsCard}
+            className="hidden lg:block absolute -left-[8rem] bottom-[5%] w-90 rounded-xl shadow-xl"
+            initial={{ opacity: 0, y: 80 }}
+            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.2 }}
+          />
+
+          {/* MAIN DASHBOARD (CENTERED) */}
+          <div className="flex justify-center items-center w-full">
+            <video
               src={dashboardMain}
-              alt="CamPulse AI-Powered Video Management Dashboard"
-              className="w-full"
-              width={1200}
-              height={800}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="mx-auto w-full max-w-2xl object-contain rounded-xl shadow-2xl"
             />
           </div>
 
-          {/* Right floating cards */}
-          <motion.div
-            className="hidden lg:block absolute -right-28 top-4 z-20"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{
-              opacity: showDashboard ? 1 : 0,
-              x: showDashboard ? 0 : 50,
-            }}
-            transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: showDashboard ? 0.3 : 0 }}
-          >
-            <img
-              src={gridCard}
-              alt="Custom Grid Builder"
-              className="w-48 rounded-2xl shadow-2xl animate-float-slow"
-              loading="lazy"
-              width={192}
-              height={240}
-            />
-          </motion.div>
-          <motion.div
-            className="hidden lg:block absolute -right-24 bottom-4 z-20"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{
-              opacity: showDashboard ? 1 : 0,
-              x: showDashboard ? 0 : 50,
-            }}
-            transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: showDashboard ? 0.5 : 0 }}
-          >
-            <img
-              src={faceMatchCard}
-              alt="Face Match Alert"
-              className="w-52 rounded-2xl shadow-2xl animate-float-delayed"
-              loading="lazy"
-              width={208}
-              height={130}
-            />
-          </motion.div>
+          {/* RIGHT CARDS */}
+          <motion.img
+            src={gridCard}
+            className="hidden lg:block absolute -right-[3rem] top-[2%] w-48 rounded-xl shadow-xl"
+            initial={{ opacity: 0, y: 80 }}
+            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.15 }}
+          />
+
+          <motion.img
+            src={faceMatchCard}
+            className="hidden lg:block absolute  -right-[8rem]  bottom-[5%] w-90 rounded-xl shadow-xl"
+            initial={{ opacity: 0, y: 80 }}
+            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.25 }}
+          />
         </motion.div>
       </div>
     </section>

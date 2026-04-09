@@ -47,9 +47,7 @@ const Index = () => {
         <EcosystemArchitecture />
       </ScrollReveal>
 
-      <ScrollReveal direction="up">
-        <IndustriesWeServe />
-      </ScrollReveal>
+      {/* <IndustriesWeServe />
 
       <ScrollReveal direction="up">
         <AboutUs />
@@ -65,7 +63,7 @@ const Index = () => {
 
       <ScrollReveal direction="up">
         <CTABanner />
-      </ScrollReveal>
+      </ScrollReveal> */}
 
       <Footer />
     </div>

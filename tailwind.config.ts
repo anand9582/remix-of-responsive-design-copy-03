@@ -13,9 +13,14 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        "primary-gradient": "linear-gradient(96.6deg, #2563EB 5.01%, #153885 92.14%)",
+      },
       fontFamily: {
         display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         body: ['"Inter"', 'system-ui', 'sans-serif'],
+        calistoga: ['"Calistoga"', 'cursive'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
