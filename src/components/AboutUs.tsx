@@ -37,9 +37,10 @@ const AboutUs = () => {
         </div>
 
         {/* Main Cards Row */}
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
+
+        <div className="grid md:grid-cols-12 gap-5 mb-5">
           {/* Founder Card */}
-          <div className="relative rounded-2xl overflow-hidden h-72 sm:h-80">
+          <div className="md:col-span-4 relative rounded-2xl overflow-hidden h-72 sm:h-80">
             <img
               src={founderImg}
               alt="Mr. Arun Gupta - Founder and Chairman"
@@ -56,10 +57,9 @@ const AboutUs = () => {
           </div>
 
           {/* Description Card */}
-          <div className="rounded-2xl bg-accent p-8 flex flex-col justify-center relative overflow-hidden">
+          <div className="md:col-span-8 rounded-2xl bg-[linear-gradient(100.48deg,#2563EB_-24.18%,#042F63_86.34%)] p-8 flex flex-col justify-center relative overflow-hidden">
             {/* Corner bracket decoration */}
             <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/30 rounded-tr-lg" />
-            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/30 rounded-bl-lg" />
 
             <h3 className="text-accent-foreground font-display font-bold text-lg sm:text-xl uppercase tracking-wide mb-4">
               CamPulse by Transline Technologies

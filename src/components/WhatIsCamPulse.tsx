@@ -1,5 +1,6 @@
 import { Diamond } from "lucide-react";
 import { motion } from "framer-motion";
+import bgImage from "@/assets/campulse-bg.png";
 
 const badgeVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -53,11 +54,9 @@ const WhatIsCamPulse = () => {
     <section className="relative bg-secondary py-20 sm:py-28 overflow-hidden">
       {/* Subtle grid pattern */}
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0  bg-cover bg-center"
         style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
+          backgroundImage: `url(${bgImage})`,
         }}
       />
 
@@ -68,10 +67,10 @@ const WhatIsCamPulse = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.8 }}
-          className="inline-flex items-center gap-2 bg-background rounded-full px-4 py-1.5 mb-8 border border-border justify-center"
+          className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-3 mb-8  justify-center"
         >
-          <Diamond className="w-3.5 h-3.5 text-primary" fill="currentColor" />
-          <span className="text-xs font-semibold tracking-widest uppercase text-primary">
+          <Diamond className="w-3.5 h-3.5 text-blue-700" fill="currentColor" />
+          <span className="text-xs font-semibold tracking-widest uppercase text-blue-700">
             What is CamPulse
           </span>
         </motion.div>
@@ -82,8 +81,7 @@ const WhatIsCamPulse = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-[1.8rem] 
-       font-display font-bold text-foreground text-center"
+          className="font-martina font-bold text-[28px] leading-[150%] tracking-[0.01em] text-center"
         >
           <span className="block  leading-[1.8]">
             {renderWords("CamPulse delivers flawless VMS as just the starting point.")}

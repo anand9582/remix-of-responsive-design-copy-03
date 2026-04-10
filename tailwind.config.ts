@@ -21,6 +21,9 @@ export default {
         body: ['"Inter"', 'system-ui', 'sans-serif'],
         calistoga: ['"Calistoga"', 'cursive'],
         roboto: ['Roboto', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        aleo: ['Aleo', 'serif'],
+        playfair: ['"Playfair Display"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
