@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Diamond, Train, Factory, Landmark, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
-import industryRailways from "@/assets/industry-railways.jpg";
+import industryRailways from "@/assets/industry-railways.png";
 import industryManufacturing from "@/assets/industry-manufacturing.jpg";
 import industryBanking from "@/assets/industry-banking.jpg";
 
@@ -144,24 +144,24 @@ const IndustriesWeServe = () => {
 
   return (
     <section className="bg-background py-16 sm:py-24" id="industries">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
           <motion.div
-            className="lg:w-[320px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start"
+            className="lg:w-[420px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start"
             variants={sidebarVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
-              <Diamond className="w-3.5 h-3.5 text-primary" fill="currentColor" />
-              <span className="text-xs font-semibold tracking-widest uppercase text-primary">
-                Industries We Serve
-              </span>
+            {/* Badge */}
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEF2FF] text-[#2563EB] text-[11px] font-bold tracking-[0.08em] uppercase mb-8">
+              <Diamond className="w-3.5 h-3.5 text-blue-700 leading-none mb-[1px]" fill="currentColor" />
+              INDUSTRIES WE SERVE
             </motion.div>
 
-            <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-foreground leading-snug mb-8">
-              Security That <span className="text-primary italic">Adapts</span> to Every Industry
+            {/* Heading */}
+            <motion.h2 variants={itemVariants} className="font-aleo font-semibold text-[30px] sm:text-[40px] text-[#2563EB] leading-[1.2] mb-10 tracking-tight">
+              Security That Adapts <span className="text-[#111827]">to<br />Every Industry</span>
             </motion.h2>
 
             <div className="space-y-1">
@@ -174,21 +174,21 @@ const IndustriesWeServe = () => {
                     onClick={() => handleTabClick(index)}
                     whileHover={{ x: isActive ? 0 : 4 }}
                     whileTap={{ scale: 0.99 }}
-                    className={`relative w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-medium transition-colors duration-300 z-10 ${isActive
-                        ? "text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    className={`relative w-full flex  font-roboto font-regular items-center gap-3 px-5 py-3.5 rounded-[8px] text-left transition-colors duration-300 z-10 ${isActive
+                      ? "text-white"
+                      : "text-[#52525B] hover:text-[#111827] hover:bg-slate-50"
                       }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeTabPill"
-                        className="absolute inset-0 bg-primary rounded-lg z-[-1] shadow-md"
+                        className="absolute inset-0 bg-primary-gradient rounded-[8px] z-[-1] shadow-md"
                         initial={false}
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
-                    <industry.icon className="w-4 h-4 flex-shrink-0" strokeWidth={1.5} />
-                    <span>{industry.label}</span>
+                    <industry.icon className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={1.5} />
+                    <span className="font-roboto font-medium text-[15px]">{industry.label}</span>
                   </motion.button>
                 );
               })}
@@ -209,24 +209,24 @@ const IndustriesWeServe = () => {
                 viewport={{ once: false, amount: 0.2 }}
               >
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground">
+                  <h3 className="text-[22px] sm:text-[26px] font-sans font-bold text-[#111827] tracking-tight">
                     {industry.title}
                   </h3>
                   <a
                     href="#"
-                    className="flex items-center gap-1 text-primary text-sm font-medium hover:underline flex-shrink-0 mt-1"
+                    className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
                   >
                     Learn more
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
                   </a>
                 </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
+                <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-8 max-w-2xl">
                   {industry.description}
                 </p>
 
                 <motion.div
-                  className="rounded-xl overflow-hidden border border-border shadow-lg"
+                  className="rounded-[16px] overflow-hidden border border-[#E5E7EB] shadow-[0_12px_40px_rgba(0,0,0,0.08)] bg-white p-2"
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   initial={{ opacity: 0.6, y: 24, scale: 0.95 }}
                   transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 0.08 }}

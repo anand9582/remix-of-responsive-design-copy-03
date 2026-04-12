@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import dashboardMain from "@/assets/dashboard-main.mp4";
 import alertCard from "@/assets/alert-card.png";
-import statsCard from "@/assets/stats-card.png";
+import statsCard from "@/assets/Bannerlefticon.png";
 import gridCard from "@/assets/grid-card.png";
 import faceMatchCard from "@/assets/face-match-card.png";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
@@ -167,7 +167,7 @@ const HeroSection = () => {
 
           <motion.img
             src={statsCard}
-            className="hidden lg:block absolute -left-[8rem] bottom-[5%] w-90 rounded-xl shadow-xl"
+            className="hidden lg:block absolute -left-[8rem] bottom-[0%] w-90 rounded-xl shadow-xl"
             initial={{ opacity: 0, y: 80 }}
             animate={showDashboard ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.2 }}
@@ -181,7 +181,7 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              className="mx-auto w-full max-w-2xl object-contain rounded-xl shadow-2xl"
+              className="mx-auto w-full max-w-2xl object-contain position-relative top-[40px]"
             />
           </div>
 

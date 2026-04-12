@@ -1,58 +1,84 @@
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import statsCard from "@/assets/stats-card.png";
-import alertCard from "@/assets/alert-card.png";
+import alertCard from "@/assets/cta-bg.png";
 
 const CTABanner = () => {
   return (
     <section className="bg-background py-16 sm:py-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl bg-hero overflow-hidden px-8 py-14 sm:py-16 text-center">
-          {/* Vertical stripe texture */}
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              background:
-                "repeating-linear-gradient(90deg, transparent, transparent 3px, hsl(222 30% 15%) 3px, hsl(222 30% 15%) 4px)",
-            }}
-          />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Left floating card */}
-          <div className="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 -rotate-6 z-10">
+        <div
+          className="
+          relative rounded-[28px] overflow-hidden 
+          bg-[linear-gradient(135deg,#1E3A8A_0%,#0F172A_100%)]
+          px-6 sm:px-12 py-16 sm:py-20 
+          text-center 
+          shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+        "
+        >
+          {/* Glow effect */}
+          <div className="absolute inset-0 opacity-30 blur-3xl bg-blue-500/20 pointer-events-none" />
+
+          {/* LEFT FLOATING CARD */}
+          <div className="hidden lg:block absolute -left-3 top-[200px] -translate-y-1/2 -rotate-[7deg] z-10">
             <img
               src={statsCard}
               alt="Statistics Card"
-              className="w-40 rounded-xl shadow-2xl animate-float"
+              className="w-full object-cover  animate-float"
               loading="lazy"
             />
           </div>
 
-          {/* Right floating card */}
-          <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 rotate-6 z-10">
+          {/* RIGHT FLOATING CARD */}
+          <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 rotate-[8deg] z-10">
             <img
               src={alertCard}
               alt="Alert Card"
-              className="w-40 rounded-xl shadow-2xl animate-float-delayed"
+              className="w-full object-cover animate-float-delayed"
               loading="lazy"
             />
           </div>
 
-          {/* Content */}
-          <div className="relative z-20">
-            <h2 className="text-hero-foreground font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-3">
+          {/* CONTENT */}
+          <div className="relative z-20 max-w-3xl mx-auto flex flex-col items-center justify-center">
+
+            {/* HEADING */}
+            <h2
+              className="
+              text-white font-aleo font-semibold 
+              text-3xl sm:text-4xl md:text-[50px] 
+              leading-[1.2] tracking-tight mb-4
+            "
+            >
               Built in India. Made for the World.
             </h2>
-            <p className="text-hero-muted text-sm sm:text-base mb-8">
+
+            {/* SUBTEXT */}
+            <p className="text-[#94A3B8] text-[15px] sm:text-[16px] mb-8 font-roboto">
               Deploy intelligent surveillance built for scale, speed and resilience.
             </p>
-            <Button className="group bg-background text-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-6 py-3 text-sm font-semibold gap-2 h-auto transition-all duration-300">
+
+            {/* BUTTON */}
+            <Button
+              className="
+              bg-white hover:bg-slate-100 
+              text-[#2563EB] 
+              rounded-full 
+              px-5 py-5
+              text-[15px] font-semibold 
+              flex items-center gap-2 
+              shadow-lg hover:shadow-xl 
+              transition-all duration-300
+            "
+            >
               Book a Demo
-              <span className="w-6 h-6 rounded-full bg-accent group-hover:bg-accent-foreground/20 flex items-center justify-center transition-all duration-300">
-                <ArrowUpRight className="w-3.5 h-3.5 text-accent-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
+              <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
             </Button>
+
           </div>
         </div>
+
       </div>
     </section>
   );

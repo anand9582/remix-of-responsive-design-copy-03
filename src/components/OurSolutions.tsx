@@ -26,6 +26,7 @@ import solutionDevices from "@/assets/solution-devices.png";
 import solutionThreat from "@/assets/solutionThreat.png";
 import solutionStreaming from "@/assets/solutionStreaming.png";
 import AdaptiveStreaming from "@/assets/Adaptive-Streaming.png";
+import MultiLanguage from "@/assets/Multi-Language.mp4";
 
 const solutions = [
   {
@@ -124,7 +125,7 @@ const solutions = [
       { icon: Users, text: "Faster adoption across diverse teams.", color: "text-blue-700" },
       { icon: Globe, text: "Improved nationwide deployment capability.", color: "text-blue-700" },
     ],
-    image: AdaptiveStreaming,
+    image: MultiLanguage,
     imageAlt: "Adaptive Streaming Quality Comparison",
     imagePosition: "left" as const,
   },
@@ -154,9 +155,8 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
     >
       <div className="bg-background rounded-2xl shadow-xl overflow-hidden">
         <div
-          className={`flex flex-col ${
-            solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
-          } gap-6 lg:gap-0`}
+          className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
+            } gap-6 lg:gap-0`}
         >
           {/* Text */}
           <div className="flex-1 p-3 sm:p-4 lg:p-8 flex flex-col justify-center">
@@ -185,12 +185,23 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
           {/* Image */}
           <div className="flex-1 p-4 lg:p-6 flex items-center justify-center">
-            <img
-              src={solution.image}
-              alt={solution.imageAlt}
-              className="w-full rounded-xl object-cover max-h-[350px]"
-              loading="lazy"
-            />
+            {solution.image.endsWith(".mp4") ? (
+              <video
+                src={solution.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full rounded-xl object-cover max-h-[350px]"
+              />
+            ) : (
+              <img
+                src={solution.image}
+                alt={solution.imageAlt}
+                className="w-full rounded-xl object-cover max-h-[350px]"
+                loading="lazy"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -222,11 +233,11 @@ const OurSolutions = () => {
         {/* Cards */}
         <div className="relative">
           {solutions.map((solution, index) => (
-            <SolutionCard 
-              key={index} 
-              solution={solution} 
-              index={index} 
-              totalLength={solutions.length} 
+            <SolutionCard
+              key={index}
+              solution={solution}
+              index={index}
+              totalLength={solutions.length}
             />
           ))}
         </div>

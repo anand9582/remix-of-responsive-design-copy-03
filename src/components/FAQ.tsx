@@ -1,3 +1,4 @@
+import { ArrowUpRight, Diamond } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -21,43 +22,55 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-20 bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 items-start">
+    <section id="faq" className="py-20 sm:py-28 bg-[#FAFAFA]">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
+
           {/* Left side */}
-          <div className="lg:sticky lg:top-28">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 text-accent text-xs font-semibold tracking-wider uppercase mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <div className="lg:sticky lg:top-32">
+            {/* Badge */}
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 font-roboto font-regular rounded-full bg-[#EEF2FF] text-[#2563EB] text-[11px] font-bold tracking-[0.08em] uppercase mb-8">
+              <Diamond className="w-3.5 h-3.5 text-blue" fill="currentColor" />
               FAQ
             </span>
-            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-foreground leading-tight mb-4">
-              <span className="text-accent">Your Questions</span> Answered
+
+            {/* Heading */}
+            <h2 className="font-aleo font-semibold text-[32px] sm:text-[40px] text-[#111827] leading-[1.2] mb-5 tracking-tight">
+              <span className="text-[#2563EB]">Your Questions</span> Answered
             </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-8">
+
+            {/* Paragraph */}
+            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-10 max-w-[340px]">
               We're here to help you and solve objections. Find answers to the most common questions below.
             </p>
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 text-sm font-semibold">
+
+            {/* Button */}
+            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:bg-[#1E40AF] text-white rounded-full px-8 py-6 text-[15px] font-semibold flex items-center justify-center gap-[6px] shadow-[0_8px_20px_rgba(29,78,216,0.3)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(29,78,216,0.4)] hover:-translate-y-0.5">
               Book a Demo
+              <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
             </Button>
           </div>
 
           {/* Right side - Accordion */}
-          <Accordion type="single" collapsible className="w-full space-y-2">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="border border-border rounded-lg px-5 data-[state=open]:border-accent/30 transition-colors"
-              >
-                <AccordionTrigger className="text-sm font-medium text-foreground hover:no-underline py-4">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="w-full pt-2 lg:pt-0">
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`item-${i}`}
+                  className="border border-[#E5E7EB] bg-white rounded-[8px] px-6 mb-3 hover:border-[#D1D5DB] data-[state=open]:border-[#93C5FD] data-[state=open]:shadow-sm transition-all duration-200 overflow-hidden"
+                >
+                  <AccordionTrigger className="text-[14px] sm:text-[15px] font-roboto font-medium text-[#334155] hover:text-[#0F172A] hover:no-underline py-5 outline-none [&[data-state=open]]:text-[#1D4ED8]">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[#64748b] font-roboto text-[14px] leading-[1.7] pb-5">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
         </div>
       </div>
     </section>

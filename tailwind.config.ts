@@ -24,6 +24,7 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
         aleo: ['Aleo', 'serif'],
         playfair: ['"Playfair Display"', 'serif'],
+        dmSerif: ['"DM Serif Display"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
