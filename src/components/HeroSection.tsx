@@ -181,7 +181,7 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              className="mx-auto w-full max-w-2xl object-contain position-relative top-[40px]"
+              className="mx-auto w-full max-w-2xl object-contain position-relative  rounded-2xl top-[40px]"
             />
           </div>
 

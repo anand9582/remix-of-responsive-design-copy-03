@@ -1,5 +1,5 @@
-import { Diamond, Eye, ShieldAlert, TrendingDown, Bell, Layers, Languages, Video } from "lucide-react";
-import { DashboardIcon, ClockIcon, BlocksIcon, SettingsIcon, ChartIcon } from "./CustomIcons";
+import { Diamond, Eye, ShieldAlert, Bell, Layers, Languages, Video } from "lucide-react";
+import { DashboardIcon, ClockIcon, BlocksIcon, SettingsIcon, ChartIcon, LockIcons, BrokenIcons, TrendingIcons, ManualAlertIcons } from "./CustomIcons";
 
 const challenges = [
   { icon: DashboardIcon, label: "Dashboard\nFusion" },
@@ -9,12 +9,12 @@ const challenges = [
   { icon: ShieldAlert, label: "Zero Threat\nPrediction" },
   { icon: ChartIcon, label: "Cannot\nScale Up" },
 
-  { icon: Bell, label: "Manual Alert\nTriggers" },
+  { icon: LockIcons, label: "Trapped by\nVendor Lock" },
+  { icon: ManualAlertIcons, label: "Manual Alert\nTriggers" },
   { icon: Layers, label: "Disconnected\nData Silos" },
   { icon: Languages, label: "Single Language\nLimitation" },
-  { icon: Video, label: "Frequent Video\nDropouts" },
-  { icon: Eye, label: "Delayed\nInsights" },
-  { icon: ShieldAlert, label: "No Real-time\nVisibility" },
+  { icon: TrendingIcons, label: "Frequent Video\nDropouts" },
+  { icon: BrokenIcons, label: "Broken System\nIntegration" },
 ];
 
 const half = Math.ceil(challenges.length / 2);
@@ -100,7 +100,7 @@ const TheChallenge = () => {
 
             {/* Marquee Row 2 */}
             <div>
-              <MarqueeRow items={row2} direction="left" offset={true} />
+              <MarqueeRow items={row2} direction="right" offset={true} />
             </div>
           </div>
 

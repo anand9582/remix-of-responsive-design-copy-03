@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 import { useInView, animate } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import founderImg from "@/assets/founder.jpg";
-import controlRoomImg from "@/assets/control-room.jpg";
+import controlRoomImg from "@/assets/control-room.png";
 import logoT from "@/assets/logo-t.png";
 
 const stats = [

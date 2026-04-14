@@ -19,7 +19,7 @@ import {
   Users,
   Globe,
 } from "lucide-react";
-import { ClockFilledIcon, SearchFilledIcon, ImproveIcon, FootageIcon, LockIcon, LowerIcon, SimplifiedIcon, ReducedIcon } from "./CustomIcons";
+import { ClockFilledIcon, SearchFilledIcon, ImproveIcon, FootageIcon, LockIcon, ScanIcon, LowerIcon, SimplifiedIcon, ReducedIcon } from "./CustomIcons";
 
 import solutionSearch from "@/assets/solution-search.png";
 import solutionDevices from "@/assets/solution-devices.png";
@@ -45,12 +45,12 @@ const solutions = [
         color: "text-blue-700",
       },
       {
-        icon: ImproveIcon,
+        icon: FootageIcon,
         text: "Improves incident response accuracy.",
         color: "text-blue-700",
       },
       {
-        icon: FootageIcon,
+        icon: ScanIcon,
         text: "Eliminates manual footage scanning.",
         color: "text-blue-700",
       },
@@ -126,6 +126,7 @@ const solutions = [
       { icon: Globe, text: "Improved nationwide deployment capability.", color: "text-blue-700" },
     ],
     image: MultiLanguage,
+    isVideo: true,
     imageAlt: "Adaptive Streaming Quality Comparison",
     imagePosition: "left" as const,
   },
@@ -175,7 +176,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
                     className={`w-5 h-5 ${bullet.color} flex-shrink-0 transition-colors duration-300`}
                     strokeWidth={1.5}
                   />
-                  <span className="text-neutral-600 text-sm font-roboto">
+                  <span className="font-roboto font-normal  text-gray-600 leading-6 tracking-normal">
                     {bullet.text}
                   </span>
                 </div>
@@ -185,7 +186,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
           {/* Image */}
           <div className="flex-1 p-4 lg:p-6 flex items-center justify-center">
-            {solution.image.endsWith(".mp4") ? (
+            {solution.isVideo ? (
               <video
                 src={solution.image}
                 autoPlay
