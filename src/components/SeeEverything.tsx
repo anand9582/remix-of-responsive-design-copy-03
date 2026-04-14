@@ -12,7 +12,7 @@ import { Target, LayoutPanelLeft, Server, Globe, Cctv, Zap, BrainCircuit } from 
 
 const SeeEverything = () => {
   return (
-    <section className="bg-[#FAFBFD] py-16 sm:py-24">
+    <section className="bg-[linear-gradient(116.72deg,#F5F5F5_0%,#F5F5F5_100%)] py-16 sm:py-24">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center font-roboto font-semibold text-neutral-800 text-[28px] sm:text-3xl md:text-[34px] mb-10 sm:mb-14">
           See Everything. Miss Nothing.
@@ -22,11 +22,11 @@ const SeeEverything = () => {
         <div className="flex flex-col sm:flex-row gap-6 lg:hidden">
           {/* Mobile Col 1 */}
           <div className="flex flex-col gap-6 flex-1">
-            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[4/5]">
+            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[2/3]">
               <video src={surveillance1} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">95%+ Detection Accuracy:</h3>
                 <Target className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -36,7 +36,7 @@ const SeeEverything = () => {
               <video src={surveillance2} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">1000+ Cameras, One View:</h3>
                 <LayoutPanelLeft className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -46,7 +46,7 @@ const SeeEverything = () => {
               <video src={surveillance8} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">24/7 Monitoring:</h3>
                 <Cctv className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -60,7 +60,7 @@ const SeeEverything = () => {
           {/* Mobile Col 2 */}
           <div className="flex flex-col gap-6 flex-1">
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">{"<2s Alert Time:"}</h3>
                 <Zap className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -70,7 +70,7 @@ const SeeEverything = () => {
               <img src={surveillance9} alt="Refinery" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">99.9% Uptime:</h3>
                 <Server className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -80,7 +80,7 @@ const SeeEverything = () => {
               <video src={surveillance5} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">Enterprise Scale:</h3>
                 <Globe className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -90,7 +90,7 @@ const SeeEverything = () => {
               <video src={surveillance6} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] text-neutral-900">Continuous Learning:</h3>
                 <BrainCircuit className="w-5 h-5 text-neutral-400 stroke-[1.5]" />
               </div>
@@ -100,14 +100,14 @@ const SeeEverything = () => {
         </div>
 
         {/* Desktop Layout: Flexible Masonry-style precise match */}
-        <div className="hidden lg:flex gap-4 xl:gap-6">
+        <div className="hidden lg:grid grid-cols-4 gap-4 xl:gap-6">
           {/* Column 1 */}
-          <div className="flex flex-col gap-4 xl:gap-6 flex-1">
-            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[4/5]">
+          <div className="flex flex-col gap-4 xl:gap-6 h-full gap-4 xl:gap-6 flex-1">
+            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[4/3]">
               <video src={surveillance1} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">95%+ Detection Accuracy:</h3>
                 <Target className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
@@ -124,24 +124,24 @@ const SeeEverything = () => {
               <video src={surveillance2} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">1000+ Cameras, One View:</h3>
                 <LayoutPanelLeft className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
               <p className="text-neutral-500 text-[13.5px] xl:text-[14.5px] leading-relaxed">A unified, single view across hundreds of feeds.</p>
             </div>
-            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[3/2]">
+            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[2/2">
               <video src={surveillance7} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">99.9% Uptime:</h3>
                 <Server className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
               <p className="text-neutral-500 text-[13.5px] xl:text-[14.5px] leading-relaxed">Designed for 24/7 uninterrupted operations with enterprise-grade reliability.</p>
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">Enterprise Scale:</h3>
                 <Globe className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
@@ -152,7 +152,7 @@ const SeeEverything = () => {
           {/* Column 3 */}
           <div className="flex flex-col gap-4 xl:gap-6 flex-1">
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">24/7 Monitoring:</h3>
                 <Cctv className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
@@ -162,13 +162,13 @@ const SeeEverything = () => {
               <video src={surveillance3} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">{"<2s Alert Time:"}</h3>
                 <Zap className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>
               <p className="text-neutral-500 text-[13.5px] xl:text-[14.5px] leading-relaxed">Real time analysis from feed to mobile alert.</p>
             </div>
-            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[3/2]">
+            <div className="rounded-[16px] overflow-hidden shadow-custom h-[270px]">
               <video src={surveillance5} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
           </div>
@@ -178,11 +178,11 @@ const SeeEverything = () => {
             <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[4/3]">
               <img src={surveillance9} alt="Refinery" className="w-full h-full object-cover" />
             </div>
-            <div className="rounded-[16px] overflow-hidden shadow-custom aspect-[4/5]">
+            <div className="rounded-[16px] overflow-hidden shadow-custom h-[460px]">
               <video src={surveillance6} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </div>
             <div className="rounded-[16px] bg-white p-6 shadow-custom border border-neutral-100">
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between mb-1">
                 <h3 className="font-roboto font-bold text-[15px] xl:text-[16px] text-neutral-900">Continuous Learning:</h3>
                 <BrainCircuit className="w-[18px] h-[18px] text-neutral-400 stroke-[2] flex-shrink-0" />
               </div>

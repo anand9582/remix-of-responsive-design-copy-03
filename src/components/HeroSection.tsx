@@ -159,7 +159,7 @@ const HeroSection = () => {
           {/* LEFT CARDS */}
           <motion.img
             src={alertCard}
-            className="hidden lg:block absolute -left-[4rem] top-[20%] w-45 rounded-xl shadow-xl"
+            className="hidden lg:block absolute -left-[4rem] top-[6%] w-45 rounded-xl shadow-xl"
             initial={{ opacity: 0, y: 80 }}
             animate={showDashboard ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.1 }}
@@ -167,7 +167,7 @@ const HeroSection = () => {
 
           <motion.img
             src={statsCard}
-            className="hidden lg:block absolute -left-[8rem] bottom-[0%] w-90 rounded-xl shadow-xl"
+            className="hidden lg:block absolute -left-[8rem] bottom-[4%] w-90 rounded-xl shadow-xl"
             initial={{ opacity: 0, y: 80 }}
             animate={showDashboard ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.2 }}
@@ -181,14 +181,14 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              className="mx-auto w-full max-w-2xl object-contain position-relative  rounded-2xl top-[40px]"
+              className="mx-auto w-full max-w-2xl object-contain position-relative  rounded-2xl top-[15px]"
             />
           </div>
 
           {/* RIGHT CARDS */}
           <motion.img
             src={gridCard}
-            className="hidden lg:block absolute -right-[3rem] top-[2%] w-48 rounded-xl shadow-xl"
+            className="hidden lg:block absolute -right-[3rem] top-[0%] w-48 rounded-xl "
             initial={{ opacity: 0, y: 80 }}
             animate={showDashboard ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.15 }}
@@ -196,7 +196,7 @@ const HeroSection = () => {
 
           <motion.img
             src={faceMatchCard}
-            className="hidden lg:block absolute  -right-[8rem]  bottom-[5%] w-90 rounded-xl shadow-xl"
+            className="hidden lg:block absolute  -right-[8rem]  bottom-[2%] w-90 rounded-xl"
             initial={{ opacity: 0, y: 80 }}
             animate={showDashboard ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.25 }}
