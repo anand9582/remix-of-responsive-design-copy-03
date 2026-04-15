@@ -8,6 +8,7 @@ import OilGas from "@/assets/OilGas.png";
 import LogisticsWarehousing from "@/assets/LogisticsWarehousing.png";
 import retailLarge from "@/assets/retailLarge.png";
 import educationuniversities from "@/assets/educationuniversities.png";
+import hospital from "@/assets/hospital.png";
 
 const industries = [
   {
@@ -64,7 +65,7 @@ const industries = [
     label: "Hospitals & Healthcare Networks",
     title: "Hospitals & Healthcare Networks",
     description: "Control access to ICUs, pharmacies, and restricted zones while monitoring critical areas. Detect unusual activity and respond quickly to ensure safety at all times.",
-    image: educationuniversities,
+    image: hospital,
   },
 ];
 
@@ -105,27 +106,34 @@ const cardVariants = {
 
 const IndustriesWeServe = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isClickScroll = useRef(false);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    sectionRefs.current.forEach((el, i) => {
+    const observerOptions = {
+      threshold: 0,
+      rootMargin: "-40% 0px -40% 0px",
+    };
+
+    const handleIntersect = (i: number) => ([entry]: IntersectionObserverEntry[]) => {
+      if (entry.isIntersecting && !isClickScroll.current) {
+        setActiveIndex(i);
+      }
+    };
+
+    desktopSectionRefs.current.forEach((el, i) => {
       if (!el) return;
+      const observer = new IntersectionObserver(handleIntersect(i), observerOptions);
+      observer.observe(el);
+      observers.push(observer);
+    });
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && !isClickScroll.current) {
-            setActiveIndex(i);
-          }
-        },
-        {
-          threshold: 0,
-          rootMargin: "-40% 0px -40% 0px",
-        }
-      );
-
+    mobileSectionRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const observer = new IntersectionObserver(handleIntersect(i), observerOptions);
       observer.observe(el);
       observers.push(observer);
     });
@@ -137,7 +145,10 @@ const IndustriesWeServe = () => {
     setActiveIndex(index);
     isClickScroll.current = true;
 
-    const element = sectionRefs.current[index];
+    // Use desktop ref if on desktop and it exists, else use mobile
+    const isDesktop = window.innerWidth >= 1024;
+    const element = isDesktop ? desktopSectionRefs.current[index] : mobileSectionRefs.current[index];
+
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
       window.setTimeout(() => {
@@ -147,7 +158,7 @@ const IndustriesWeServe = () => {
   }, []);
 
   return (
-    <section className="bg-background py-16 sm:py-24" id="industries">
+    <section className="bg-background py-16 lg:pt-24 lg:pb-0" id="industries">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
           <motion.div
@@ -199,54 +210,124 @@ const IndustriesWeServe = () => {
             </div>
           </motion.div>
 
-          <div className="flex-1 min-w-0 space-y-24 lg:space-y-32">
-            {industries.map((industry, index) => (
-              <motion.div
-                key={industry.title}
-                ref={(el) => {
-                  sectionRefs.current[index] = el;
-                }}
-                className="scroll-mt-24 lg:scroll-mt-32"
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="text-[22px] sm:text-[26px] font-sans font-bold text-[#111827] tracking-tight">
-                    {industry.title}
-                  </h3>
-                  <a
-                    href="#"
-                    className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
+          <div className="flex-1 min-w-0 relative">
+            {/* DESKTOP: STICKY VIEWPORT */}
+            <div className="hidden lg:block lg:sticky lg:top-24 w-full z-10">
+              <div className="relative w-full">
+                {industries.map((industry, index) => {
+                  const isActive = activeIndex === index;
+                  return (
+                    <motion.div
+                      key={`desktop-${industry.title}`}
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        scale: isActive ? 1 : 0.95,
+                        y: isActive ? 0 : 40,
+                      }}
+                      transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
+                      className={`w-full absolute top-0 left-0 transition-opacity ${isActive ? "relative z-10 pointer-events-auto" : "z-0 pointer-events-none"
+                        }`}
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <h3 className="text-[26px] font-sans font-bold text-[#111827] tracking-tight">
+                          {industry.title}
+                        </h3>
+                        <a
+                          href="#"
+                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
+                        >
+                          Learn more
+                          <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
+                        </a>
+                      </div>
+
+                      <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-5 max-w-2xl">
+                        {industry.description}
+                      </p>
+
+                      <div className="rounded-md overflow-hidden">
+                        <img
+                          src={industry.image}
+                          alt={industry.title}
+                          className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                          loading="lazy"
+                          width={960}
+                          height={640}
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* DESKTOP: SCROLL ANCHORS */}
+            <div className="hidden lg:block w-full">
+              {industries.map((industry, index) => (
+                <div
+                  key={`anchor-${industry.title}`}
+                  ref={(el) => {
+                    desktopSectionRefs.current[index] = el;
+                  }}
+                  className="h-[100vh] w-full pointer-events-none"
+                />
+              ))}
+            </div>
+
+            {/* MOBILE: NORMAL SCROLLING LIST */}
+            <div className="block lg:hidden space-y-16">
+              {industries.map((industry, index) => {
+                const isActive = activeIndex === index;
+                return (
+                  <div
+                    key={`mobile-${industry.title}`}
+                    ref={(el) => {
+                      mobileSectionRefs.current[index] = el;
+                    }}
+                    className="scroll-mt-24"
                   >
-                    Learn more
-                    <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
-                  </a>
-                </div>
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0.5,
+                        scale: isActive ? 1 : 0.95,
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full"
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <h3 className="text-[22px] sm:text-[26px] font-sans font-bold text-[#111827] tracking-tight">
+                          {industry.title}
+                        </h3>
+                        <a
+                          href="#"
+                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
+                        >
+                          Learn more
+                          <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
+                        </a>
+                      </div>
 
-                <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-8 max-w-2xl">
-                  {industry.description}
-                </p>
+                      <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-5">
+                        {industry.description}
+                      </p>
 
-                <motion.div
-                  className="rounded-[16px] overflow-hidden border border-[#E5E7EB] shadow-[0_12px_40px_rgba(0,0,0,0.08)] bg-white p-2"
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  initial={{ opacity: 0.6, y: 24, scale: 0.95 }}
-                  transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 0.08 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                >
-                  <img
-                    src={industry.image}
-                    alt={industry.title}
-                    className="w-full object-cover transition-transform duration-700 hover:scale-105"
-                    loading="lazy"
-                    width={960}
-                    height={640}
-                  />
-                </motion.div>
-              </motion.div>
-            ))}
+                      <div className="rounded-md overflow-hidden">
+                        <img
+                          src={industry.image}
+                          alt={industry.title}
+                          className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                          loading="lazy"
+                          width={960}
+                          height={640}
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

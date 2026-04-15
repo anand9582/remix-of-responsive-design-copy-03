@@ -20,14 +20,14 @@ const navLinks = [
 ];
 
 const industryItems = [
-  { name: "Railways & Transport Infrastructure", desc: "Real-time crowd monitoring & intrusion detection.", icon: Train },
-  { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory },
-  { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark },
-  { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel },
-  { name: "Logistics & Warehousing", desc: "Theft prevention & inventory surveillance.", icon: Warehouse },
-  { name: "Retail & Large Commercial Chains", desc: "Loss prevention & customer behavior insights.", icon: ShoppingCart },
-  { name: "Education Campuses & Universities", desc: "Campus-wide safety & access management.", icon: GraduationCap },
-  { name: "Hospitals & Healthcare Networks", desc: "Patient safety & restricted area monitoring.", icon: Heart },
+  { name: "Railways & Transport Infrastructure", desc: "Real-time crowd monitoring & intrusion detection.", icon: Train, href: "/railway" },
+  { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory, href: "#industries" },
+  { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark, href: "#industries" },
+  { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel, href: "#industries" },
+  { name: "Logistics & Warehousing", desc: "Theft prevention & inventory surveillance.", icon: Warehouse, href: "#industries" },
+  { name: "Retail & Large Commercial Chains", desc: "Loss prevention & customer behavior insights.", icon: ShoppingCart, href: "#industries" },
+  { name: "Education Campuses & Universities", desc: "Campus-wide safety & access management.", icon: GraduationCap, href: "#industries" },
+  { name: "Hospitals & Healthcare Networks", desc: "Patient safety & restricted area monitoring.", icon: Heart, href: "#industries" },
 ];
 
 const Navbar = () => {
@@ -79,7 +79,7 @@ const Navbar = () => {
                           return (
                             <a
                               key={item.name}
-                              href="#industries"
+                              href={item.href}
                               className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-accent hover:text-accent-foreground transition-colors"
                             >
                               <div className="w-9 h-9 rounded-lg bg-gray-100 group-hover/item:bg-accent-foreground/20 flex items-center justify-center flex-shrink-0 transition-colors">
@@ -163,7 +163,7 @@ const Navbar = () => {
                             return (
                               <a
                                 key={item.name}
-                                href="#industries"
+                                href={item.href}
                                 onClick={() => setMobileOpen(false)}
                                 className="flex items-start gap-3 text-hero-muted hover:text-hero-foreground hover:bg-white/5 text-xs font-medium py-2.5 px-3 rounded-lg transition-all"
                               >

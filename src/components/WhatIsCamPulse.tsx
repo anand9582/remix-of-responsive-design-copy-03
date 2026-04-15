@@ -54,7 +54,7 @@ const WhatIsCamPulse = () => {
     <section className="relative bg-secondary py-20 sm:py-28 overflow-hidden">
       {/* Subtle grid pattern */}
       <div
-        className="absolute inset-0  bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{
           backgroundImage: `url(${bgImage})`,
         }}

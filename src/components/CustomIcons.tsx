@@ -5,6 +5,37 @@ export interface CustomIconProps extends SVGProps<SVGSVGElement> {
   className?: string;
 }
 
+/**
+ * A reusable wrapper component for any SVG icon.
+ * You can pass <path> or <g> elements as children.
+ * 
+ * Usage:
+ * <IconWrapper size={24} className="text-blue-500">
+ *   <path d="..." stroke="currentColor" fill="none" />
+ * </IconWrapper>
+ */
+export const IconWrapper = ({
+  size = 24,
+  className = "",
+  viewBox = "0 0 24 24",
+  children,
+  ...props
+}: CustomIconProps & { children: React.ReactNode }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+};
+
 export const DashboardIcon = ({ size = 24, className = "", ...props }: CustomIconProps) => {
   return (
     <svg

@@ -29,7 +29,7 @@ const ScrollReveal = ({
   delay = 0,
   duration = 1,
   className,
-  once = false,
+  once = true,
 }: ScrollRevealProps) => {
   return (
     <motion.div

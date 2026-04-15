@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionStyle } from "framer-motion";
 import {
   Diamond,
   ShieldCheck,
@@ -138,21 +138,26 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: [`start ${stickyTop}px`, `start ${stickyTop - 400}px`],
+    offset: [`start ${stickyTop}px`, `start ${stickyTop - 350}px`],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
+
+  const motionStyle: MotionStyle = {
+    top: `${stickyTop}px`,
+    scale: index === totalLength - 1 ? 1 : scale,
+    opacity: index === totalLength - 1 ? 1 : opacity,
+    filter: index === totalLength - 1 ? "blur(0px)" : blur,
+    transformOrigin: "top center",
+  };
 
   return (
     <motion.div
       ref={targetRef}
       className="sticky mb-6 last:mb-0"
-      style={{
-        top: `${stickyTop}px`,
-        scale: index === totalLength - 1 ? 1 : scale,
-        opacity: index === totalLength - 1 ? 1 : opacity,
-      }}
+      style={motionStyle}
     >
       <div className="bg-background rounded-2xl shadow-xl overflow-hidden">
         <div
@@ -212,7 +217,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
 const OurSolutions = () => {
   return (
-    <section className="bg-background pb-16 pt-0 sm:pb-24 relative">
+    <section className="bg-background pb-32 sm:pb-48 lg:pb-[30vh] pt-0 relative" id="solutions">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Header */}
