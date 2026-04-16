@@ -5,6 +5,7 @@ import ScrollReveal from "./ScrollReveal";
 import founderImg from "@/assets/founder.jpg";
 import controlRoomImg from "@/assets/control-room.png";
 import logoT from "@/assets/logo-t.png";
+import ProfileFeature from "./ProfileFeature";
 
 const stats = [
   { prefix: "₹", num: 350, suffix: "+", stringVal: "", label: "Crore Annual Revenue" },
@@ -58,7 +59,7 @@ const AboutUs = () => {
 
         {/* Heading */}
         <ScrollReveal direction="up" delay={200}>
-          <h2 className="text-center text-[#111827] font-display font-semibold text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
+          <h2 className="text-center text-[#111827] font-roboto text-[18px] leading-[1.5] text-center mb-4 text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
             Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
           </h2>
         </ScrollReveal>
@@ -76,58 +77,18 @@ const AboutUs = () => {
         </div>
 
         {/* Top Cards Row */}
-        <div className="grid md:grid-cols-12 gap-6 mb-8">
-
-          {/* Founder Card */}
-          <ScrollReveal direction="left" delay={100} className="md:col-span-5 relative  rounded-md  overflow-hidden h-[380px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-200">
-            <img
-              src={founderImg}
-              alt="Mr. Arun Gupta - Founder and Chairman"
-              className="w-full h-full object-cover object-center"
-              loading="lazy"
-              width={640}
-              height={640}
-            />
-            {/* Floating text box as shown in screenshot */}
-            <div className="absolute bottom-5 left-5 right-5 rounded 
-              bg-[#131313]/30 backdrop-blur-[43.5px] 
-              p-3 pb-6 shadow-xl"
-            >
-              <p className="text-white  font-roboto font-medium text-md sm:text-md leading-tight mb-0.5">
-                Mr. Arun Gupta
-              </p>
-
-              <p className="text-neutral-300 font-roboto font-medium   text-sm sm:text-sm mt-1 tracking-wide">
-                Founder and Chairman, Transline Technologies
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Description Card */}
-          <ScrollReveal direction="right" delay={200} className="md:col-span-7 rounded-md  bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-10 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-            {/* Logo Watermark Decoration */}
-            <div className="absolute -top-[-15px] -right-[-15px]  pointer-events-none ">
-              <img
-                src={logoT}
-                alt="Logo"
-                className="h-16 md:h-[69px] mb-1 object-contain"
-              />
-            </div>
-
-            <h3 className="text-white font-calistoga font-medium text-xl sm:text-[30px] md:text-[30px] uppercase tracking-wide mb-8 leading-[1.3] relative z-10 shadow-black/10 text-shadow-sm max-w-2xl">
-              CAMPULSE BY TRANSLINE<br />TECHNOLOGIES
-            </h3>
-
-            <div className="space-y-6 relative z-10 font-sans max-w-2xl">
-              <p className="text-blue-50/90 font-roboto font-regular text-base sm:text-[16px] leading-relaxed font-normal">
-                CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across industries.
-              </p>
-              <p className="text-blue-50/90 font-roboto font-regular text-base sm:text-[16px] leading-relaxed font-normal">
-                It brings together cameras, access control, and on-ground systems into one unified platform—helping organizations monitor better, respond faster, and stay in control across all locations.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
+        <ProfileFeature
+          imageSrc={founderImg}
+          imageAlt="Mr. Arun Gupta - Founder and Chairman"
+          profileName="Mr. Arun Gupta"
+          profileDesignation="Founder and Chairman, Transline Technologies"
+          title={<>CAMPULSE BY TRANSLINE<br />TECHNOLOGIES</>}
+          descriptions={[
+            "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across industries.",
+            "It brings together cameras, access control, and on-ground systems into one unified platform—helping organizations monitor better, respond faster, and stay in control across all locations."
+          ]}
+          className="mb-8"
+        />
 
         {/* Bottom Cards Row */}
         <div className="grid md:grid-cols-3 gap-6 mt-6">

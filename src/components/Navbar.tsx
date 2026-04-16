@@ -21,7 +21,7 @@ const navLinks = [
 
 const industryItems = [
   { name: "Railways & Transport Infrastructure", desc: "Real-time crowd monitoring & intrusion detection.", icon: Train, href: "/railway" },
-  { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory, href: "#industries" },
+  { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory, href: "/manufacturing" },
   { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark, href: "#industries" },
   { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel, href: "#industries" },
   { name: "Logistics & Warehousing", desc: "Theft prevention & inventory surveillance.", icon: Warehouse, href: "#industries" },
