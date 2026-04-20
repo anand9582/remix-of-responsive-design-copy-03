@@ -210,69 +210,55 @@ const IndustriesWeServe = () => {
             </div>
           </motion.div>
 
-          <div className="flex-1 min-w-0 relative">
-            {/* DESKTOP: STICKY VIEWPORT */}
-            <div className="hidden lg:block lg:sticky lg:top-24 w-full z-10">
-              <div className="relative w-full">
-                {industries.map((industry, index) => {
-                  const isActive = activeIndex === index;
-                  return (
-                    <motion.div
-                      key={`desktop-${industry.title}`}
-                      initial={false}
-                      animate={{
-                        opacity: isActive ? 1 : 0,
-                        scale: isActive ? 1 : 0.95,
-                        y: isActive ? 0 : 40,
-                      }}
-                      transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
-                      className={`w-full absolute top-0 left-0 transition-opacity ${isActive ? "relative z-10 pointer-events-auto" : "z-0 pointer-events-none"
-                        }`}
-                    >
+          <div className="flex-1 min-w-0 relative pb-32">
+            {/* STICKY LEFT, SCROLLING RIGHT CONTENT */}
+            <div className="hidden lg:flex flex-col space-y-[40vh] pt-8">
+              {industries.map((industry, index) => {
+                const isActive = activeIndex === index;
+                return (
+                  <motion.div
+                    key={`desktop-${industry.title}`}
+                    ref={(el) => {
+                      desktopSectionRefs.current[index] = el;
+                    }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full relative scroll-m-32 origin-left"
+                  >
+                    <div className={`transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}>
                       <div className="flex items-start justify-between gap-4 mb-3">
-                        <h3 className="text-[26px] font-sans font-bold text-[#111827] tracking-tight">
+                        <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
                           {industry.title}
                         </h3>
                         <a
                           href="#"
-                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
+                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1 transition-colors hover:text-blue-700"
                         >
                           Learn more
                           <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
                         </a>
                       </div>
 
-                      <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-5 max-w-2xl">
+                      <p className="text-[#52525B] font-roboto font-normal text-[15.5px] leading-[1.7] mb-6 max-w-xl">
                         {industry.description}
                       </p>
 
-                      <div className="rounded-md overflow-hidden">
+                      <div className="rounded-[14px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100/50">
                         <img
                           src={industry.image}
                           alt={industry.title}
-                          className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                          className="w-full h-auto object-cover transition-transform duration-1000 hover:scale-[1.03]"
                           loading="lazy"
                           width={960}
                           height={640}
                         />
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* DESKTOP: SCROLL ANCHORS */}
-            <div className="hidden lg:block w-full">
-              {industries.map((industry, index) => (
-                <div
-                  key={`anchor-${industry.title}`}
-                  ref={(el) => {
-                    desktopSectionRefs.current[index] = el;
-                  }}
-                  className="h-[100vh] w-full pointer-events-none"
-                />
-              ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* MOBILE: NORMAL SCROLLING LIST */}
@@ -288,11 +274,9 @@ const IndustriesWeServe = () => {
                     className="scroll-mt-24"
                   >
                     <motion.div
-                      initial={false}
-                      animate={{
-                        opacity: isActive ? 1 : 0.5,
-                        scale: isActive ? 1 : 0.95,
-                      }}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
                       transition={{ duration: 0.5 }}
                       className="w-full"
                     >

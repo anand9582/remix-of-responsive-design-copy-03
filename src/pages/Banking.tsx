@@ -3,23 +3,26 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
-import { ArrowUpRight, } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import heroBgStripes from "@/assets/hero-bg-stripes.png";
+// Icons 
+import { Building2, Vault, ShieldAlert, Fingerprint, Users, Lock, Video, ClipboardCheck, TrendingDown } from "lucide-react";
+import heroBgStripes from "@/assets/industry-banking.jpg";
 import aboutCtaBg from "@/assets/aboutcta-bg.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
+import DashboardMain from "@/assets/railway-dashbaord.png";
 import founderImg from "@/assets/founder.jpg";
-import logoT from "@/assets/logo-t.png";
+import bankingBg from "@/assets/industry-banking.jpg";
+
+// Dashboard overlays
 import etatop from "@/assets/eta-top.png";
 import etaalert from "@/assets/eta-left.png";
 import etaatop from "@/assets/etatop.png";
 import etaright from "@/assets/etaright.png";
-import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, LightningIcon, UsersFourIcon, ShieldCheckIcon, PulseIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import { SecurityCameraIcon } from "@/components/icons/RailwayIcons";
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
-const Railway = () => {
+const Banking = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -28,7 +31,7 @@ const Railway = () => {
       <section
         className="relative overflow-hidden pt-36 pb-24 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${railwayBg})`,
+          backgroundImage: `url(${bankingBg})`,
           height: "753px",
         }}
       >
@@ -92,16 +95,15 @@ const Railway = () => {
         </div>
       </section>
 
-      {/* How CamPulse Powers Railways */}
+      {/* How CamPulse Powers Banking */}
       <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Railways
+              How CamPulse powers Banking
             </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance public transport deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
+            <p className="text-center font-roboto font-regular text-neutral-500 flex justify-center text-lg max-w-2xl mx-auto mb-16">
+              Built on uncompromising security architectures for financial institutions.
             </p>
           </ScrollReveal>
 
@@ -109,33 +111,33 @@ const Railway = () => {
             {[
               {
                 icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                title: "ATM Surveillance",
+                desc: "Monitor ATMs for unusual behavior and track suspicious activity.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                icon: Building2,
+                title: "Branch Monitoring",
+                desc: "Track wait times and monitor branch security effortlessly.",
               },
               {
-                icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                icon: Vault,
+                title: "Vault Security",
+                desc: "Detect unauthorized access with multi-factor video support.",
               },
               {
-                icon: CrowdIcon,
-                title: "Crowd Monitoring",
-                desc: "Track passenger movement and density.",
+                icon: ShieldAlert,
+                title: "Fraud Detection Support",
+                desc: "Quickly gather visual evidence for fraudulent transactions.",
               },
               {
-                icon: WarningIcon,
-                title: "Incident Alerts",
-                desc: "Enable real-time alerts for faster response.",
+                icon: Fingerprint,
+                title: "Access Control Integration",
+                desc: "Manage staff credentials alongside live video monitoring.",
               },
               {
-                icon: MonitorPlayIcon,
-                title: "Centralized Monitoring",
-                desc: "Manage multiple stations from one system.",
+                icon: Users,
+                title: "Customer Flow Monitoring",
+                desc: "Evaluate customer paths and optimize bank service areas.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
@@ -144,8 +146,8 @@ const Railway = () => {
                 delay={100 * idx}
                 className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-6">
-                  <feature.icon />
+                <div className="w-12 h-12 rounded-xl flex items-center mb-2">
+                  <feature.icon className="w-6 h-6 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
@@ -155,35 +157,28 @@ const Railway = () => {
         </div>
       </section>
 
-      {/* Centralized Railway Control Dashboard */}
-      <section className="py-8  relative overflow-hidden">
+      {/* Centralized Banking Security Dashboard */}
+      <section className="py-8 relative overflow-hidden">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-          {/* Heading */}
           <div className="bg-[#0B1220] rounded-md py-16">
-            {/* Heading */}
             <div className="text-center mb-2">
               <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
-                Centralized Railway Control Dashboard
+                Centralized Banking Security Dashboard
               </h2>
               <p className="text-slate-300 text-lg max-w-[31rem] mx-auto">
-                Monitor stations, tracks, and incidents in real time through a unified control system.
+                Oversee every branch, ATM, and secure facility from one unified platform.
               </p>
             </div>
 
-            {/* Dashboard Container */}
-            <div className="relative flex justify-center items-center  rounded-2xl">
-
-              {/* Dark background frame */}
+            <div className="relative flex justify-center items-center rounded-2xl">
               <div className="relative max-w-7xl p-8 w-full flex justify-center items-center">
-
                 {/* Main dashboard image */}
                 <motion.img
                   initial={{ opacity: 0, y: 120 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={RailwayMain}
+                  src={DashboardMain}
                   alt="dashboard"
                   className="rounded-xl relative z-20 h-[560px] object-cover shadow-2xl"
                 />
@@ -231,42 +226,41 @@ const Railway = () => {
                   alt=""
                   className="hidden xl:block absolute -right-[-30px] bottom-8 w-60 rounded-xl shadow-xl z-30"
                 />
-
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Real Impact */}
+      {/* Stronger Security. Smarter Monitoring. */}
       <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up" className="text-center mb-16">
             <h2 className="text-[#171717] font-aleo font-semibold text-3xl md:text-[36px] tracking-tight mb-4">
-              Real Impact. Measurable Security.
+              Stronger Security. Smarter Monitoring.
             </h2>
             <p className="text-black font-roboto font-regular text-md max-w-2xl mx-auto">
-              From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations.
+              From dispute resolution across branches to protecting deep vault infrastructure, CamPulse protects your enterprise.
             </p>
           </ScrollReveal>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               {
-                icon: LightningIcon,
-                title: "Faster response to text situations and safety incidents",
+                icon: Lock,
+                title: "Reduce fraud and security risks",
               },
               {
-                icon: PulseIcon,
-                title: "Reduce instances of trespassing on railway tracks",
+                icon: Video,
+                title: "Faster dispute resolution with video proof",
               },
               {
-                icon: UsersFourIcon,
-                title: "Better crowd and passenger flow management",
+                icon: ClipboardCheck,
+                title: "Improve compliance and standard audit reporting",
               },
               {
-                icon: ShieldCheckIcon,
-                title: "Secure external perimeters and boundary lines",
+                icon: TrendingDown,
+                title: "Lower security operational overheads",
               },
             ].map((stat, idx) => (
               <ScrollReveal
@@ -278,7 +272,7 @@ const Railway = () => {
                 <div className="w-12 h-12 mx-auto bg-blue-50/50 rounded-full flex items-center justify-center mb-4">
                   <stat.icon className="w-5 h-5 text-blue-600" />
                 </div>
-                <p className="font-roboto font-normal text-[18px] leading-[150%] tracking-[0%] text-center mb-4">
+                <p className="font-roboto font-normal text-[15px] leading-[150%] tracking-[0%] text-center mb-4">
                   {stat.title}
                 </p>
               </ScrollReveal>
@@ -290,7 +284,6 @@ const Railway = () => {
       {/* About Us Sub-section */}
       <section className="py-24 bg-[#FAFAFA] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
           <ScrollReveal direction="up" delay={100} className="flex justify-center mb-6">
             <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EBF1FF] text-[#2563EB] text-[10px] font-bold tracking-[0.15em] uppercase">
               <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB]" />
@@ -314,47 +307,39 @@ const Railway = () => {
               "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across India.",
               "Deep engineering capability, field-proven deployment expertise, and an unwavering commitment to seamless integration and service uptime."
             ]}
-            className="mb-16  mx-auto"
+            className="mb-16 mx-auto max-w-5xl"
           />
 
-          {/* CTA Custom Banner for Railways */}
+          {/* CTA Custom Banner for Banking */}
           <ScrollReveal
             direction="up"
             delay={300}
-            className="grid grid-cols-12"
+            className="grid grid-cols-12 max-w-5xl mx-auto"
           >
             <div className="col-span-12">
-
               <div className="relative rounded-[20px] overflow-hidden h-[340px] flex items-center justify-center text-center shadow-xl">
-
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${aboutCtaBg})` }}
                 />
-
                 <div className="absolute inset-0 bg-[#0B2A5B]/80" />
 
                 {/* CONTENT */}
                 <div className="relative z-10 max-w-6xl px-6">
-
-                  <h2 className="text-white font-aleo font-semibold text-[50px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your industrial security <br />
+                  <h2 className="text-white font-aleo font-semibold text-[50px] leading-[140%] tracking-[-0.01em] text-center mb-6">
+                    Strengthen your banking security <br />
                     with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
-
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
-
                   </button>
                 </div>
-
               </div>
             </div>
           </ScrollReveal>
-
         </div>
       </section>
 
@@ -363,4 +348,4 @@ const Railway = () => {
   );
 };
 
-export default Railway;
+export default Banking;

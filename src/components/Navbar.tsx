@@ -15,15 +15,15 @@ const navLinks = [
   { label: "Our Solutions", href: "#solutions" },
   { label: "Industries", href: "#industries", hasDropdown: true },
   { label: "FAQ", href: "#faq" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Blogs", href: "#blogs" },
 ];
 
 const industryItems = [
   { name: "Railways & Transport Infrastructure", desc: "Real-time crowd monitoring & intrusion detection.", icon: Train, href: "/railway" },
   { name: "Manufacturing & Industrial Facilities", desc: "Perimeter security & operational visibility.", icon: Factory, href: "/manufacturing" },
-  { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark, href: "#industries" },
-  { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel, href: "#industries" },
+  { name: "Banking & Financial Institutions", desc: "Fraud detection & secure access control.", icon: Landmark, href: "/banking" },
+  { name: "Oil & Gas", desc: "Hazard monitoring & remote asset security.", icon: Fuel, href: "/oil-gas" },
   { name: "Logistics & Warehousing", desc: "Theft prevention & inventory surveillance.", icon: Warehouse, href: "#industries" },
   { name: "Retail & Large Commercial Chains", desc: "Loss prevention & customer behavior insights.", icon: ShoppingCart, href: "#industries" },
   { name: "Education Campuses & Universities", desc: "Campus-wide safety & access management.", icon: GraduationCap, href: "#industries" },

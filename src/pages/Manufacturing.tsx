@@ -7,15 +7,16 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
 import aboutCtaBg from "@/assets/aboutcta-bg.jpg";
-import DashboardMain from "@/assets/railway-dashbaord.png"; 
+import DashboardMain from "@/assets/railway-dashbaord.png";
 import founderImg from "@/assets/founder.jpg";
 import logoT from "@/assets/logo-t.png";
 import etatop from "@/assets/eta-top.png";
 import etaalert from "@/assets/eta-left.png";
 import etaatop from "@/assets/etatop.png";
 import etaright from "@/assets/etaright.png";
-import manufacturingBg from "@/assets/industry-manufacturing.png";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, LightningIcon, UsersFourIcon, ShieldCheckIcon, PulseIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import manufacturingBg from "@/assets/manufacturing-bg.jpg";
+import { PPEIcon, RestrictedAreaIcon, MapPinAreaIcon, GearIcon, FireIcon, PersonIcon, TrendDownIcon, TrendUpIcon } from "@/components/icons/manufacturingIcons";
+import { ShieldCheckIcon } from "@/components/icons/RailwayIcons";
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
@@ -103,32 +104,32 @@ const Manufacturing = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: ShieldCheckIcon,
+                icon: PPEIcon,
                 title: "PPE Compliance Detection",
                 desc: "Ensure adherence to safety protocols in real time.",
               },
               {
-                icon: ProhibitIcon,
+                icon: RestrictedAreaIcon,
                 title: "Restricted Area Monitoring",
                 desc: "Prevent unauthorized access to critical zones.",
               },
               {
-                icon: SecurityCameraIcon,
+                icon: MapPinAreaIcon,
                 title: "Perimeter Security",
                 desc: "Secure facility boundaries and detect breaches.",
               },
               {
-                icon: MonitorPlayIcon,
+                icon: GearIcon,
                 title: "Equipment Monitoring",
                 desc: "Track machinery operations and potential faults.",
               },
               {
-                icon: UsersFourIcon,
+                icon: PersonIcon,
                 title: "Work force Safety Monitoring",
                 desc: "Identify safety hazards affecting personnel.",
               },
               {
-                icon: WarningIcon,
+                icon: FireIcon,
                 title: "Fire & Hazard Detection",
                 desc: "Detect smoke, fire, and other immediate threats early.",
               },
@@ -139,7 +140,7 @@ const Manufacturing = () => {
                 delay={100 * idx}
                 className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center mb-6">
+                <div className="w-12 h-12 rounded-xl flex items-center mb-2">
                   <feature.icon className="w-6 h-6 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
@@ -167,10 +168,10 @@ const Manufacturing = () => {
               <div className="relative max-w-7xl p-8 w-full flex justify-center items-center">
                 {/* Main dashboard image */}
                 <motion.img
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 120 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", stiffness: 60, damping: 20 }}
+                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                   src={DashboardMain}
                   alt="dashboard"
                   className="rounded-xl relative z-20 h-[560px] object-cover shadow-2xl"
@@ -178,10 +179,10 @@ const Manufacturing = () => {
 
                 {/* LEFT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: -60, y: -20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, x: -140 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.1 }}
+                  transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={etatop}
                   alt=""
                   className="hidden xl:block absolute -left-0 top-8 w-52 rounded-xl shadow-xl z-30"
@@ -189,10 +190,10 @@ const Manufacturing = () => {
 
                 {/* LEFT BOTTOM ALERT */}
                 <motion.img
-                  initial={{ opacity: 0, x: -60, y: 40 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, x: -140 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.2 }}
+                  transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   src={etaalert}
                   alt=""
                   className="hidden xl:block absolute -left-0 bottom-[164px] w-[200px] rounded-xl shadow-xl z-30"
@@ -200,10 +201,10 @@ const Manufacturing = () => {
 
                 {/* RIGHT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 60, y: -20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, x: 140 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.3 }}
+                  transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={etaatop}
                   alt=""
                   className="hidden xl:block absolute -right-10 top-5 w-80 rounded-xl shadow-xl z-30"
@@ -211,10 +212,10 @@ const Manufacturing = () => {
 
                 {/* RIGHT BOTTOM CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 60, y: 40 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, x: 140 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.4 }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={etaright}
                   alt=""
                   className="hidden xl:block absolute -right-[-30px] bottom-8 w-60 rounded-xl shadow-xl z-30"
@@ -240,19 +241,19 @@ const Manufacturing = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               {
-                icon: ShieldCheckIcon,
+                icon: TrendDownIcon,
                 title: "Fewer workplace accidents and compliance violations.",
               },
               {
-                icon: UsersFourIcon,
+                icon: ShieldCheckIcon,
                 title: "Improved worker safety without added staffing.",
               },
               {
-                icon: LightningIcon,
+                icon: PersonIcon,
                 title: "High production uptime and operational reliability.",
               },
               {
-                icon: TrackCameraIcon,
+                icon: TrendUpIcon,
                 title: "Faster incident investigation and post-match analysis.",
               },
             ].map((stat, idx) => (
