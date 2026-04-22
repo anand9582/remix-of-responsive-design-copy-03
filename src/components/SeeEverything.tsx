@@ -11,7 +11,7 @@ import { Target, LayoutPanelLeft, Server, Globe, Cctv, Zap, BrainCircuit } from 
 
 const SeeEverything = () => {
   return (
-    <section className="bg-[linear-gradient(116.72deg,#F5F5F5_0%,#F5F5F5_100%)] py-16 sm:py-24">
+    <section className="bg-[linear-gradient(116.72deg,#F5F5F5_0%,#F5F5F5_100%)] py-16 sm:py-12">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center font-roboto font-semibold text-neutral-800 text-[28px] sm:text-3xl md:text-[34px] mb-10 sm:mb-14">
           See Everything. Miss Nothing.

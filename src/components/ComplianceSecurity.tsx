@@ -45,7 +45,7 @@ const bottomFeatures = [
 
 const ComplianceSecurity = () => {
   return (
-    <section className="py-20 sm:py-28 bg-[#FAFAFA]">
+    <section className="py-20 sm:py-10 bg-[#FAFAFA]">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Dark Container */}

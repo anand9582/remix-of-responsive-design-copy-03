@@ -25,6 +25,7 @@ export default {
         aleo: ['Aleo', 'serif'],
         playfair: ['"Playfair Display"', 'serif'],
         dmSerif: ['"DM Serif Display"', 'serif'],
+        martina: ["Playfair Display", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

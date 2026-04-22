@@ -16,8 +16,8 @@ const textContainerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25,
-      delayChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
@@ -25,12 +25,12 @@ const textContainerVariants = {
 const wordVariants = {
   hidden: { opacity: 0, filter: "blur(2px)", y: 12, scale: 0.96 },
   visible: {
-    opacity: 1,
+        opacity: 1,
     filter: "blur(0px)",
     y: 0,
     scale: 1,
     transition: {
-      duration: 1.2,
+      duration: 0.8,
       ease: EASE_OUT
     },
   },
@@ -55,10 +55,10 @@ const HeroSection = () => {
   const runAnimation = useCallback(() => {
     setStage(0);
     const timers = [
-      setTimeout(() => setStage(1), 100),
-      setTimeout(() => setStage(2), 800),
-      setTimeout(() => setStage(3), 1500),
-      setTimeout(() => setStage(4), 2200),
+      setTimeout(() => setStage(1), 50),
+      setTimeout(() => setStage(2), 200),
+      setTimeout(() => setStage(3), 500),
+      setTimeout(() => setStage(4), 800),
     ];
     return timers;
   }, []);
@@ -90,8 +90,8 @@ const HeroSection = () => {
           opacity: showStripes ? 1 : 0,
         }}
         transition={{
-          scaleX: { duration: 2.8, ease: EASE_SMOOTH },
-          opacity: { duration: 1.6 },
+          scaleX: { duration: 1.5, ease: EASE_SMOOTH },
+          opacity: { duration: 1.0 },
         }}
         style={{
           backgroundImage: `url(${heroBgStripes})`,
@@ -113,7 +113,7 @@ const HeroSection = () => {
           className="font-roboto font-regular text-white text-sm md:text-lg font-light leading-relaxed max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={showHeading ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
           Video surveillance with seamless access control, IoT & analytics that predicts threats, responds instantly.
         </motion.p>
@@ -123,7 +123,7 @@ const HeroSection = () => {
           className="mt-4"
           initial={{ opacity: 0, y: 24, scale: 0.92 }}
           animate={showCTA ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.9, ease: EASE_OUT }}
+          transition={{ duration: 0.6, ease: EASE_OUT }}
         >
           <motion.div
             whileHover={{ scale: 1.04 }}
@@ -152,7 +152,7 @@ const HeroSection = () => {
           className="relative mt-5 max-w-5xl mx-auto flex justify-center items-center"
           initial={{ opacity: 0, y: 100 }}
           animate={showDashboard ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.4 }}
+          transition={{ duration: 1.0 }}
         >
           {/* LEFT CARDS */}
           <motion.img

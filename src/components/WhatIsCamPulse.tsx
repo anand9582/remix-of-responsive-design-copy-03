@@ -51,7 +51,7 @@ const renderWords = (text: string, className: string = "") => {
 
 const WhatIsCamPulse = () => {
   return (
-    <section className="relative bg-secondary py-20 sm:py-28 overflow-hidden">
+    <section className="relative bg-secondary py-20 sm:py-15 overflow-hidden">
       {/* Subtle grid pattern */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -81,7 +81,7 @@ const WhatIsCamPulse = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
-          className="font-martina font-bold text-[28px] leading-[150%] tracking-[0.01em] text-center"
+          className="font-martina font-bold text-[30px] leading-[150%] tracking-[0.01em] text-center mb-2"
         >
           <span className="block  leading-[1.8]">
             {renderWords("CamPulse delivers flawless VMS as just the starting point.")}

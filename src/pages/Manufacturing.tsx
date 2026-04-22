@@ -168,7 +168,7 @@ const Manufacturing = () => {
               <div className="relative max-w-7xl p-8 w-full flex justify-center items-center">
                 {/* Main dashboard image */}
                 <motion.img
-                  initial={{ opacity: 0, y: 120 }}
+                  initial={{ opacity: 0, y: 250 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -185,7 +185,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={etatop}
                   alt=""
-                  className="hidden xl:block absolute -left-0 top-8 w-52 rounded-xl shadow-xl z-30"
+                  className="hidden xl:block absolute -left-0 top-8 w-52 rounded-xl  z-30"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -196,7 +196,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   src={etaalert}
                   alt=""
-                  className="hidden xl:block absolute -left-0 bottom-[164px] w-[200px] rounded-xl shadow-xl z-30"
+                  className="hidden xl:block absolute -left-0 bottom-[164px] w-[200px] rounded-xl  z-30"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -207,7 +207,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={etaatop}
                   alt=""
-                  className="hidden xl:block absolute -right-10 top-5 w-80 rounded-xl shadow-xl z-30"
+                  className="hidden xl:block absolute -right-10 top-5 w-80 rounded-xl  z-30"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -218,7 +218,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={etaright}
                   alt=""
-                  className="hidden xl:block absolute -right-[-30px] bottom-8 w-60 rounded-xl shadow-xl z-30"
+                  className="hidden xl:block absolute -right-[-30px] bottom-8 w-60 rounded-xl  z-30"
                 />
               </div>
             </div>
