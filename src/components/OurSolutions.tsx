@@ -159,13 +159,13 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
       className="sticky mb-6 last:mb-0"
       style={motionStyle}
     >
-      <div className="bg-background rounded-2xl shadow-xl overflow-hidden">
+      <div className="bg-background rounded-2xl shadow-xl overflow-hidden lg:h-[450px]">
         <div
           className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
-            } gap-6 lg:gap-0`}
+            } h-full gap-6 lg:gap-0`}
         >
           {/* Text */}
-          <div className="flex-1 p-3 sm:p-4 lg:p-8 flex flex-col justify-center">
+          <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
             <h3 className="text-xl sm:text-2xl font-roboto font-medium text-neutral-800 mb-4">
               {solution.title}
             </h3>
@@ -190,23 +190,23 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
           </div>
 
           {/* Image */}
-          <div className="flex-1 p-4 lg:p-6 flex items-center justify-center">
-              {solution.isVideo ? (
-                <video
-                  src={solution.image}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full rounded-xl object-cover max-h-[350px]"
-                />
-              ) : (
-                <img  
-                  src={solution.image}
-                  alt={solution.imageAlt}
-                  className="w-full rounded-xl object-cover max-h-[350px]"
-                  loading="lazy"
-                />
+          <div className="flex-1 p-4 lg:p-6 flex items-stretch justify-center h-full">
+            {solution.isVideo ? (
+              <video
+                src={solution.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
+              />
+            ) : (
+              <img
+                src={solution.image}
+                alt={solution.imageAlt}
+                className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
+                loading="lazy"
+              />
             )}
           </div>
         </div>
@@ -217,7 +217,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
 const OurSolutions = () => {
   return (
-    <section className="bg-background pb-32 sm:pb-48 lg:pb-[30vh] pt-0 relative" id="solutions">
+    <section className="bg-background pb-32 sm:pb-48 lg:pb-[20vh] pt-0 relative" id="solutions">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Header */}
