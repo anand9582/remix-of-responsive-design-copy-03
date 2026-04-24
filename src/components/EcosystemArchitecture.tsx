@@ -11,6 +11,7 @@ const NodeCard = ({
   className = "",
   style,
   glowing = false,
+  vertical = false,
 }: {
   icon: any;
   title: string;
@@ -20,6 +21,7 @@ const NodeCard = ({
   className?: string;
   style?: React.CSSProperties;
   glowing?: boolean;
+  vertical?: boolean;
 }) => (
   <div
     className={`rounded-[14px] p-4 flex flex-col relative z-20 
@@ -29,7 +31,7 @@ const NodeCard = ({
       ${className}`}
     style={{ backdropFilter: glowing ? "none" : "blur(10px)", ...style }}
   >
-    <div className="flex items-start gap-3.5 mb-2.5">
+    <div className={`flex ${vertical ? "flex-col items-start gap-2.5" : "items-start gap-3.5"} mb-2.5`} >
       <div className="w-[38px] h-[38px] rounded-lg flex items-center justify-center shrink-0 shadow-sm bg-blue-900">
         <Icon className="w-5 h-5 text-white" strokeWidth={glowing ? 2 : 1.75} />
       </div>
@@ -256,7 +258,7 @@ const EcosystemArchitecture = () => {
               {/* Lines */}
               {/* EDGE -> CONNECTIVITY */}
               <Line x1={170} y1={150} x2={170} y2={400} />
-              
+
               {/* CONNECTIVITY -> VDM */}
               <Line x1={250} y1={410} x2={380} y2={410} />
               <Line x1={380} y1={150} x2={380} y2={410} />
@@ -333,11 +335,11 @@ const EcosystemArchitecture = () => {
               </AbsBox>
 
               <AbsBox left={840} top={340} width={160}>
-                <NodeCard icon={BarChart3} title="AI Analytics Engine" subtitle="Detect patterns" description="Extracts real-time insights." />
+                <NodeCard vertical icon={BarChart3} title="AI Analytics Engine" subtitle="Detect patterns" description="Extracts real-time insights." />
               </AbsBox>
 
               <AbsBox left={1040} top={340} width={160}>
-                <NodeCard icon={Database} title="Hybrid Storage" subtitle="Store and retrieve data" description="Secures critical video evidence." />
+                <NodeCard vertical icon={Database} title="Hybrid Storage" subtitle="Store and retrieve data" description="Secures critical video evidence." />
               </AbsBox>
 
               <AbsBox left={460} top={620} width={280}>
