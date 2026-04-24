@@ -191,22 +191,22 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
           {/* Image */}
           <div className="flex-1 p-4 lg:p-6 flex items-center justify-center">
-            {solution.isVideo ? (
-              <video
-                src={solution.image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full rounded-xl object-cover max-h-[350px]"
-              />
-            ) : (
-              <img
-                src={solution.image}
-                alt={solution.imageAlt}
-                className="w-full rounded-xl object-cover max-h-[350px]"
-                loading="lazy"
-              />
+              {solution.isVideo ? (
+                <video
+                  src={solution.image}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full rounded-xl object-cover max-h-[350px]"
+                />
+              ) : (
+                <img  
+                  src={solution.image}
+                  alt={solution.imageAlt}
+                  className="w-full rounded-xl object-cover max-h-[350px]"
+                  loading="lazy"
+                />
             )}
           </div>
         </div>

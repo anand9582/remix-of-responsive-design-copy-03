@@ -59,7 +59,7 @@ const AboutUs = () => {
 
         {/* Heading */}
         <ScrollReveal direction="up" delay={200}>
-          <h2 className="text-center text-[#111827] font-roboto text-[18px] leading-[1.5] text-center mb-4 text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
+          <h2 className="text-center text-[#111827] font-roboto font-medium text-[18px] leading-[1.5] text-center mb-4 text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
             Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
           </h2>
         </ScrollReveal>
@@ -71,7 +71,7 @@ const AboutUs = () => {
               <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
                 <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
               </p>
-              <p className="text-slate-500 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
+              <p className="text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
             </ScrollReveal>
           ))}
         </div>
@@ -107,7 +107,7 @@ const AboutUs = () => {
           </ScrollReveal>
 
           {/* Vision */}
-          <ScrollReveal direction="up" delay={200} className="rounded-xl sm:rounded-[20px] bg-white p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+          <ScrollReveal direction="up" delay={100} className="rounded-xl sm:rounded-[20px] bg-white p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-[48px] h-[48px] rounded-2xl bg-[#F4F4FF] flex items-center justify-center shrink-0">
                 <ScanEye className="w-[22px] h-[22px] text-[#4F46E5]" strokeWidth={1.5} />
@@ -120,7 +120,7 @@ const AboutUs = () => {
           </ScrollReveal>
 
           {/* One Platform Card */}
-          <ScrollReveal direction="up" delay={300} className="relative rounded-xl sm:rounded-[20px] overflow-hidden h-[260px] md:h-auto shadow-[0_4px_25px_rgba(0,0,0,0.06)] border border-white/10 group">
+          <ScrollReveal direction="up" delay={100} className="relative rounded-xl sm:rounded-[20px] overflow-hidden h-[260px] md:h-auto shadow-[0_4px_25px_rgba(0,0,0,0.06)] border border-white/10 group">
             <img
               src={controlRoomImg}
               alt="One Platform Total Control"

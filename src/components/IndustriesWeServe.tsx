@@ -150,10 +150,10 @@ const IndustriesWeServe = () => {
     const element = isDesktop ? desktopSectionRefs.current[index] : mobileSectionRefs.current[index];
 
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
       window.setTimeout(() => {
         isClickScroll.current = false;
-      }, 900);
+      }, 1000);
     }
   }, []);
 
@@ -199,7 +199,7 @@ const IndustriesWeServe = () => {
                         layoutId="activeTabPill"
                         className="absolute inset-0 bg-primary-gradient rounded-[8px] z-[-1] shadow-md"
                         initial={false}
-                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.8 }}
                       />
                     )}
                     <industry.icon className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={1.5} />
@@ -212,7 +212,7 @@ const IndustriesWeServe = () => {
 
           <div className="flex-1 min-w-0 relative pb-32">
             {/* STICKY LEFT, SCROLLING RIGHT CONTENT */}
-            <div className="hidden lg:flex flex-col space-y-[40vh] pt-8">
+            <div className="hidden lg:flex flex-col space-y-[12vh] pt-8">
               {industries.map((industry, index) => {
                 const isActive = activeIndex === index;
                 return (
@@ -223,11 +223,14 @@ const IndustriesWeServe = () => {
                     }}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 1, ease: EASE_OUT_EXPO }}
                     className="w-full relative scroll-m-32 origin-left"
                   >
-                    <div className={`transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}>
+                    <div 
+                      className={`transition-all duration-1000 ease-[0.16,1,0.3,1] ${isActive ? 'opacity-100 scale-100 blur-0' : 'opacity-100 scale-100 blur-0 cursor-pointer'}`} 
+                      onClick={() => !isActive && handleTabClick(index)}
+                    >
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
                           {industry.title}
@@ -245,11 +248,11 @@ const IndustriesWeServe = () => {
                         {industry.description}
                       </p>
 
-                      <div className="rounded-[14px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100/50">
+                      <div className=" overflow-hidden">
                         <img
                           src={industry.image}
                           alt={industry.title}
-                          className="w-full h-auto object-cover transition-transform duration-1000 hover:scale-[1.03]"
+                          className="w-full h-auto object-cover transition-transform duration-1000 ease-[0.16,1,0.3,1] hover:scale-[1.04]"
                           loading="lazy"
                           width={960}
                           height={640}
@@ -274,10 +277,10 @@ const IndustriesWeServe = () => {
                     className="scroll-mt-24"
                   >
                     <motion.div
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 40 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.2 }}
-                      transition={{ duration: 0.5 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
                       className="w-full"
                     >
                       <div className="flex items-start justify-between gap-4 mb-3">
@@ -301,7 +304,7 @@ const IndustriesWeServe = () => {
                         <img
                           src={industry.image}
                           alt={industry.title}
-                          className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                          className="w-full object-cover transition-transform duration-1000 ease-[0.16,1,0.3,1] hover:scale-105"
                           loading="lazy"
                           width={960}
                           height={640}

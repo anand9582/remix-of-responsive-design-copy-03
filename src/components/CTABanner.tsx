@@ -5,13 +5,13 @@ import alertCard from "@/assets/cta-bg.png";
 
 const CTABanner = () => {
   return (
-    <section className="bg-background py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-background py-10 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
 
         <div
           className="
           relative rounded-[28px] overflow-hidden 
-          bg-[linear-gradient(135deg,#1E3A8A_0%,#0F172A_100%)]
+           bg-[linear-gradient(300.97deg,_#121C31_-1.06%,_#1C3468_99.48%)]
           px-6 sm:px-12 py-16 sm:py-20 
           text-center 
           shadow-[0_20px_60px_rgba(0,0,0,0.25)]
@@ -41,13 +41,13 @@ const CTABanner = () => {
           </div>
 
           {/* CONTENT */}
-          <div className="relative z-20 max-w-3xl mx-auto flex flex-col items-center justify-center">
+          <div className="relative z-20 max-w-3xl mx-auto flex flex-col  items-center justify-center">
 
             {/* HEADING */}
             <h2
               className="
               text-white font-aleo font-semibold 
-              text-3xl sm:text-4xl md:text-[50px] 
+              text-3xl sm:text-4xl md:text-[47px] 
               leading-[1.2] tracking-tight mb-4
             "
             >
@@ -55,7 +55,7 @@ const CTABanner = () => {
             </h2>
 
             {/* SUBTEXT */}
-            <p className="text-[#94A3B8] text-[15px] sm:text-[16px] mb-8 font-roboto">
+            <p className="text-[#D4D4D4] text-[15px] sm:text-[16px] mb-8 font-roboto">
               Deploy intelligent surveillance built for scale, speed and resilience.
             </p>
 

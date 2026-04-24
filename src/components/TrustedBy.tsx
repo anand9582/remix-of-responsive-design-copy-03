@@ -18,8 +18,8 @@ const TrustedBy = () => {
 
   return (
     <section className="bg-white py-16 sm:py-10 border-t border-slate-100 overflow-hidden relative">
-      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
-        <p className="text-center font-sans text-[12px] sm:text-[13px] font-bold leading-[150%] tracking-[0.15em] text-slate-400/90 uppercase">
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10">
+        <p className="text-center font-roboto font-normal text-base leading-[150%] tracking-normal text-gray-400 uppercase">
           Trusted By Industry Leaders
         </p>
       </div>

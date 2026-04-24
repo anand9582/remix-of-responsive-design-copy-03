@@ -73,7 +73,7 @@ const MarqueeRow = ({ items, direction = "left", offset = false }: { items: type
 
 const TheChallenge = () => {
   return (
-    <section className="bg-background py-16 sm:py-24">
+    <section className="bg-background py-24 sm:py-24">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#141A27] rounded-[32px] py-10 sm:py-24 overflow-hidden shadow-2xl relative">
 
