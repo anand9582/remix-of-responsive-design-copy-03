@@ -228,7 +228,7 @@ const IndustriesWeServe = () => {
                     className="w-full relative scroll-m-32 origin-left"
                   >
                     <div 
-                      className={`transition-all duration-1000 ease-[0.16,1,0.3,1] ${isActive ? 'opacity-100 scale-100 blur-0' : 'opacity-100 scale-100 blur-0 cursor-pointer'}`} 
+                      className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 scale-100 blur-0' : 'opacity-30 scale-[0.97] blur-[3px] grayscale-[30%] cursor-pointer hover:opacity-50'}`} 
                       onClick={() => !isActive && handleTabClick(index)}
                     >
                       <div className="flex items-start justify-between gap-4 mb-3">

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ArrowUpRight, Train, Factory, Landmark, Fuel, Warehouse, ShoppingCart, GraduationCap, Heart } from "lucide-react";
 import { useScrolledPast } from "@/hooks/use-scroll-animation";
 import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -47,12 +48,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between transition-all duration-300 px-6 h-16 bg-white border border-white/20 rounded-full mt-4 shadow-lg">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div>
-              <img
-                src={logo}
-                alt="logo"
-                className="h-9 w-auto object-contain"
-              />
+            <div className="flex items-center gap-2">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="h-9 w-auto object-contain cursor-pointer"
+                />
+              </Link>
             </div>
           </div>
 
@@ -73,21 +76,21 @@ const Navbar = () => {
 
                   {desktopDropdownOpen && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
-                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 min-w-[560px] grid grid-cols-2 gap-1">
+                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 min-w-[640px] grid grid-rows-4 grid-flow-col gap-x-8 gap-y-1">
                         {industryItems.map((item) => {
                           const Icon = item.icon;
                           return (
                             <a
                               key={item.name}
                               href={item.href}
-                              className="group/item flex items-start gap-3 p-3 rounded-xl hover:bg-accent hover:text-accent-foreground transition-colors"
+                              className="group/item flex items-start gap-3 p-3 rounded-xl transition-colors"
                             >
-                              <div className="w-9 h-9 rounded-lg bg-gray-100 group-hover/item:bg-accent-foreground/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                                <Icon className="w-[18px] h-[18px] text-accent group-hover/item:text-accent-foreground transition-colors" />
+                              <div className="w-9 h-9 rounded-lg bg-gray-50 group-hover/item:bg-accent/10 flex items-center justify-center flex-shrink-0 transition-colors">
+                                <Icon className="w-[18px] h-[18px] text-accent transition-colors" />
                               </div>
                               <div>
-                                <p className="text-sm font-semibold text-gray-900 group-hover/item:text-accent-foreground leading-tight">{item.name}</p>
-                                <p className="text-xs text-gray-500 group-hover/item:text-accent-foreground/70 mt-0.5 leading-snug">{item.desc}</p>
+                                <p className="text-sm font-semibold text-gray-900 group-hover/item:text-accent leading-tight transition-colors">{item.name}</p>
+                                <p className="text-xs text-gray-500 group-hover/item:text-gray-600 mt-0.5 leading-snug transition-colors">{item.desc}</p>
                               </div>
                             </a>
                           );

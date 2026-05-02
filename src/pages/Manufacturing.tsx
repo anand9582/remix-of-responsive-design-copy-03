@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
+import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
@@ -15,6 +16,14 @@ import etaalert from "@/assets/eta-left.png";
 import etaatop from "@/assets/etatop.png";
 import etaright from "@/assets/etaright.png";
 import manufacturingBg from "@/assets/manufacturing-bg.jpg";
+
+// Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 import { PPEIcon, RestrictedAreaIcon, MapPinAreaIcon, GearIcon, FireIcon, PersonIcon, TrendDownIcon, TrendUpIcon } from "@/components/icons/manufacturingIcons";
 import { ShieldCheckIcon } from "@/components/icons/RailwayIcons";
 
@@ -27,14 +36,32 @@ const Manufacturing = () => {
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden pt-36 pb-24 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${manufacturingBg})`,
-          height: "753px",
-        }}
+        className="relative overflow-hidden pt-36 pb-24 flex items-center"
+        style={{ height: "753px" }}
       >
+        {/* Swiper Background Container */}
+        <div className="absolute inset-0 z-0">
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full h-full hero-swiper"
+          >
+            {[manufacturingBg, DashboardMain, aboutCtaBg].map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className="w-full h-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
         <div
-          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none"
+          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
           style={{
             backgroundImage: `url(${heroBgStripes})`,
             backgroundSize: "cover",
@@ -42,7 +69,7 @@ const Manufacturing = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 text-center w-full">
           <div className="flex justify-center mb-6">
             <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
               <span className="text-xs tracking-widest text-white font-semibold flex gap-2 uppercase">
@@ -226,54 +253,7 @@ const Manufacturing = () => {
         </div>
       </section>
 
-      {/* Safer Operations. Fewer Incidents. */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-[#171717] font-aleo font-semibold text-3xl md:text-[36px] tracking-tight mb-4">
-              Safer Operations. Fewer Incidents.
-            </h2>
-            <p className="text-black font-roboto font-regular text-md max-w-2xl mx-auto">
-              Real-time analytics transform video streams into proactive safety and security alerts.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              {
-                icon: TrendDownIcon,
-                title: "Fewer workplace accidents and compliance violations.",
-              },
-              {
-                icon: ShieldCheckIcon,
-                title: "Improved worker safety without added staffing.",
-              },
-              {
-                icon: PersonIcon,
-                title: "High production uptime and operational reliability.",
-              },
-              {
-                icon: TrendUpIcon,
-                title: "Faster incident investigation and post-match analysis.",
-              },
-            ].map((stat, idx) => (
-              <ScrollReveal
-                key={idx}
-                direction="up"
-                delay={100 * idx}
-                className="text-center px-4"
-              >
-                <div className="w-12 h-12 mx-auto bg-blue-50/50 rounded-full flex items-center justify-center mb-4">
-                  <stat.icon className="w-5 h-5 text-blue-600" />
-                </div>
-                <p className="font-roboto font-normal text-[15px] leading-[150%] tracking-[0%] text-center mb-4">
-                  {stat.title}
-                </p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MeasurableSecurity />
 
       {/* About Us Sub-section */}
       <section className="py-24 bg-[#FAFAFA] relative overflow-hidden">

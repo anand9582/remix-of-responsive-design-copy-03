@@ -1,5 +1,6 @@
 import { Diamond, Network, Database, Globe, Monitor, Smartphone, Radio, HardDrive, Share2, RefreshCw, Video, Activity, Layers, Cpu, Cctv, Webcam, ShieldCheck, Link, Wifi, AlertCircle, CalendarCheck, Scan, Film, BarChart3, MonitorPlay, MonitorSmartphone } from "lucide-react";
 import { motion } from "framer-motion";
+import { CaptureIcon, OutputIcon, EvidenceIcon, StorageIcon, ManagementIcon, DesktopIcon } from "./icons/HomeIcons";
 
 /* ---------- Reusable atoms ---------- */
 const NodeCard = ({
@@ -47,8 +48,8 @@ const NodeCard = ({
 
 const ChipIcon = ({ icon: Icon, label }: { icon: any; label: string }) => (
   <div className="flex flex-col items-center justify-center gap-2">
-    <Icon className="w-4 h-4 text-neutral-200" strokeWidth={1.5} />
-    <span className="font-roboto font-normal text-neutral-200 text-[9.5px] uppercase tracking-wider font-semibold">{label}</span>
+    <Icon className="w-4 h-4 text-blue-100" strokeWidth={1.5} />
+    <span className="font-roboto font-normal text-neutral-200 text-[9.5px]  tracking-wider font-semibold">{label}</span>
   </div>
 );
 
@@ -164,7 +165,7 @@ const AbsBox = ({
  *  - Only one packet moves at a time → strict one-by-one sequence.
  */
 const Packet = ({
-  points, delay, duration, icon: Icon, flip = false, totalCycle = 6,
+  points, delay, duration, icon: Icon, flip = false, totalCycle = 3.5,
 }: { points: [number, number][]; delay: number; duration: number; icon: any; flip?: boolean; totalCycle?: number }) => {
   const xs = points.map(p => p[0]);
   const ys = points.map(p => p[1]);
@@ -241,8 +242,8 @@ const EcosystemArchitecture = () => {
           {/* Header */}
           <div className="text-center">
             <div className="inline-flex items-center gap-2 bg-[#1A253E] border border-[#2B3F6C] rounded-full px-4 py-1.5 mb-6 shadow-md">
-              <Diamond className="w-3.5 h-3.5 text-blue-300" fill="currentColor" />
-              <span className="text-[10px] font-bold tracking-widest uppercase text-blue-200">Enterprise Architecture</span>
+              <Diamond className="w-3.5 h-3.5 text-neutral-300" fill="currentColor" />
+              <span className="text-[10px] font-bold tracking-widest uppercase text-neutral-300">Enterprise Architecture</span>
             </div>
             <h2 className="text-white font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-4">
               Campulse Ecosystem
@@ -290,7 +291,7 @@ const EcosystemArchitecture = () => {
 
               {/* Nodes */}
               <AbsBox left={40} top={100} width={260}>
-                <NodeCard icon={MonitorSmartphone} title="CAMPULSE EDGE" subtitle="Capture real-time data">
+                <NodeCard icon={CaptureIcon} title="CAMPULSE EDGE" subtitle="Capture real-time data">
                   <div className="grid grid-cols-4 gap-1.5 mt-3">
                     <ChipIcon icon={Cctv} label="IP Cam" />
                     <ChipIcon icon={Webcam} label="PTZ" />
@@ -316,8 +317,9 @@ const EcosystemArchitecture = () => {
                 </NodeCard>
               </AbsBox>
 
-              <AbsBox left={420} top={310} width={360} highlightAt={[[0.2, 5.2]]}>
+              <AbsBox left={420} top={310} width={360}>
                 <NodeCard
+                  glowing={false}
                   icon={Cpu}
                   title="CAMPULSE VMS"
                   subtitle="ICCC CORE / Central command"
@@ -326,9 +328,9 @@ const EcosystemArchitecture = () => {
                   <div className="grid grid-cols-2 gap-2 mt-4">
                     <Pill icon={Activity} label="SOP Flows" />
                     <Pill icon={AlertCircle} label="Escalation" />
-                    <Pill icon={CalendarCheck} label="Incident Management" />
-                    <Pill icon={Scan} label="Evidence" />
-                    <Pill icon={Database} label="Storage" />
+                    <Pill icon={ManagementIcon} label="Incident Management" />
+                    <Pill icon={EvidenceIcon} label="Evidence" />
+                    <Pill icon={StorageIcon} label="Storage" />
                     <Pill icon={Layers} label="Reports" />
                   </div>
                 </NodeCard>
@@ -338,15 +340,15 @@ const EcosystemArchitecture = () => {
                 <NodeCard vertical icon={BarChart3} title="AI Analytics Engine" subtitle="Detect patterns" description="Extracts real-time insights." />
               </AbsBox>
 
-              <AbsBox left={1040} top={340} width={160}>
+              <AbsBox left={1040} top={340} width={180}>
                 <NodeCard vertical icon={Database} title="Hybrid Storage" subtitle="Store and retrieve data" description="Secures critical video evidence." />
               </AbsBox>
 
               <AbsBox left={460} top={620} width={280}>
-                <NodeCard icon={MonitorPlay} title="OUTPUT CHANNELS" subtitle="Access anywhere">
+                <NodeCard icon={OutputIcon} title="OUTPUT CHANNELS" subtitle="Access anywhere">
                   <div className="grid grid-cols-3 gap-2 mt-4">
                     <ChipIcon icon={Globe} label="Web" />
-                    <ChipIcon icon={Monitor} label="Desktop" />
+                    <ChipIcon icon={DesktopIcon} label="Desktop" />
                     <ChipIcon icon={Smartphone} label="Mobile" />
                   </div>
                 </NodeCard>
@@ -416,7 +418,7 @@ const EcosystemArchitecture = () => {
                 <Pill icon={Activity} label="SOP Flows" />
                 <Pill icon={AlertCircle} label="Escalation" />
                 <Pill icon={CalendarCheck} label="Incident Mgmt" />
-                <Pill icon={Scan} label="Evidence" />
+                <Pill icon={EvidenceIcon} label="Evidence" />
                 <Pill icon={Database} label="Storage" />
                 <Pill icon={Layers} label="Reports" />
               </div>

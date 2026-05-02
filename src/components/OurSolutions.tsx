@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, MotionStyle } from "framer-motion";
+import { motion, useScroll, useTransform, MotionStyle, useMotionTemplate, useInView } from "framer-motion";
 import {
   Diamond,
   ShieldCheck,
@@ -138,80 +138,89 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: [`start ${stickyTop}px`, `start ${stickyTop - 350}px`],
+    offset: [`start ${stickyTop}px`, `start ${stickyTop - 450}px`],
   });
 
+  const isInView = useInView(targetRef, { once: true, margin: "600px" });
+
+  const rotateX = useTransform(scrollYProgress, [0, 1], [0, -8]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
-  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const blurValue = useTransform(scrollYProgress, [0, 1], [0, 0.3]);
+  const filter = useMotionTemplate`blur(${blurValue}px)`;
 
   const motionStyle: MotionStyle = {
     top: `${stickyTop}px`,
     scale: index === totalLength - 1 ? 1 : scale,
+    rotateX: index === totalLength - 1 ? 0 : rotateX,
     opacity: index === totalLength - 1 ? 1 : opacity,
-    filter: index === totalLength - 1 ? "blur(0px)" : blur,
+    filter: index === totalLength - 1 ? "blur(0px)" : filter,
     transformOrigin: "top center",
   };
 
   return (
-    <motion.div
-      ref={targetRef}
-      className="sticky mb-6 last:mb-0"
-      style={motionStyle}
-    >
-      <div className="bg-background rounded-2xl shadow-xl overflow-hidden lg:h-[450px]">
-        <div
-          className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
-            } h-full gap-6 lg:gap-0`}
-        >
-          {/* Text */}
-          <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-            <h3 className="text-xl sm:text-2xl font-roboto font-medium text-neutral-800 mb-4">
-              {solution.title}
-            </h3>
+    <>
+      <div ref={targetRef} className="h-0 w-full" aria-hidden="true" />
+      <motion.div
+        className="sticky mb-12 lg:mb-16 last:mb-0"
+        style={motionStyle}
+      >
+        <div className="bg-background rounded-2xl shadow-xl overflow-hidden min-h-[450px] lg:h-[450px] border border-border/60">
+          <div
+            className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
+              } h-full gap-6 lg:gap-0`}
+          >
+            {/* Text */}
+            <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+              <h3 className="text-xl sm:text-2xl font-roboto font-medium text-neutral-800 mb-4">
+                {solution.title}
+              </h3>
 
-            <p className="text-neutral-600 text-sm sm:text-base font-roboto leading-relaxed mb-6">
-              {solution.description}
-            </p>
+              <p className="text-neutral-600 text-sm sm:text-base font-roboto leading-relaxed mb-6">
+                {solution.description}
+              </p>
 
-            <div className="space-y-5">
-              {solution.bullets.map((bullet: any, i: number) => (
-                <div key={i} className="flex items-center gap-3">
-                  <bullet.icon
-                    className={`w-5 h-5 ${bullet.color} flex-shrink-0 transition-colors duration-300`}
-                    strokeWidth={1.5}
+              <div className="space-y-5">
+                {solution.bullets.map((bullet: any, i: number) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <bullet.icon
+                      className={`w-5 h-5 ${bullet.color} flex-shrink-0 transition-colors duration-300`}
+                      strokeWidth={1.5}
+                    />
+                    <span className="font-roboto font-normal  text-gray-600 leading-6 tracking-normal">
+                      {bullet.text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="flex-1 p-4 lg:p-6 flex items-stretch justify-center h-full">
+              {solution.isVideo ? (
+                isInView ? (
+                  <video
+                    src={solution.image}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
                   />
-                  <span className="font-roboto font-normal  text-gray-600 leading-6 tracking-normal">
-                    {bullet.text}
-                  </span>
-                </div>
-              ))}
+                ) : <div className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl bg-neutral-100/50" />
+              ) : (
+                <img
+                  src={solution.image}
+                  alt={solution.imageAlt}
+                  className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
+                  loading="lazy"
+                />
+              )}
             </div>
           </div>
-
-          {/* Image */}
-          <div className="flex-1 p-4 lg:p-6 flex items-stretch justify-center h-full">
-            {solution.isVideo ? (
-              <video
-                src={solution.image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
-              />
-            ) : (
-              <img
-                src={solution.image}
-                alt={solution.imageAlt}
-                className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
-                loading="lazy"
-              />
-            )}
-          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 
@@ -221,7 +230,7 @@ const OurSolutions = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Header */}
-        <div className="sticky top-20 z-50 bg-background/95 backdrop-blur-md pt-8 sm:pt-12 pb-6 px-4 -mx-4 sm:px-0 sm:mx-0 text-center mb-10 border-b border-border/40 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)]">
+        <div className="sticky top-20 z-50 bg-background/95 backdrop-blur-md pt-8 sm:pt-12 pb-6 px-4 -mx-4 sm:px-0 sm:mx-0 text-center mb-10   shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)]">
           <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-3 mb-6">
             <Diamond className="w-3.5 h-3.5 text-blue-700" fill="currentColor" />
             <span className="text-xs font-semibold tracking-widest uppercase text-blue-700">
@@ -237,7 +246,7 @@ const OurSolutions = () => {
         </div>
 
         {/* Cards */}
-        <div className="relative">
+        <div className="relative [perspective:1200px]">
           {solutions.map((solution, index) => (
             <SolutionCard
               key={index}

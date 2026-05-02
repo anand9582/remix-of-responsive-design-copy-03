@@ -115,3 +115,32 @@
     @apply font-display;
   }
 }
+
+
+
+/* Hero Swiper pagination — pill-style: active wide white, inactive small white dots */
+.hero-swiper .swiper-pagination {
+  bottom: 28px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #ffffff;
+  opacity: 0.9;
+  margin: 0 !important;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 28px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #ffffff;
+  opacity: 1;
+}

@@ -14,6 +14,13 @@ import DashboardMain from "@/assets/railway-dashbaord.png";
 import founderImg from "@/assets/founder.jpg";
 import oilGasBg from "@/assets/oil-bg.jpg"; // Using the closest asset
 
+// Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 // Dashboard overlays
 import etatop from "@/assets/eta-top.png";
 import etaalert from "@/assets/eta-left.png";
@@ -29,14 +36,32 @@ const OilGas = () => {
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden pt-36 pb-24 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${oilGasBg})`,
-          height: "753px",
-        }}
+        className="relative overflow-hidden pt-36 pb-24 flex items-center"
+        style={{ height: "753px" }}
       >
-        <div className="absolute inset-0 bg-black opacity-60 mix-blend-normal" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        {/* Swiper Background Container */}
+        <div className="absolute inset-0 z-0">
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full h-full hero-swiper"
+          >
+            {[oilGasBg, DashboardMain, aboutCtaBg].map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className="w-full h-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className="absolute inset-0 bg-black opacity-60 mix-blend-normal z-10" />
+        <div className="relative z-20 max-w-7xl mx-auto px-4 text-center w-full">
           <div className="flex justify-center mb-6">
             <div className="px-5 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
               <span className="text-[10px] tracking-[0.2em] text-white font-bold uppercase items-center block">

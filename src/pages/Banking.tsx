@@ -7,11 +7,18 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 // Icons 
 import { Building2, Vault, ShieldAlert, Fingerprint, Users, Lock, Video, ClipboardCheck, TrendingDown } from "lucide-react";
-import heroBgStripes from "@/assets/industry-banking.jpg";
+import heroBgStripes from "@/assets/hero-bg-stripes.png";
 import aboutCtaBg from "@/assets/aboutcta-bg.jpg";
 import DashboardMain from "@/assets/railway-dashbaord.png";
 import founderImg from "@/assets/founder.jpg";
 import bankingBg from "@/assets/industry-banking.jpg";
+
+// Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 // Dashboard overlays
 import etatop from "@/assets/eta-top.png";
@@ -29,14 +36,32 @@ const Banking = () => {
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden pt-36 pb-24 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${bankingBg})`,
-          height: "753px",
-        }}
+        className="relative overflow-hidden pt-36 pb-24 flex items-center"
+        style={{ height: "753px" }}
       >
+        {/* Swiper Background Container */}
+        <div className="absolute inset-0 z-0">
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full h-full hero-swiper"
+          >
+            {[bankingBg, DashboardMain, aboutCtaBg].map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className="w-full h-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
         <div
-          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none"
+          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
           style={{
             backgroundImage: `url(${heroBgStripes})`,
             backgroundSize: "cover",
@@ -44,7 +69,7 @@ const Banking = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 text-center w-full">
           <div className="flex justify-center mb-6">
             <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
               <span className="text-xs tracking-widest text-white font-semibold">

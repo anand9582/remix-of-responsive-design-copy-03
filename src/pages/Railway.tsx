@@ -3,18 +3,30 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
+import CertificationStrip from "@/components/CertificationStrip";
+import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, } from "lucide-react";
 import { motion } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/aboutcta-bg.jpg";
+import aboutCtaBg from "@/assets/railway-bc.jpg";
+import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
 import RailwayMain from "@/assets/railway-dashbaord.png";
-import founderImg from "@/assets/founder.jpg";
+import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import founderImg from "@/assets/dashboard-main.mp4";
 import logoT from "@/assets/logo-t.png";
 import etatop from "@/assets/eta-top.png";
 import etaalert from "@/assets/eta-left.png";
 import etaatop from "@/assets/etatop.png";
 import etaright from "@/assets/etaright.png";
 import railwayBg from "@/assets/railway-bg.jpg";
+
+// Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, LightningIcon, UsersFourIcon, ShieldCheckIcon, PulseIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
@@ -26,14 +38,32 @@ const Railway = () => {
 
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden pt-36 pb-24 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${railwayBg})`,
-          height: "753px",
-        }}
+        className="relative overflow-hidden pt-36 pb-24 flex items-center"
+        style={{ height: "753px" }}
       >
+        {/* Swiper Background Container */}
+        <div className="absolute inset-0 z-0">
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full h-full hero-swiper"
+          >
+            {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className="w-full h-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
         <div
-          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none"
+          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
           style={{
             backgroundImage: `url(${heroBgStripes})`,
             backgroundSize: "cover",
@@ -41,54 +71,59 @@ const Railway = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-              <span className="text-xs tracking-widest text-white font-semibold">
-                INDUSTRY SOLUTIONS
-              </span>
+        <div className="relative z-20 max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row items-center justify-between">
+          <div className="max-w-2xl text-left w-full lg:w-1/2">
+            <div className="flex justify-start mb-6">
+              <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
+                <span className="font-roboto font-medium text-[12px] text-white leading-[150%] tracking-[0.015em] text-center align-middle mb-[12px]">
+                  INDUSTRY SOLUTIONS
+                </span>
+              </div>
             </div>
+            <motion.h1
+              className="text-white font-calistoga font-normal not-italic text-[46px] md:text-[52px] leading-[1.1] tracking-tight mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE_OUT }}
+            >
+              CamPulse for <br />
+              Railways & Transport <br />
+              Infrastructure
+            </motion.h1>
+            <motion.p
+              className="text-neutral-300 font-roboto font-regular text-[50px] md:text-sm max-w-md mb-8 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
+            >
+              Secure branches, ATMs, and critical assets with real-time monitoring.
+            </motion.p>
+
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 22 }}
+              className="inline-block"
+            >
+              <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                {/* Gradient Overlay */}
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+
+                {/* Circle */}
+                <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                  <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+                </span>
+
+                {/* Text */}
+                <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                  Book a Demo
+                </span>
+              </button>
+            </motion.div>
           </div>
-          <motion.h1
-            className="text-white font-calistoga font-normal not-italic text-[46px] md:text-[56px] leading-[1.2] tracking-tight mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE_OUT }}
-          >
-            CamPulse for Railways <br />
-            & Transport Infrastructure
-          </motion.h1>
-          <motion.p
-            className="text-white font-roboto font-regular md:text-sm max-w-3xl mx-auto mb-5"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
-          >
-            End-to-end smarter, high-assurance security platform by Transline
-            Technologies for Indian Railways.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT }}
-          >
-            <button className="group relative flex items-center mx-auto rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] hover:bg-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
 
-              {/* BLUE DEFAULT → HIDE ON HOVER */}
-              <span className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
 
-              {/* ICON */}
-              <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-white group-hover:bg-blue-700 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                <ArrowUpRight className="w-4 h-4 text-blue-700 group-hover:text-white transition-all duration-500 group-hover:rotate-45" />
-              </span>
 
-              {/* TEXT */}
-              <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-white group-hover:text-blue-700">
-                Book a Demo
-              </span>
-
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -238,54 +273,7 @@ const Railway = () => {
         </div>
       </section>
 
-      {/* Real Impact */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-[#171717] font-aleo font-semibold text-3xl md:text-[36px] tracking-tight mb-4">
-              Real Impact. Measurable Security.
-            </h2>
-            <p className="text-black font-roboto font-regular text-md max-w-2xl mx-auto">
-              From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              {
-                icon: LightningIcon,
-                title: "Faster response to text situations and safety incidents",
-              },
-              {
-                icon: PulseIcon,
-                title: "Reduce instances of trespassing on railway tracks",
-              },
-              {
-                icon: UsersFourIcon,
-                title: "Better crowd and passenger flow management",
-              },
-              {
-                icon: ShieldCheckIcon,
-                title: "Secure external perimeters and boundary lines",
-              },
-            ].map((stat, idx) => (
-              <ScrollReveal
-                key={idx}
-                direction="up"
-                delay={100 * idx}
-                className="text-center px-4"
-              >
-                <div className="w-12 h-12 mx-auto bg-blue-50/50 rounded-full flex items-center justify-center mb-4">
-                  <stat.icon className="w-5 h-5 text-blue-600" />
-                </div>
-                <p className="font-roboto font-normal text-[18px] leading-[150%] tracking-[0%] text-center mb-4">
-                  {stat.title}
-                </p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MeasurableSecurity />
 
       {/* About Us Sub-section */}
       <section className="py-24 bg-[#FAFAFA] relative overflow-hidden">
@@ -306,16 +294,18 @@ const Railway = () => {
 
           <ProfileFeature
             imageSrc={founderImg}
-            imageAlt="Mr. Arun Gupta - Founder and Chairman"
-            profileName="Mr. Arun Gupta"
-            profileDesignation="Founder and Chairman, Transline Technologies"
+            variant="video"
             title={<>CAMPULSE BY TRANSLINE<br />TECHNOLOGIES</>}
             descriptions={[
               "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across India.",
               "Deep engineering capability, field-proven deployment expertise, and an unwavering commitment to seamless integration and service uptime."
             ]}
-            className="mb-16  mx-auto"
+            className="mb-10 mx-auto max-w-6xl"
           />
+
+          <ScrollReveal direction="up" delay={250} className="mb-16">
+            <CertificationStrip />
+          </ScrollReveal>
 
           {/* CTA Custom Banner for Railways */}
           <ScrollReveal
@@ -338,7 +328,7 @@ const Railway = () => {
                 <div className="relative z-10 max-w-6xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold text-[50px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your industrial security <br />
+                    Transform your railways security <br />
                     with CamPulse.
                   </h2>
 
