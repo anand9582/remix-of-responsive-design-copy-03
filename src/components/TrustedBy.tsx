@@ -1,8 +1,28 @@
-import logo1 from "../assets/trust-logo1.png";
-import logo2 from "../assets/trust-logo2.png";
-import logo3 from "../assets/trust-logo3.png";
-import logo4 from "../assets/trust-logo4.png";
-import logo5 from "../assets/trust-logo5.png";
+import logo1 from "@/assets/trust-logo1.png";
+import logo2 from "@/assets/trust-logo2.png";
+import logo3 from "@/assets/trust-logo3.png";
+import logo4 from "@/assets/trust-logo4.png";
+import logo5 from "@/assets/trust-logo5.png";
+import logo6 from "@/assets/trust-logo6.png";
+import logo7 from "@/assets/trust-logo7.png";
+import logo8 from "@/assets/trust-logo8.png";
+import logo9 from "@/assets/trust-logo9.png";
+import logo10 from "@/assets/trust-logo10.png";
+import logo11 from "@/assets/trust-logo11.png";
+import logo12 from "@/assets/trust-logo12.png";
+import logo13 from "@/assets/trust-logo13.png";
+import logo14 from "@/assets/trust-logo14.png";
+import logo15 from "@/assets/trust-logo15.png";
+import logo16 from "@/assets/trust-logo16.png";
+import logo17 from "@/assets/trust-logo17.png";
+import logo18 from "@/assets/trust-logo18.png";
+import logo19 from "@/assets/trust-logo19.png";
+import logo20 from "@/assets/trust-logo20.png";
+import logo21 from "@/assets/trust-logo21.png";
+import logo22 from "@/assets/trust-logo22.png";
+import logo23 from "@/assets/trust-logo23.png";
+import logo24 from "@/assets/trust-logo24.png";
+import logo25 from "@/assets/trust-logo25.png";
 
 const logos = [
   logo1,
@@ -10,10 +30,29 @@ const logos = [
   logo3,
   logo4,
   logo5,
+  logo6,
+  logo7,
+  logo8,
+  logo9,
+  logo10,
+  logo11,
+  logo12,
+  logo13,
+  logo14,
+  logo15,
+  logo16,
+  logo17,
+  logo18,
+  logo19,
+  logo20,
+  logo21,
+  logo22,
+  logo23,
+  logo24,
+  logo25,
 ];
 
 const TrustedBy = () => {
-  // Tripling the logos ensures a very smooth and long continuous marquee without gaps
   const allLogos = [...logos, ...logos, ...logos];
 
   return (
@@ -42,7 +81,7 @@ const TrustedBy = () => {
               <img
                 src={logo}
                 alt={`Trusted partner logo ${i + 1}`}
-                className="max-h-8 sm:max-h-12 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                className="max-h-8 sm:max-h-12 w-auto object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           ))}

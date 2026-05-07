@@ -145,8 +145,8 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
   const rotateX = useTransform(scrollYProgress, [0, 1], [0, -8]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const blurValue = useTransform(scrollYProgress, [0, 1], [0, 0.3]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
+  const blurValue = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const filter = useMotionTemplate`blur(${blurValue}px)`;
 
   const motionStyle: MotionStyle = {
@@ -165,7 +165,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
         className="sticky mb-12 lg:mb-16 last:mb-0"
         style={motionStyle}
       >
-        <div className="bg-background rounded-2xl shadow-xl overflow-hidden min-h-[450px] lg:h-[450px] border border-border/60">
+        <div className="bg-background rounded-2xl shadow-xl overflow-hidden min-h-[450px] lg:h-[450px]">
           <div
             className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
               } h-full gap-6 lg:gap-0`}

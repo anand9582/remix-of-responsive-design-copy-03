@@ -25,7 +25,7 @@ const textContainerVariants = {
 const wordVariants = {
   hidden: { opacity: 0, filter: "blur(2px)", y: 12, scale: 0.96 },
   visible: {
-        opacity: 1,
+    opacity: 1,
     filter: "blur(0px)",
     y: 0,
     scale: 1,
@@ -102,7 +102,7 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 pt-36 text-center">
         {/* Heading */}
         <motion.h1
-          className="text-white font-calistoga font-normal not-italic text-[46px] leading-[1.24] tracking-[0.035em] mb-[14px]"
+          className="text-white font-calistoga font-normal not-italic text-[24px] md:text-[46px] leading-[1.24] tracking-[0.035em] mb-[14px]"
           variants={textContainerVariants}
           initial="hidden"
           animate={showHeading ? "visible" : "hidden"}

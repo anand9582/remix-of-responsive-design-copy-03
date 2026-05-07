@@ -60,16 +60,16 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8 ">
             {navLinks.map((link) =>
               link.hasDropdown ? (
                 <div
                   key={link.label}
-                  className="relative"
+                  className="relative "
                   onMouseEnter={() => setDesktopDropdownOpen(true)}
                   onMouseLeave={() => setDesktopDropdownOpen(false)}
                 >
-                  <button className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors flex items-center gap-1 outline-none">
+                  <button className="text-slate-700 hover:text-blue-600  text-sm font-medium transition-colors flex items-center gap-1 outline-none">
                     {link.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${desktopDropdownOpen ? "rotate-180" : ""}`} />
                   </button>
@@ -85,12 +85,12 @@ const Navbar = () => {
                               href={item.href}
                               className="group/item flex items-start gap-3 p-3 rounded-xl transition-colors"
                             >
-                              <div className="w-9 h-9 rounded-lg bg-gray-50 group-hover/item:bg-accent/10 flex items-center justify-center flex-shrink-0 transition-colors">
-                                <Icon className="w-[18px] h-[18px] text-accent transition-colors" />
+                              <div className="w-9 h-9 rounded-sm bg-blue-50 flex items-center justify-center flex-shrink-0 transition-colors">
+                                <Icon className="w-[18px] h-[18px] text-blue-600 transition-colors" />
                               </div>
                               <div>
-                                <p className="text-sm font-semibold text-gray-900 group-hover/item:text-accent leading-tight transition-colors">{item.name}</p>
-                                <p className="text-xs text-gray-500 group-hover/item:text-gray-600 mt-0.5 leading-snug transition-colors">{item.desc}</p>
+                                <p className="text-sm font-roboto font-semibold text-gray-900 group-hover/item:text-accent leading-tight transition-colors">{item.name}</p>
+                                <p className="text-xs font-roboto font-regular text-gray-500 group-hover/item:text-gray-600 mt-0.5 leading-snug transition-colors">{item.desc}</p>
                               </div>
                             </a>
                           );
@@ -103,7 +103,7 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="font-roboto font-regular text-slate-700 hover:text-slate-900 text-sm transition-colors flex items-center gap-1"
+                  className="font-roboto font-regular text-slate-700 hover:text-blue-600 text-sm transition-colors flex items-center gap-1"
                 >
                   {link.label}
                 </a>

@@ -46,13 +46,13 @@ const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, n
 
 const AboutUs = () => {
   return (
-    <section id="about" className="py-20 sm:py-28 bg-[#FAFAFA] relative overflow-hidden">
+    <section id="about" className="py-6 sm:py-28 bg-[#FAFAFA] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Badge Block */}
         <ScrollReveal direction="up" delay={100} className="flex justify-center mb-8">
           <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EBF1FF] text-[#2563EB] text-[10px] font-bold tracking-[0.15em] uppercase">
-            <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB]" />
+            <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB] font-roboto text-lg font-medium" />
             About Us
           </span>
         </ScrollReveal>
@@ -65,13 +65,13 @@ const AboutUs = () => {
         </ScrollReveal>
 
         {/* Stats Row with Animation */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12 mt-20">
           {stats.map((stat, idx) => (
             <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
               <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
                 <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
               </p>
-              <p className="text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
+              <p className="font-roboto text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
             </ScrollReveal>
           ))}
         </div>

@@ -54,7 +54,7 @@ const ComplianceSecurity = () => {
           {/* Badge */}
 
           <div className="flex justify-center">
-            <div className="inline-flex justify-center items-center gap-2 bg-[#121C36] rounded-full px-7 py-3 mb-8">
+            <div className="inline-flex justify-center items-center gap-2 bg-[#121C36] rounded-full px-6 py-3 mb-8">
               <Diamond className="w-3.5 h-3.5 text-white" fill="currentColor" />
               <span className="text-xs font-roboto font-medium tracking-[0.1em] text-neutral-300 uppercase">
                 Compliance and Certifications

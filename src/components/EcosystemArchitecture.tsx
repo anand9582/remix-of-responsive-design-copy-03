@@ -1,6 +1,6 @@
 import { Diamond, Network, Database, Globe, Monitor, Smartphone, Radio, HardDrive, Share2, RefreshCw, Video, Activity, Layers, Cpu, Cctv, Webcam, ShieldCheck, Link, Wifi, AlertCircle, CalendarCheck, Scan, Film, BarChart3, MonitorPlay, MonitorSmartphone } from "lucide-react";
 import { motion } from "framer-motion";
-import { CaptureIcon, OutputIcon, EvidenceIcon, StorageIcon, ManagementIcon, DesktopIcon } from "./icons/HomeIcons";
+import { CaptureIcon, OutputIcon, EvidenceIcon, StorageIcon, ManagementIcon, DesktopIcon, EngineIcon } from "./icons/HomeIcons";
 
 /* ---------- Reusable atoms ---------- */
 const NodeCard = ({
@@ -86,7 +86,7 @@ const Line = ({
 
 const StaticBadge = ({ x, y, icon: Icon, flip = false }: { x: number; y: number; icon: any; flip?: boolean }) => (
   <div
-    className="absolute w-5 h-5 rounded-full bg-white flex items-center justify-center shadow-[0_0_12px_rgba(255,255,255,0.9)] pointer-events-none z-10"
+    className="absolute w-5 h-5 rounded-full bg-white hidden md:flex items-center justify-center shadow-[0_0_12px_rgba(255,255,255,0.9)] pointer-events-none z-10"
     style={{ left: x - 10, top: y - 10 }}
   >
     <div className={flip ? "rotate-180" : ""}>
@@ -165,8 +165,8 @@ const AbsBox = ({
  *  - Only one packet moves at a time → strict one-by-one sequence.
  */
 const Packet = ({
-  points, delay, duration, icon: Icon, flip = false, totalCycle = 3.5,
-}: { points: [number, number][]; delay: number; duration: number; icon: any; flip?: boolean; totalCycle?: number }) => {
+  points, delay, duration, icon: Icon, flip = false, autoRotate = true, totalCycle = 3.5,
+}: { points: [number, number][]; delay: number; duration: number; icon: any; flip?: boolean; autoRotate?: boolean; totalCycle?: number }) => {
   const xs = points.map(p => p[0]);
   const ys = points.map(p => p[1]);
 
@@ -184,10 +184,6 @@ const Packet = ({
   const tEndTravel = (delay + duration) / totalCycle;
 
   // Position keyframes across the full cycle (always visible):
-  // 0 → tDelay : stay at start
-  // tDelay → tEndTravel : travel through all points
-  // tEndTravel → ~1 : stay at end
-  // 1 : snap back to start for next loop
   const xKeys: number[] = [xs[0], xs[0], ...xs.slice(1), xs[xs.length - 1], xs[0]];
   const yKeys: number[] = [ys[0], ys[0], ...ys.slice(1), ys[ys.length - 1], ys[0]];
   const posTimes: number[] = [
@@ -198,26 +194,78 @@ const Packet = ({
     1,
   ];
 
+  /* --- Automatic Rotation Logic --- */
+  const angles: number[] = [];
+  for (let i = 0; i < points.length - 1; i++) {
+    const dx = points[i + 1][0] - points[i][0];
+    const dy = points[i + 1][1] - points[i][1];
+    let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+    angles.push(angle);
+  }
+  angles.push(angles[angles.length - 1] || 0);
+
+  // Normalize angles to take the shortest path for smooth rotation at corners
+  for (let i = 1; i < angles.length; i++) {
+    let diff = angles[i] - angles[i - 1];
+    while (diff > 180) diff -= 360;
+    while (diff <= -180) diff += 360;
+    angles[i] = angles[i - 1] + diff;
+  }
+
+  const rotateKeys: number[] = [];
+  const rotateTimes: number[] = [];
+  const eps = 0.0001;
+
+  rotateKeys.push(angles[0]);
+  rotateTimes.push(0);
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const tCurrent = tDelay + travelTimes[i] * (tEndTravel - tDelay);
+    const tNext = tDelay + travelTimes[i + 1] * (tEndTravel - tDelay);
+
+    let tAddStart = Math.max(tCurrent, rotateTimes[rotateTimes.length - 1] + eps);
+    rotateKeys.push(angles[i]);
+    rotateTimes.push(tAddStart);
+
+    // Hold this angle until just before the corner, then it will interpolate to the next angle
+    let tAddEnd = Math.max(tNext - 0.015, tAddStart + eps);
+    rotateKeys.push(angles[i]);
+    rotateTimes.push(tAddEnd);
+  }
+
+  if (0.999 > rotateTimes[rotateTimes.length - 1]) {
+    rotateKeys.push(angles[angles.length - 1]);
+    rotateTimes.push(0.999);
+  }
+
+  rotateKeys.push(angles[0]); // snap back
+  rotateTimes.push(1);
+  /* ------------------------------- */
+
   // Smooth scale breathe pulse during travel
   const scaleTimes = [0, Math.max(0, tDelay - 0.05), tDelay, (tDelay + tEndTravel) / 2, tEndTravel, Math.min(1, tEndTravel + 0.05), 1];
   const scaleKeys = [1, 1, 1, 1.25, 1, 1, 1];
 
-  // Completely soft fade out so icon vanishes invisibly at ends and user never sees the snap back 
+  // Completely soft fade out so icon vanishes invisibly at ends
   const fade = 0.04;
   const opacityTimes = [0, Math.max(0, tDelay), Math.min(1, tDelay + fade), Math.max(0, tEndTravel - fade), Math.min(1, tEndTravel), 1];
   const opacityKeys = [0, 0, 1, 1, 0, 0];
 
   return (
     <motion.div
-      className="absolute w-[22px] h-[22px] rounded-full bg-white flex items-center justify-center  z-10 pointer-events-none"
+      className="absolute w-[22px] h-[22px] rounded-full bg-white flex items-center justify-center z-10 pointer-events-none"
       style={{ marginLeft: -11, marginTop: -11 }}
-      initial={{ x: xs[0], y: ys[0], opacity: 0, scale: 1 }}
-      animate={{ x: xKeys, y: yKeys, scale: scaleKeys, opacity: opacityKeys }}
+      initial={{ x: xs[0], y: ys[0], opacity: 0, scale: 1, rotate: autoRotate ? angles[0] : 0 }}
+      animate={{
+        x: xKeys, y: yKeys, scale: scaleKeys, opacity: opacityKeys,
+        ...(autoRotate ? { rotate: rotateKeys } : {})
+      }}
       transition={{
         x: { duration: totalCycle, ease: "linear", repeat: Infinity, times: posTimes },
         y: { duration: totalCycle, ease: "linear", repeat: Infinity, times: posTimes },
         scale: { duration: totalCycle, ease: "easeInOut", repeat: Infinity, times: scaleTimes },
         opacity: { duration: totalCycle, ease: "easeInOut", repeat: Infinity, times: opacityTimes },
+        ...(autoRotate ? { rotate: { duration: totalCycle, ease: "easeInOut", repeat: Infinity, times: rotateTimes } } : {})
       }}
     >
       <div className={flip ? "rotate-180" : ""}>
@@ -233,7 +281,7 @@ const EcosystemArchitecture = () => {
   const H = 840;
 
   return (
-    <section className="py-8 sm:py-16 border-t border-white/5 flex justify-center w-full overflow-hidden">
+    <section className=" flex justify-center w-full overflow-hidden">
       <div className="relative w-full  px-2 sm:px-6">
         {/* Outer rounded box mimicking deep soft dark blue background */}
         <div className="absolute inset-x-2 sm:inset-x-8 inset-y-0 rounded-[1.6rem] border border-blue-500/10 bg-[linear-gradient(113.96deg,_#121C31_5.62%,_#1C3468_109.2%)] p-6 rounded-xl" />
@@ -287,7 +335,7 @@ const EcosystemArchitecture = () => {
               <Line x1={1120} y1={390} x2={1120} y2={540} />
               <Line x1={800} y1={540} x2={1120} y2={540} />
               <Line x1={800} y1={425} x2={800} y2={540} />
-              <Line x1={720} y1={425} x2={800} y2={425} />
+              <Line x1={720} y1={425} x2={840} y2={425} />
 
               {/* Nodes */}
               <AbsBox left={40} top={100} width={260}>
@@ -363,12 +411,17 @@ const EcosystemArchitecture = () => {
               <Packet icon={Share2} points={[[250, 410], [380, 410], [380, 150], [510, 150]]} delay={0} duration={3.5} />
 
               {/* VDM ↔ VMS */}
-              <Packet icon={Database} points={[[565, 150], [565, 350]]} delay={0} duration={3.5} />
-              <Packet icon={Wifi} flip points={[[635, 350], [635, 150]]} delay={0} duration={3.5} />
+              <Packet icon={Wifi} autoRotate={false} points={[[565, 150], [565, 350]]} delay={0} duration={3.5} />
+              <Packet icon={Wifi} flip autoRotate={false} points={[[635, 350], [635, 150]]} delay={0} duration={3.5} />
 
               {/* VDM ↔ Streaming */}
-              <Packet icon={RefreshCw} points={[[680, 135], [960, 135]]} delay={0} duration={3.5} />
-              <Packet icon={RefreshCw} flip points={[[960, 180], [680, 180]]} delay={0} duration={3.5} />
+              <Packet icon={EngineIcon} points={[[680, 135], [960, 135]]} delay={0} duration={3.5} />
+              <Packet icon={EngineIcon} flip points={[[960, 180], [680, 180]]} delay={0} duration={3.5} />
+
+
+              {/* Horizontal R→L packet on VMS↔AI return line */}
+              <Packet icon={Share2} flip points={[[840, 425], [720, 425]]} delay={0} duration={3.5} />
+
 
               {/* Streaming → AI / Hybrid */}
               <Packet icon={Video} points={[[1030, 150], [1030, 260], [920, 260], [920, 390]]} delay={0} duration={3.5} />

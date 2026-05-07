@@ -210,7 +210,7 @@ const IndustriesWeServe = () => {
             </div>
           </motion.div>
 
-          <div className="flex-1 min-w-0 relative pb-32">
+          <div className="flex-1 min-w-0 relative  lg:pb-32">
             {/* STICKY LEFT, SCROLLING RIGHT CONTENT */}
             <div className="hidden lg:flex flex-col space-y-[12vh] pt-8">
               {industries.map((industry, index) => {
@@ -227,8 +227,8 @@ const IndustriesWeServe = () => {
                     transition={{ duration: 1, ease: EASE_OUT_EXPO }}
                     className="w-full relative scroll-m-32 origin-left"
                   >
-                    <div 
-                      className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 scale-100 blur-0' : 'opacity-30 scale-[0.97] blur-[3px] grayscale-[30%] cursor-pointer hover:opacity-50'}`} 
+                    <div
+                      className="transition-all duration-700 ease-out"
                       onClick={() => !isActive && handleTabClick(index)}
                     >
                       <div className="flex items-start justify-between gap-4 mb-3">
