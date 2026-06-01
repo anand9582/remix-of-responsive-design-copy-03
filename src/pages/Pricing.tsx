@@ -29,9 +29,9 @@ export default function Pricing() {
     },
     {
       icon: PlayerIcon,
-      title: "Easy Onboarding",
+      title: "Centralized Playback",
       description:
-        "Seamlessly discover and configure new cameras with our auto-provisioning tools.",
+        "Access recorded footage from distributed storage nodes in one unified timeline.",
     },
     {
       icon: MonitorSmartphone,

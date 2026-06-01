@@ -120,7 +120,7 @@ const AboutUs = () => {
           </ScrollReveal>
 
           {/* One Platform Card */}
-          <ScrollReveal direction="up" delay={100} className="relative rounded-xl sm:rounded-[20px] overflow-hidden h-[260px] md:h-auto shadow-[0_4px_25px_rgba(0,0,0,0.06)] border border-white/10 group">
+          <ScrollReveal direction="up" delay={100} className="relative rounded-xl sm:rounded-[20px] overflow-hidden  md:h-auto shadow-[0_4px_25px_rgba(0,0,0,0.06)] border border-white/10 group">
             <img
               src={controlRoomImg}
               alt="One Platform Total Control"

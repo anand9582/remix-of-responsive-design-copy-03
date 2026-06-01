@@ -6,7 +6,7 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import bgImage from "@/assets/campulse-bg.png";
 import dashboardImage from "@/assets/dashboard-home.jpg";
 const badgeVariants = {
@@ -85,6 +85,14 @@ const Word = ({
 const WhatIsCamPulse = () => {
   const textRef = useRef<HTMLHeadingElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Text scroll progress
   const { scrollYProgress: textScrollYProgress } = useScroll({
@@ -148,7 +156,7 @@ const WhatIsCamPulse = () => {
           {/* Heading */}
           <h2
             ref={textRef}
-            className="font-martina font-bold text-[30px] leading-[150%] tracking-[0.01em] mb-2"
+            className="font-martina font-semibold text-[24px] md:text-[30px] leading-[150%] tracking-[0.01em] mb-2"
           >
             {lines.map((line, lineIndex) => {
               const lineWords = wordsData.filter(
@@ -194,11 +202,15 @@ const WhatIsCamPulse = () => {
         <motion.div
           ref={imageRef}
           className="w-full relative rounded-2xl overflow-hidden bg-white shadow-2xl ring-1 ring-black/5"
-          style={{
-            scale: imageScale,
-            opacity: imageOpacity,
-            willChange: "transform, opacity"
-          }}
+          style={
+            isMobile
+              ? undefined
+              : {
+                  scale: imageScale,
+                  opacity: imageOpacity,
+                  willChange: "transform, opacity",
+                }
+          }
         >
           <img
             src={dashboardImage}

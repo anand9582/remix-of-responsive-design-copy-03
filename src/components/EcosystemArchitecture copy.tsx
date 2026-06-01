@@ -1,15 +1,6 @@
-import { Diamond, Network, Database, Globe, Monitor, Smartphone, Radio, HardDrive, Share2, RefreshCw, Video, Activity, Layers, Cpu, Cctv, Webcam, ShieldCheck, Link, Wifi, AlertCircle, CalendarCheck, Scan, Film, BarChart3, MonitorPlay, MonitorSmartphone, ClipboardList } from "lucide-react";
+import { Diamond, Network, Database, Globe, Monitor, Smartphone, Radio, HardDrive, Share2, RefreshCw, Video, Activity, Layers, Cpu, Cctv, Webcam, ShieldCheck, Link, Wifi, AlertCircle, CalendarCheck, Scan, Film, BarChart3, MonitorPlay, MonitorSmartphone } from "lucide-react";
 import { motion } from "framer-motion";
-import { AiIcons, VideoIcons } from '@/components/CustomIcons';
-
-// Icon aliases (replacing missing ./icons/HomeIcons module)
-const CaptureIcon = MonitorSmartphone;
-const OutputIcon = MonitorPlay;
-const EvidenceIcon = Scan;
-const StorageIcon = Database;
-const ManagementIcon = ClipboardList;
-const DesktopIcon = Monitor;
-const EngineIcon = Layers;
+import { CaptureIcon, OutputIcon, EvidenceIcon, StorageIcon, ManagementIcon, DesktopIcon, EngineIcon } from "./icons/HomeIcons";
 
 /* ---------- Reusable atoms ---------- */
 const NodeCard = ({
@@ -36,10 +27,10 @@ const NodeCard = ({
   <div
     className={`rounded-[14px] p-4 flex flex-col relative z-20 
       ${glowing
-        ? "border-[1.5px] border-[#2A65FF] bg-[#2a3a5b] shadow-[0_0_30px_rgba(42,101,255,0.15),inset_0_0_15px_rgba(42,101,255,0.1)]"
+        ? "border-[1.5px] border-[#2A65FF] bg-[#11192A] shadow-[0_0_30px_rgba(42,101,255,0.15),inset_0_0_15px_rgba(42,101,255,0.1)]"
         : "border border-white/[0.06] bg-[#273655] shadow-xl"} 
       ${className}`}
-    style={{ backdropFilter: glowing ? "none" : "blur(13px)", ...style }}
+    style={{ backdropFilter: glowing ? "none" : "blur(10px)", ...style }}
   >
     <div className={`flex ${vertical ? "flex-col items-start gap-2.5" : "items-start gap-3.5"} mb-2.5`} >
       <div className="w-[38px] h-[38px] rounded-lg flex items-center justify-center shrink-0 shadow-sm bg-blue-900">
@@ -69,41 +60,29 @@ const Pill = ({ icon: Icon, label }: { icon: any; label: string }) => (
   </div>
 );
 
-const buildRoundedPath = (points: [number, number][], r = 10) => {
-  if (points.length < 2) return "";
-  let d = `M${points[0][0]} ${points[0][1]}`;
-  for (let i = 1; i < points.length - 1; i++) {
-    const [px, py] = points[i - 1];
-    const [cx, cy] = points[i];
-    const [nx, ny] = points[i + 1];
-    const d1x = Math.sign(cx - px), d1y = Math.sign(cy - py);
-    const d2x = Math.sign(nx - cx), d2y = Math.sign(ny - cy);
-    const len1 = Math.hypot(cx - px, cy - py);
-    const len2 = Math.hypot(nx - cx, ny - cy);
-    const rr = Math.min(r, len1 / 2, len2 / 2);
-    const sx = cx - d1x * rr;
-    const sy = cy - d1y * rr;
-    const ex = cx + d2x * rr;
-    const ey = cy + d2y * rr;
-    d += ` L${sx} ${sy} Q${cx} ${cy} ${ex} ${ey}`;
-  }
-  const last = points[points.length - 1];
-  d += ` L${last[0]} ${last[1]}`;
-  return d;
+/* Solid connector line */
+const Line = ({
+  x1, y1, x2, y2,
+}: { x1: number; y1: number; x2: number; y2: number }) => {
+  const horizontal = y1 === y2;
+  const left = Math.min(x1, x2);
+  const top = Math.min(y1, y2);
+  const width = Math.max(Math.abs(x2 - x1), 1);
+  const height = Math.max(Math.abs(y2 - y1), 1);
+
+  return (
+    <div
+      className="absolute z-0"
+      style={{
+        left: horizontal ? left : left - 0.5,
+        top: horizontal ? top - 0.5 : top,
+        width: horizontal ? width : 1,
+        height: horizontal ? 1 : height,
+        backgroundImage: `linear-gradient(${horizontal ? "90deg" : "180deg"}, #4762ED 0%, #111F65 100%)`,
+      }}
+    />
+  );
 };
-
-const ConnectorPath = ({ points, r = 10 }: { points: [number, number][]; r?: number }) => (
-  <path
-    d={buildRoundedPath(points, r)}
-    fill="none"
-    stroke="#4762ED"
-    strokeWidth={1}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    vectorEffect="non-scaling-stroke"
-  />
-);
-
 
 const StaticBadge = ({ x, y, icon: Icon, flip = false }: { x: number; y: number; icon: any; flip?: boolean }) => (
   <div
@@ -125,6 +104,7 @@ const AbsBox = ({
   top: number;
   width: number;
   children: React.ReactNode;
+  /** Time windows (in seconds within the cycle) when this box should glow */
   highlightAt?: [number, number][];
   totalCycle?: number;
 }) => {
@@ -177,12 +157,20 @@ const AbsBox = ({
   );
 };
 
+/**
+ * Sequenced Packet:
+ *  - Always visible (never blank) — sits at the start of its line by default.
+ *  - During its time slot in the cycle, it travels along `points` to the end.
+ *  - Stays at end until cycle restarts, then instantly resets to start (still visible).
+ *  - Only one packet moves at a time → strict one-by-one sequence.
+ */
 const Packet = ({
   points, delay, duration, icon: Icon, flip = false, autoRotate = true, totalCycle = 3.5,
 }: { points: [number, number][]; delay: number; duration: number; icon: any; flip?: boolean; autoRotate?: boolean; totalCycle?: number }) => {
   const xs = points.map(p => p[0]);
   const ys = points.map(p => p[1]);
 
+  // Distance-weighted timing for the travel portion
   let totalDist = 0;
   const dists = [0];
   for (let i = 1; i < points.length; i++) {
@@ -195,6 +183,7 @@ const Packet = ({
   const tDelay = delay / totalCycle;
   const tEndTravel = (delay + duration) / totalCycle;
 
+  // Position keyframes across the full cycle (always visible):
   const xKeys: number[] = [xs[0], xs[0], ...xs.slice(1), xs[xs.length - 1], xs[0]];
   const yKeys: number[] = [ys[0], ys[0], ...ys.slice(1), ys[ys.length - 1], ys[0]];
   const posTimes: number[] = [
@@ -205,6 +194,7 @@ const Packet = ({
     1,
   ];
 
+  /* --- Automatic Rotation Logic --- */
   const angles: number[] = [];
   for (let i = 0; i < points.length - 1; i++) {
     const dx = points[i + 1][0] - points[i][0];
@@ -214,6 +204,7 @@ const Packet = ({
   }
   angles.push(angles[angles.length - 1] || 0);
 
+  // Normalize angles to take the shortest path for smooth rotation at corners
   for (let i = 1; i < angles.length; i++) {
     let diff = angles[i] - angles[i - 1];
     while (diff > 180) diff -= 360;
@@ -236,6 +227,7 @@ const Packet = ({
     rotateKeys.push(angles[i]);
     rotateTimes.push(tAddStart);
 
+    // Hold this angle until just before the corner, then it will interpolate to the next angle
     let tAddEnd = Math.max(tNext - 0.015, tAddStart + eps);
     rotateKeys.push(angles[i]);
     rotateTimes.push(tAddEnd);
@@ -246,12 +238,15 @@ const Packet = ({
     rotateTimes.push(0.999);
   }
 
-  rotateKeys.push(angles[0]);
+  rotateKeys.push(angles[0]); // snap back
   rotateTimes.push(1);
+  /* ------------------------------- */
 
+  // Smooth scale breathe pulse during travel
   const scaleTimes = [0, Math.max(0, tDelay - 0.05), tDelay, (tDelay + tEndTravel) / 2, tEndTravel, Math.min(1, tEndTravel + 0.05), 1];
   const scaleKeys = [1, 1, 1, 1.25, 1, 1, 1];
 
+  // Completely soft fade out so icon vanishes invisibly at ends
   const fade = 0.04;
   const opacityTimes = [0, Math.max(0, tDelay), Math.min(1, tDelay + fade), Math.max(0, tEndTravel - fade), Math.min(1, tEndTravel), 1];
   const opacityKeys = [0, 0, 1, 1, 0, 0];
@@ -288,7 +283,8 @@ const EcosystemArchitecture = () => {
   return (
     <section className="hidden lg:flex justify-center w-full overflow-hidden">
       <div className="relative w-full  px-2 sm:px-6">
-        <div className="absolute inset-x-2 sm:inset-x-8 inset-y-0 rounded-[1.6rem] border border-blue-500/10 bg-[linear-gradient(113.96deg,_#121C31_5.62%,_#1C3468_109.2%)] p-6" />
+        {/* Outer rounded box mimicking deep soft dark blue background */}
+        <div className="absolute inset-x-2 sm:inset-x-8 inset-y-0 rounded-[1.6rem] border border-blue-500/10 bg-[linear-gradient(113.96deg,_#121C31_5.62%,_#1C3468_109.2%)] p-6 rounded-xl" />
 
         <div className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-16 pb-16 w-full flex flex-col items-center">
           {/* Header */}
@@ -308,26 +304,40 @@ const EcosystemArchitecture = () => {
           {/* DESKTOP — fixed canvas */}
           <div className="hidden lg:flex justify-center overflow-visible w-full items-center">
             <div className="relative -ml-4" style={{ width: W, height: H }}>
-              <svg
-                className="absolute inset-0 z-0 pointer-events-none"
-                width={W}
-                height={H}
-                viewBox={`0 0 ${W} ${H}`}
-              >
-                <ConnectorPath points={[[170, 150], [170, 400]]} />
-                <ConnectorPath points={[[250, 410], [380, 410], [380, 150], [510, 150]]} />
-                <ConnectorPath points={[[565, 150], [565, 350]]} />
-                <ConnectorPath points={[[635, 150], [635, 350]]} />
-                <ConnectorPath points={[[565, 420], [565, 660]]} />
-                <ConnectorPath points={[[635, 420], [635, 660]]} />
-                <ConnectorPath points={[[680, 135], [960, 135]]} />
-                <ConnectorPath points={[[680, 180], [960, 180]]} />
-                <ConnectorPath points={[[1030, 150], [1030, 260], [920, 260], [920, 390]]} />
-                <ConnectorPath points={[[1030, 150], [1030, 260], [1120, 260], [1120, 390]]} />
-                <ConnectorPath points={[[1120, 390], [1120, 540], [800, 540], [800, 425], [780, 425]]} />
-                <ConnectorPath points={[[840, 425], [780, 425]]} />
-              </svg>
+              {/* Lines */}
+              {/* EDGE -> CONNECTIVITY */}
+              <Line x1={170} y1={150} x2={170} y2={400} />
 
+              {/* CONNECTIVITY -> VDM */}
+              <Line x1={250} y1={410} x2={380} y2={410} />
+              <Line x1={380} y1={150} x2={380} y2={410} />
+              <Line x1={380} y1={150} x2={510} y2={150} />
+
+              {/* VDM <-> VMS */}
+              <Line x1={565} y1={150} x2={565} y2={350} />
+              <Line x1={635} y1={150} x2={635} y2={350} />
+
+              {/* VMS <-> OUTPUT */}
+              <Line x1={565} y1={420} x2={565} y2={660} />
+              <Line x1={635} y1={420} x2={635} y2={660} />
+
+              {/* VDM <-> Streaming */}
+              <Line x1={680} y1={135} x2={960} y2={135} />
+              <Line x1={680} y1={180} x2={960} y2={180} />
+
+              {/* Streaming -> AI / Hybrid */}
+              <Line x1={1030} y1={150} x2={1030} y2={260} />
+              <Line x1={920} y1={260} x2={1120} y2={260} />
+              <Line x1={920} y1={260} x2={920} y2={390} />
+              <Line x1={1120} y1={260} x2={1120} y2={390} />
+
+              {/* Hybrid -> VMS Return */}
+              <Line x1={1120} y1={390} x2={1120} y2={540} />
+              <Line x1={800} y1={540} x2={1120} y2={540} />
+              <Line x1={800} y1={425} x2={800} y2={540} />
+              <Line x1={720} y1={425} x2={840} y2={425} />
+
+              {/* Nodes */}
               <AbsBox left={40} top={100} width={260}>
                 <NodeCard icon={CaptureIcon} title="CAMPULSE EDGE" subtitle="Capture real-time data">
                   <div className="grid grid-cols-4 gap-1.5 mt-3">
@@ -357,7 +367,7 @@ const EcosystemArchitecture = () => {
 
               <AbsBox left={420} top={310} width={360}>
                 <NodeCard
-                  glowing={true}
+                  glowing={false}
                   icon={Cpu}
                   title="CAMPULSE VMS"
                   subtitle="ICCC CORE / Central command"
@@ -392,20 +402,35 @@ const EcosystemArchitecture = () => {
                 </NodeCard>
               </AbsBox>
 
+              {/* Packet animation — all packets travel simultaneously, smooth & slow */}
+
+              {/* EDGE → CONNECTIVITY */}
               <Packet icon={Link} points={[[170, 150], [170, 400]]} delay={0} duration={3.5} />
+
+              {/* CONNECTIVITY → VDM L-shape */}
               <Packet icon={Share2} points={[[250, 410], [380, 410], [380, 150], [510, 150]]} delay={0} duration={3.5} />
+
+              {/* VDM ↔ VMS */}
               <Packet icon={Wifi} autoRotate={false} points={[[565, 150], [565, 350]]} delay={0} duration={3.5} />
               <Packet icon={Wifi} flip autoRotate={false} points={[[635, 350], [635, 150]]} delay={0} duration={3.5} />
+
+              {/* VDM ↔ Streaming */}
               <Packet icon={EngineIcon} points={[[680, 135], [960, 135]]} delay={0} duration={3.5} />
               <Packet icon={EngineIcon} flip points={[[960, 180], [680, 180]]} delay={0} duration={3.5} />
 
-              <Packet icon={AiIcons} flip points={[[840, 425], [780, 425]]} delay={0} duration={3.5} />
 
-              <Packet icon={VideoIcons} points={[[1030, 150], [1030, 260], [920, 260], [920, 390]]} delay={0} duration={3.5} />
+              {/* Horizontal R→L packet on VMS↔AI return line */}
+              <Packet icon={Share2} flip points={[[840, 425], [720, 425]]} delay={0} duration={3.5} />
+
+
+              {/* Streaming → AI / Hybrid */}
+              <Packet icon={Video} points={[[1030, 150], [1030, 260], [920, 260], [920, 390]]} delay={0} duration={3.5} />
               <Packet icon={HardDrive} points={[[1030, 150], [1030, 260], [1120, 260], [1120, 390]]} delay={0} duration={3.5} />
 
-              <Packet icon={Database} flip points={[[1120, 390], [1120, 540], [800, 540], [800, 425], [780, 425]]} delay={0} duration={3.5} />
+              {/* Hybrid → return bus → VMS */}
+              <Packet icon={Database} flip points={[[1120, 390], [1120, 540], [800, 540], [800, 425], [720, 425]]} delay={0} duration={3.5} />
 
+              {/* VMS ↔ Output */}
               <Packet icon={Film} points={[[565, 420], [565, 660]]} delay={0} duration={3.5} />
               <Packet icon={Film} flip points={[[635, 660], [635, 420]]} delay={0} duration={3.5} />
             </div>
@@ -477,6 +502,3 @@ const EcosystemArchitecture = () => {
 };
 
 export default EcosystemArchitecture;
-
-
-

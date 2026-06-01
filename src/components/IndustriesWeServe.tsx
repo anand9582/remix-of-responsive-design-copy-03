@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Diamond, Train, Factory, Landmark, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
 import industryRailways from "@/assets/industry-railways.png";
 import industryManufacturing from "@/assets/industry-manufacturing.png";
@@ -160,7 +160,7 @@ const IndustriesWeServe = () => {
   return (
     <section className="bg-background py-16 lg:pt-24 lg:pb-0" id="industries">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-14">
           <motion.div
             className="lg:w-[420px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start"
             variants={sidebarVariants}
@@ -179,7 +179,7 @@ const IndustriesWeServe = () => {
               Security That Adapts <span className="text-[#111827]">to<br />Every Industry</span>
             </motion.h2>
 
-            <div className="space-y-1">
+            <div className="hidden lg:block space-y-1">
               {industries.map((industry, index) => {
                 const isActive = index === activeIndex;
                 return (
@@ -264,53 +264,73 @@ const IndustriesWeServe = () => {
               })}
             </div>
 
-            {/* MOBILE: NORMAL SCROLLING LIST */}
-            <div className="block lg:hidden space-y-16">
+            {/* MOBILE: ACCORDION LIST */}
+            <div className="block lg:hidden pt-4 border-t border-gray-200 mt-2">
               {industries.map((industry, index) => {
                 const isActive = activeIndex === index;
                 return (
                   <div
                     key={`mobile-${industry.title}`}
-                    ref={(el) => {
-                      mobileSectionRefs.current[index] = el;
-                    }}
-                    className="scroll-mt-24"
+                    className="border-b border-gray-200 bg-white"
                   >
-                    <motion.div
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.15 }}
-                      transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
-                      className="w-full"
+                    <button
+                      onClick={() => setActiveIndex(isActive ? -1 : index)}
+                      className="w-full flex items-center justify-between py-4 bg-white text-left group"
                     >
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <h3 className="text-[22px] sm:text-[26px] font-sans font-bold text-[#111827] tracking-tight">
-                          {industry.title}
-                        </h3>
-                        <a
-                          href="#"
-                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1"
-                        >
-                          Learn more
-                          <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
-                        </a>
-                      </div>
-
-                      <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.7] mb-5">
-                        {industry.description}
-                      </p>
-
-                      <div className="rounded-md overflow-hidden">
-                        <img
-                          src={industry.image}
-                          alt={industry.title}
-                          className="w-full object-cover transition-transform duration-1000 ease-[0.16,1,0.3,1] hover:scale-105"
-                          loading="lazy"
-                          width={960}
-                          height={640}
+                      <div className="flex items-center gap-3">
+                        <industry.icon
+                          className={`w-[18px] h-[18px] flex-shrink-0 transition-colors duration-300 ${isActive ? "text-[#2563EB]" : "text-gray-700 group-hover:text-[#2563EB]"}`}
+                          strokeWidth={2}
                         />
+                        <h3 className={`text-[16px] font-sans font-semibold transition-colors duration-300 ${isActive ? "text-[#2563EB]" : "text-gray-700 group-hover:text-[#2563EB]"}`}>
+                          {industry.label}
+                        </h3>
                       </div>
-                    </motion.div>
+                      <div className="flex-shrink-0 ml-1">
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-300 ${isActive ? "rotate-180 text-[#2563EB]" : "text-gray-400 group-hover:text-[#2563EB]"
+                            }`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-5">
+                            <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.6] mb-4 pr-2">
+                              {industry.description}
+                            </p>
+                            <div className="rounded-md overflow-hidden">
+                              <img
+                                src={industry.image}
+                                alt={industry.title}
+                                className="w-full object-cover"
+                                loading="lazy"
+                                width={960}
+                                height={640}
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               })}

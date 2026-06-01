@@ -30,66 +30,88 @@ const SeeEverything = () => {
           See Everything. Miss Nothing.
         </h2>
 
-        {/* Mobile & Tablet Layout */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:hidden">
-          {/* Mobile Col 1 */}
-          <div className="flex flex-col gap-4 sm:gap-6 flex-1">
-            <div className="rounded-[16px] overflow-hidden aspect-[4/3] bg-neutral-900">
-              <LazyVideo src={surveillance1} className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">95%+ Detection Accuracy:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Reduce false alarms and maximize your overall facility security.</p>
-            </div>
-            <div className="rounded-[16px] overflow-hidden aspect-video bg-neutral-900">
+        {/* Mobile & Tablet Layout (Matches Screenshot exactly) */}
+        <div className="flex flex-col gap-4 lg:hidden max-w-md mx-auto sm:max-w-none">
+          {/* 1. Wide Image */}
+          <div className="rounded-lg overflow-hidden aspect-[16/9] sm:aspect-video bg-neutral-900 shadow-sm">
+            <LazyVideo src={surveillance1} className="w-full h-full object-cover" />
+          </div>
+
+          {/* 2. Text 24/7 Monitoring */}
+          <div className="rounded-lg bg-white p-5 shadow-sm">
+            <h3 className="font-roboto font-bold text-[15px] sm:text-[16px] text-neutral-900 mb-1">24/7 Monitoring:</h3>
+            <p className="font-roboto text-[13.5px] sm:text-[14.5px] leading-[1.6] text-neutral-500">Eliminate all blind spots across your locations, around the clock.</p>
+          </div>
+
+          {/* 3. Two side-by-side images */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
               <LazyVideo src={surveillance2} className="w-full h-full object-cover" />
             </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">1000+ Cameras, One View:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Consolidate hundreds of feeds into one unified, intuitive dashboard.</p>
-            </div>
-            <div className="rounded-[16px] overflow-hidden aspect-[3/4] bg-neutral-900">
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
               <LazyVideo src={surveillance8} className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">24/7 Monitoring:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Eliminate all blind spots across your locations, around the clock.</p>
-            </div>
-            <div className="rounded-[16px] overflow-hidden aspect-[4/3] bg-neutral-900">
-              <LazyVideo src={surveillance3} className="w-full h-full object-cover" />
             </div>
           </div>
 
-          {/* Mobile Col 2 */}
-          <div className="flex flex-col gap-4 sm:gap-6 flex-1">
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">{"<2s Alert Time:"}</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Instant, real-time alerts delivered straight to your mobile device.</p>
+          {/* 4. Text 1000+ Cameras */}
+          <div className="rounded-[16px] bg-white p-5 shadow-sm">
+            <h3 className="font-roboto font-bold text-[15px] sm:text-[16px] text-neutral-900 mb-1">1000+ Cameras, One View:</h3>
+            <p className="font-roboto text-[13.5px] sm:text-[14.5px] leading-[1.6] text-neutral-500">Consolidate hundreds of feeds into one unified, intuitive dashboard.</p>
+          </div>
+
+          {/* 5. Wide Image */}
+          <div className="rounded-lg overflow-hidden aspect-[16/9] sm:aspect-video bg-neutral-900 shadow-sm">
+            <LazyVideo src={surveillance7} className="w-full h-full object-cover" />
+          </div>
+
+          {/* 6. Two side-by-side text blocks */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-[16px] bg-white p-4 shadow-sm flex flex-col justify-center">
+              <h3 className="font-roboto font-bold text-[14px] sm:text-[15px] text-neutral-900 mb-1">99.9% Uptime:</h3>
+              <p className="font-roboto text-[12.5px] sm:text-[13.5px] leading-[1.5] text-neutral-500">Mission-critical reliability designed for your continuous, daily operations.</p>
             </div>
-            <div className="rounded-[16px] overflow-hidden aspect-video bg-neutral-900">
-              <LazyVideo src={surveillance9} className="w-full h-full object-cover" />
+            <div className="rounded-[16px] bg-white p-4 shadow-sm flex flex-col justify-center">
+              <h3 className="font-roboto font-bold text-[14px] sm:text-[15px] text-neutral-900 mb-1">Enterprise Scale:</h3>
+              <p className="font-roboto text-[12.5px] sm:text-[13.5px] leading-[1.5] text-neutral-500">Seamlessly integrates with any existing NVR/VMS security infrastructure.</p>
             </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">99.9% Uptime:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Mission-critical reliability designed for your continuous, daily operations.</p>
+          </div>
+
+          {/* 7. Two side-by-side images */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
+              <LazyVideo src={surveillance3} className="w-full h-full object-cover" />
             </div>
-            <div className="rounded-[16px] overflow-hidden aspect-[4/3] bg-neutral-900">
-              <LazyVideo src={surveillance7} className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">Enterprise Scale:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Seamlessly integrates with any existing NVR/VMS security infrastructure.</p>
-            </div>
-            <div className="rounded-[16px] overflow-hidden aspect-[4/3] bg-neutral-900">
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
               <LazyVideo src={surveillance6} className="w-full h-full object-cover" />
             </div>
-            <div className="rounded-[16px] bg-white p-6">
-              <h3 className="font-roboto font-bold text-[16px] text-neutral-900 mb-1">Continuous Learning:</h3>
-              <p className="font-roboto text-[14.5px] leading-[1.6] text-neutral-500">Advanced AI modules that evolve and improve every day.</p>
-            </div>
-            <div className="rounded-[16px] overflow-hidden aspect-[4/3] bg-neutral-900">
+          </div>
+
+          {/* 8. Text 95%+ Detection */}
+          <div className="rounded-lg bg-white p-5 shadow-sm">
+            <h3 className="font-roboto font-bold text-[15px] sm:text-[16px] text-neutral-900 mb-1">95%+ Detection Accuracy:</h3>
+            <p className="font-roboto text-[13.5px] sm:text-[14.5px] leading-[1.6] text-neutral-500">Reduce false alarms and maximize your overall facility security.</p>
+          </div>
+
+          {/* 9. Two side-by-side images */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
               <LazyVideo src={surveillance5} className="w-full h-full object-cover" />
             </div>
+            <div className="rounded-lg overflow-hidden aspect-square bg-neutral-900 shadow-sm">
+              <LazyVideo src={surveillance9} className="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          {/* 10. Text Continuous Learning */}
+          <div className="rounded-lg bg-white p-5 shadow-sm">
+            <h3 className="font-roboto font-bold text-[15px] sm:text-[16px] text-neutral-900 mb-1">Continuous Learning:</h3>
+            <p className="font-roboto text-[13.5px] sm:text-[14.5px] leading-[1.6] text-neutral-500">Advanced AI modules that evolve and improve every day.</p>
+          </div>
+
+          {/* 11. Text <2s Alert Time */}
+          <div className="rounded-lg bg-white p-5 shadow-sm">
+            <h3 className="font-roboto font-bold text-[15px] sm:text-[16px] text-neutral-900 mb-1">{"<2s Alert Time:"}</h3>
+            <p className="font-roboto text-[13.5px] sm:text-[14.5px] leading-[1.6] text-neutral-500">Instant, real-time alerts delivered straight to your mobile device.</p>
           </div>
         </div>
 

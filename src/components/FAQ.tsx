@@ -22,7 +22,7 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-[#FAFAFA]">
+    <section id="faq" className="py-2 sm:py-28 bg-[#FAFAFA]">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
 
@@ -40,7 +40,7 @@ const FAQ = () => {
             </h2>
 
             {/* Paragraph */}
-            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-10 max-w-[340px]">
+            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-4 md:mb-10 max-w-[340px]">
               We're here to help you and solve objections. Find answers to the most common questions below.
             </p>
 
@@ -60,10 +60,10 @@ const FAQ = () => {
                   value={`item-${i}`}
                   className="border border-[#E5E7EB] bg-white rounded-[8px] px-6 mb-3 hover:border-[#D1D5DB] data-[state=open]:border-[#93C5FD] data-[state=open]:shadow-sm transition-all duration-200 overflow-hidden"
                 >
-                  <AccordionTrigger className="text-[14px] sm:text-[15px] font-roboto font-medium text-[#334155] hover:text-[#0F172A] hover:no-underline py-5 outline-none [&[data-state=open]]:text-[#1D4ED8]">
+                  <AccordionTrigger className="text-[14px] text-left sm:text-[15px] font-roboto font-medium text-[#334155] hover:text-[#0F172A] hover:no-underline py-5 outline-none [&[data-state=open]]:text-[#1D4ED8]">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#64748b] font-roboto text-[14px] leading-[1.7] pb-5">
+                  <AccordionContent className="text-[#64748b] font-roboto text-justify text-[14px] leading-[1.7] pb-5">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
