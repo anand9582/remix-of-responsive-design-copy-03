@@ -24,10 +24,10 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-2 sm:py-28 bg-[#FAFAFA]">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start ">
 
           {/* Left side */}
-          <div className="lg:sticky lg:top-32">
+          <div className="lg:sticky lg:top-32 flex flex-col items-center lg:items-start">
             {/* Badge */}
             <span className="inline-flex items-center gap-2 px-4 py-1.5 font-roboto font-regular rounded-full bg-[#EEF2FF] text-[#2563EB] text-[11px] font-bold tracking-[0.08em] uppercase mb-8">
               <Diamond className="w-3.5 h-3.5 text-blue" fill="currentColor" />
@@ -35,12 +35,12 @@ const FAQ = () => {
             </span>
 
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-[32px] sm:text-[40px] text-[#111827] leading-[1.2] mb-5 tracking-tight">
+            <h2 className="font-aleo font-semibold text-[32px] sm:text-[40px] text-[#111827] leading-[1.2] mb-5 tracking-tight text-center lg:text-left">
               <span className="text-[#2563EB]">Your Questions</span> Answered
             </h2>
 
             {/* Paragraph */}
-            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-4 md:mb-10 max-w-[340px]">
+            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-4 md:mb-10 max-w-[340px] mx-auto lg:mx-0 text-center lg:text-left">
               We're here to help you and solve objections. Find answers to the most common questions below.
             </p>
 

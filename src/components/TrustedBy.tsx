@@ -58,7 +58,7 @@ const TrustedBy = () => {
   return (
     <section className="bg-white py-16 sm:py-10 border-t border-slate-100 overflow-hidden relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10">
-        <p className="text-center font-roboto font-normal text-base leading-[150%] tracking-normal text-gray-400 uppercase">
+        <p className="text-center font-roboto font-medium text-base leading-[150%] tracking-normal text-gray-400 uppercase">
           Trusted By Industry Leaders
         </p>
       </div>
@@ -72,7 +72,7 @@ const TrustedBy = () => {
         <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
         {/* Marquee Slider */}
-        <div className="flex items-center animate-marquee-left w-max">
+        <div className="flex items-center animate-marquee-left w-max" style={{ animationDuration: "90s" }}>
           {allLogos.map((logo, i) => (
             <div
               key={i}

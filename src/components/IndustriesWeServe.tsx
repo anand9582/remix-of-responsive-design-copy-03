@@ -162,7 +162,7 @@ const IndustriesWeServe = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-14">
           <motion.div
-            className="lg:w-[420px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start"
+            className="lg:w-[420px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start flex flex-col items-center lg:items-start"
             variants={sidebarVariants}
             initial="hidden"
             whileInView="visible"
@@ -175,7 +175,7 @@ const IndustriesWeServe = () => {
             </motion.div>
 
             {/* Heading */}
-            <motion.h2 variants={itemVariants} className="font-aleo font-semibold text-[30px] sm:text-[40px] text-[#2563EB] leading-[1.2] mb-10 tracking-tight">
+            <motion.h2 variants={itemVariants} className="font-aleo font-semibold text-[30px] sm:text-[40px] text-[#2563EB] leading-[1.2] lg:mb-10 tracking-tight text-center lg:text-left">
               Security That Adapts <span className="text-[#111827]">to<br />Every Industry</span>
             </motion.h2>
 

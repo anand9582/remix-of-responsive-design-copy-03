@@ -89,7 +89,7 @@ const ProfileFeature = ({
           <img src={logoT} alt="Logo" className="h-16 object-contain" />
         </div>
 
-        <h3 className="text-white font-Calistoga font-semibold text-lg md:text-[30px] uppercase mb-6 leading-[1.3] max-w-2xl">
+        <h3 className="text-white font-calistoga font-regular text-lg md:text-[30px] uppercase mb-6 leading-[1.3] max-w-2xl">
           {title}
         </h3>
 

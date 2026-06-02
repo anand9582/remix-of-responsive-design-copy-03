@@ -149,6 +149,15 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
   const blurValue = useTransform(scrollYProgress, [0, 1], [0, 0]);
   const filter = useMotionTemplate`blur(${blurValue}px)`;
 
+  const boxShadow = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [
+      "0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1)",
+      "0px 0px 0px 0px rgba(0, 0, 0, 0)"
+    ]
+  );
+
   const motionStyle: MotionStyle = {
     top: `${stickyTop}px`,
     scale: index === totalLength - 1 ? 1 : scale,
@@ -165,7 +174,15 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
         className="sticky mb-12 lg:mb-16 last:mb-0"
         style={motionStyle}
       >
-        <div className="bg-background rounded-2xl shadow-xl overflow-hidden min-h-[450px] lg:h-[450px]">
+        <motion.div
+          style={{
+            boxShadow:
+              index === totalLength - 1
+                ? "0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1)"
+                : boxShadow,
+          }}
+          className="bg-background rounded-2xl overflow-hidden min-h-[450px] lg:h-[450px]"
+        >
           <div
             className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
               } h-full gap-6 lg:gap-0`}
@@ -218,7 +235,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </>
   );
@@ -226,7 +243,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
 const OurSolutions = () => {
   return (
-    <section className="bg-background pb-32 sm:pb-48 lg:pb-[20vh] pt-0 relative" id="solutions">
+    <section className="bg-background pb-3 sm:pb-48 lg:pb-32 pt-0 relative" id="solutions">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Header */}

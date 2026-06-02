@@ -59,7 +59,7 @@ const AboutUs = () => {
 
         {/* Heading */}
         <ScrollReveal direction="up" delay={200}>
-          <h2 className="text-center text-[#111827] font-roboto font-medium text-[18px] leading-[1.5] text-center mb-4 text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
+          <h2 className="text-center text-[#111827] font-roboto font-semibold  text-xll lg:text-xll leading-[1.5] text-center  text-3xl sm:text-4xl md:text-[40px]  tracking-tight">
             Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
           </h2>
         </ScrollReveal>
@@ -99,7 +99,7 @@ const AboutUs = () => {
               <div className="w-[48px] h-[48px] rounded-2xl bg-[#F0F5FF] flex items-center justify-center shrink-0">
                 <Target className="w-[22px] h-[22px] text-[#2563EB]" strokeWidth={1.5} />
               </div>
-              <span className="text-[#2563EB] font-medium text-[15px] uppercase tracking-wide mt-0.5">Our Mission</span>
+              <span className="text-[#2563EB] font-roboto font-medium text-[15px] uppercase tracking-wide mt-0.5">Our Mission</span>
             </div>
             <p className="text-neutral-600 font-roboto font-regular text-[16px] sm:text-[16px] leading-[1.7]">
               To simplify and strengthen security operations by connecting systems, improving visibility, and enabling faster, more effective response.
@@ -112,7 +112,7 @@ const AboutUs = () => {
               <div className="w-[48px] h-[48px] rounded-2xl bg-[#F4F4FF] flex items-center justify-center shrink-0">
                 <ScanEye className="w-[22px] h-[22px] text-[#4F46E5]" strokeWidth={1.5} />
               </div>
-              <span className="text-[#4F46E5] font-medium text-[15px] uppercase tracking-wide mt-0.5">Our Vision</span>
+              <span className="text-[#4F46E5] font-roboto font-medium text-[15px] uppercase tracking-wide mt-0.5">Our Vision</span>
             </div>
             <p className="text-neutral-600 font-roboto font-regular text-[16px] sm:text-[16px] leading-[1.7] font-normal">
               To create intelligent infrastructure where security systems move beyond monitoring to actively supporting safer, smarter environments.

@@ -49,7 +49,7 @@ const Footer = () => {
   return (
     <>
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-[#06337A] via-[#031B4A] to-[#010D25] pt-16 relative overflow-hidden font-sans border-t border-[#3B82F6]">
+      <footer className="bg-gradient-to-b from-[#03071c] via-[#05153f] to-[#0d3899] lg:bg-gradient-to-br lg:from-[#1347B9] lg:via-[#011C3C] lg:to-[#010D25] pt-16 relative overflow-hidden font-sans border-t border-[#2563EB]/40 lg:border-[#3B82F6]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
 
           {/* Main Footer Grid */}
@@ -131,18 +131,21 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <a href="#" aria-label="LinkedIn" className="text-[#9DB2D6] hover:text-white transition-colors  p-1 rounded-sm">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
               </a>
-              <span className="text-[#9DB2D6]/30">|</span>
+              <span className="text-[#9DB2D6]/80">|</span>
               <a href="#" className="text-[#9DB2D6] hover:text-white text-[12px] transition-colors">Privacy Policy</a>
-              <span className="text-[#9DB2D6]/30">|</span>
+              <span className="text-[#9DB2D6]/80">|</span>
               <a href="#" className="text-[#9DB2D6] hover:text-white text-[12px] transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
 
+        {/* Bottom radial glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] md:w-[100%] h-[150px] md:h-[250px] bg-blue-500/20 blur-[80px] rounded-full pointer-events-none z-0 lg:hidden" />
+
         {/* Large Background Watermark Text positioned behind bottom bar overlay */}
-        <div className="w- flex justify-center pb-0 pt-8 sm:pt-0 overflow-hidden pointer-events-none select-none relative z-0 translate-y-[3%] pl-2">
+        <div className="w-full flex justify-center pb-0 pt-8 sm:pt-0 overflow-hidden pointer-events-none select-none relative z-0 translate-y-[3%] pl-2">
           <p className="font-dmSerif text-[25vw] xl:text-[340px] font-medium text-white/[0.04] leading-[0.75] tracking-normal">
             CamPulse
           </p>
