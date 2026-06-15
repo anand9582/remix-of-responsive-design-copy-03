@@ -17,7 +17,7 @@ const certifications = [
 const CertificationStrip = () => {
   return (
     <div className="w-full flex justify-center">
-      <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-6 py-5 flex items-center justify-between gap-10 max-w-6xl w-full">
+      <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-6 py-5 flex items-center justify-between gap-10 max-w-7xl w-full">
 
         {certifications.map((item, idx) => (
           <div

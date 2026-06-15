@@ -132,8 +132,8 @@ const WhatIsCamPulse = () => {
         />
 
         {/* Fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-20 sm:h-32 bg-gradient-to-b from-white via-white/80 to-transparent z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
@@ -204,7 +204,10 @@ const WhatIsCamPulse = () => {
           className="w-full relative rounded-2xl overflow-hidden bg-white shadow-2xl ring-1 ring-black/5"
           style={
             isMobile
-              ? undefined
+              ? {
+                  scale: 1,
+                  opacity: 1,
+                }
               : {
                   scale: imageScale,
                   opacity: imageOpacity,

@@ -59,7 +59,7 @@ const AboutUs = () => {
 
         {/* Heading */}
         <ScrollReveal direction="up" delay={200}>
-          <h2 className="text-center text-[#111827] font-roboto font-semibold  text-xll lg:text-xll leading-[1.5] text-center  text-3xl sm:text-4xl md:text-[40px]  tracking-tight">
+          <h2 className="text-center text-[#111827] font-aleo font-medium  text-xll lg:text-xll leading-[1.5] text-center  text-3xl sm:text-4xl md:text-[40px]  tracking-tight">
             Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
           </h2>
         </ScrollReveal>
