@@ -8,6 +8,7 @@ import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Diamond, Menu, X, Video } from "lucide-react";
 import logo from "@/assets/logo.png";
+import logoCam from "@/assets/logo-cam.png";
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
 import aboutCtaBg from "@/assets/railway-bc.jpg";
@@ -124,32 +125,34 @@ const Railway = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hide default Navbar on mobile, show on desktop */}
+    <div className="min-h-screen bg-white pt-16 lg:pt-0">
+      {/* Desktop Floating White Navbar */}
       <div className="hidden lg:block">
         <Navbar />
       </div>
 
-      {/* Hero Section */}
-      {/* MOBILE: image on top, content below */}
-      <section className="relative overflow-hidden">
-
-        {/* Mobile Custom Header overlaying the top of the image */}
-        <div className="block lg:hidden absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-5 bg-transparent">
+      {/* Mobile Custom Dark Header (matches the screenshot design) */}
+      <header className="block lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#07090e] border-b border-white/10 h-16 flex items-center">
+        <div className="w-full px-6 flex items-center justify-between">
           <Link to="/">
-            <img src={logo} alt="CamPulse" className="h-8 w-auto object-contain" />
+            <img src={logoCam} alt="CamPulse" className="h-10 w-auto object-contain" />
           </Link>
           <button onClick={() => setMobileMenuOpen(true)} className="text-white focus:outline-none">
             <Menu className="w-6 h-6" />
           </button>
         </div>
+      </header>
+
+      {/* Hero Section */}
+      {/* MOBILE: image on top, content below */}
+      <section className="relative overflow-hidden">
 
         {/* Mobile Drawer Overlay */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 bg-[#07090e] flex flex-col p-6 animate-in fade-in slide-in-from-right duration-300">
             <div className="flex items-center justify-between mb-8">
               <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                <img src={logo} alt="CamPulse" className="h-8 w-auto object-contain" />
+                <img src={logoCam} alt="CamPulse" className="h-8 w-auto object-contain" />
               </Link>
               <button onClick={() => setMobileMenuOpen(false)} className="text-white focus:outline-none">
                 <X className="w-6 h-6" />
@@ -183,7 +186,7 @@ const Railway = () => {
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
-            className="w-full h-full hero-swiper"
+            className="w-full h-full mobile-swiper"
           >
             {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
@@ -196,7 +199,7 @@ const Railway = () => {
           </Swiper>
 
           {/* Active Cameras UI Card overlay (dynamic content based on activeIndex) */}
-          <div className="absolute left-6 top-[100px] z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
             <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-2.5">
               <Video className="w-4 h-4" />
             </div>
@@ -466,14 +469,18 @@ const Railway = () => {
       {/* Centralized Railway Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
-          {/* Heading */}
           <div className="pt-24">
             {/* Heading */}
             <div className="text-center mb-16">
+              <div className="flex justify-center mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-[#93c5fd] text-[10px] font-bold tracking-[0.15em] uppercase">
+                  <span className="w-1.5 h-1.5 rotate-45 bg-white" />
+                  COMMAND CENTRE
+                </span>
+              </div>
               <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
-                Centralized Railway Control Dashboard
+                Centralized Transport Control Dashboard
               </h2>
-
             </div>
 
             {/* Dashboard Container */}
@@ -491,7 +498,7 @@ const Railway = () => {
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                   src={RailwayMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -502,7 +509,7 @@ const Railway = () => {
                   transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={unathorized}
                   alt=""
-                  className="hidden xl:block absolute -left-0 top-1 w-72 rounded-xl shadow-xl z-30"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -514,7 +521,7 @@ const Railway = () => {
 
                   src={etatop}
                   alt=""
-                  className="hidden xl:block absolute -left-[-5px] bottom-12 w-[220px] rounded-xl  z-30"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -525,7 +532,7 @@ const Railway = () => {
                   transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={compernsive_alert}
                   alt=""
-                  className="hidden xl:block absolute -right-10 top-1 w-80 rounded-xl  z-30"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -536,7 +543,7 @@ const Railway = () => {
                   transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={clustermemory}
                   alt=""
-                  className="hidden xl:block absolute -right-[-25px] bottom-8 w-72 rounded-xl  z-30"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>
@@ -548,7 +555,7 @@ const Railway = () => {
       <MeasurableSecurity />
 
       {/* About Us Sub-section */}
-      <section className="py-24 bg-[#FAFAFA] relative overflow-hidden">
+      <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           <ScrollReveal direction="up" delay={100} className="flex justify-center mb-6">
@@ -599,7 +606,7 @@ const Railway = () => {
           >
             <div className="col-span-12 ">
 
-              <div className="relative rounded-[20px] overflow-hidden h-[340px] flex items-center justify-center text-center shadow-xl">
+              <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -609,10 +616,10 @@ const Railway = () => {
                 <div className="absolute inset-0 bg-[#0B2A5B]/80" />
 
                 {/* CONTENT */}
-                <div className="relative z-10 max-w-6xl px-6">
+                <div className="relative z-10 max-w-4xl px-6">
 
-                  <h2 className="text-white font-aleo font-semibold text-[50px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your railways security <br />
+                  <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
+                    Transform your railways security
                     with CamPulse.
                   </h2>
 

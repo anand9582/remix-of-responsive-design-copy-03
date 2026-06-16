@@ -16,20 +16,22 @@ const certifications = [
 
 const CertificationStrip = () => {
   return (
-    <div className="w-full flex justify-center">
-      <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-6 py-5 flex items-center justify-between gap-10 max-w-7xl w-full">
+    <div className="w-full flex justify-center px-4 sm:px-6 lg:px-0">
+      <div className="w-full bg-[#f8fafc] border border-slate-100 rounded-[24px] p-5 grid grid-cols-2 gap-4 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:bg-white lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:px-6 lg:py-5 lg:rounded-2xl lg:border-none lg:max-w-7xl">
 
         {certifications.map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-center text-center min-w-[120px]"
+            className={`flex flex-col items-center justify-center text-center p-4 bg-white rounded-2xl border border-slate-100 shadow-[0_4px_12px_rgba(0,0,0,0.02)] lg:bg-transparent lg:border-none lg:shadow-none lg:p-0 lg:min-w-[120px] ${
+              idx === 4 ? "col-span-2 w-[calc(50%-8px)] mx-auto lg:col-span-1 lg:mx-0 lg:w-auto" : ""
+            }`}
           >
             <img
               src={item.img}
               alt={item.label}
-              className="h-10  mb-2"
+              className="h-10 mb-2 object-contain"
             />
-            <p className="text-[12px] text-gray-600 font-medium leading-tight">
+            <p className="text-[12px] text-gray-600 font-semibold leading-tight">
               {item.label}
             </p>
           </div>
