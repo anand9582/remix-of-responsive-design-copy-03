@@ -25,10 +25,9 @@ import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPla
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
 const heroSlides = [
   {
@@ -179,18 +178,18 @@ const Railway = () => {
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
-            speed={900}
+            speed={1000}
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
-            loop={true}
-            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            className="w-full h-full mobile-swiper"
+            loop
+            onSlideChange={(s) => setActiveIndex(s.realIndex)}
+            className="w-full h-full hero-swiper"
           >
-            {heroSlides.map((slide, idx) => (
+            {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
                 <div
                   className="w-full h-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${slide.img})` }}
+                  style={{ backgroundImage: `url(${s.img})` }}
                 />
               </SwiperSlide>
             ))}
@@ -267,8 +266,9 @@ const Railway = () => {
           {/* Swiper Background */}
           <div className="absolute inset-0 z-0">
             <Swiper
-              modules={[Autoplay, Pagination, EffectFade]}
-              effect="fade"
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              speed={900}
               pagination={{ clickable: true }}
               autoplay={{ delay: 5000, disableOnInteraction: false }}
               loop={true}
