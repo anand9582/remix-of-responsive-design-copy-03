@@ -1,124 +1,359 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import React, { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
-import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
-// Icons 
-import { Building2, Vault, ShieldAlert, Fingerprint, Users, Lock, Video, ClipboardCheck, TrendingDown } from "lucide-react";
+import CertificationStrip from "@/components/CertificationStrip";
+import MeasurableSecurity from "@/components/MeasurableSecurity";
+import { ArrowUpRight, Diamond, Video } from "lucide-react";
+import logo from "@/assets/logo.png";
+
+import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/aboutcta-bg.jpg";
-import DashboardMain from "@/assets/railway-dashbaord.png";
-import founderImg from "@/assets/founder.jpg";
-import bankingBg from "@/assets/industry-banking.jpg";
+import aboutCtaBg from "@/assets/railway-bc.jpg";
+import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
+import RailwayMain from "@/assets/railway-dashbaord.png";
+import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import railway_about from "@/assets/railway_about.png";
+import unathorized from "@/assets/unathorized.png";
+import etatop from "@/assets/eta-top.png";
+import bgrailway from "@/assets/bg_railway.png";
+import compernsive_alert from "@/assets/compernsive_alert.png";
+import clustermemory from "@/assets/cluster-memory.png";
+import railwayBg from "@/assets/railway-bg.jpg";
+import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
-// Dashboard overlays
-import etatop from "@/assets/eta-top.png";
-import etaalert from "@/assets/eta-left.png";
-import etaatop from "@/assets/etatop.png";
-import etaright from "@/assets/etaright.png";
-import { SecurityCameraIcon } from "@/components/icons/RailwayIcons";
+const heroSlides = [
+  {
+    img: railwayBg,
+    title: (
+      <>
+        CamPulse for Banking <br />
+        Security
+      </>
+    ),
+    desc: "Ensure safety, control access, and monitor critical areas in real time.",
+    cameras: "20",
+    totalCameras: "24",
+  },
+  {
+    img: Railwaysecond,
+    title: (
+      <>
+        Smart Platform <br />
+        &amp; Crowd Surveillance
+      </>
+    ),
+    desc: "Monitor platforms for crowding, track passenger density, and detect unattended baggage.",
+    cameras: "15",
+    totalCameras: "18",
+  },
+  {
+    img: aboutCtaBg,
+    title: (
+      <>
+        Real-time Intrusion <br />
+        &amp; Track Detection
+      </>
+    ),
+    desc: "Prevent trespassers and unauthorized entries on tracks using AI-powered motion warnings.",
+    cameras: "28",
+    totalCameras: "32",
+  },
+  {
+    img: aboutctafourth,
+    title: (
+      <>
+        Centralized Station <br />
+        Command &amp; Control
+      </>
+    ),
+    desc: "Manage multiple remote stations from a single secure central monitoring dashboard.",
+    cameras: "42",
+    totalCameras: "45",
+  },
+];
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
+const stats = [
+  { prefix: "₹", num: 350, suffix: "+", stringVal: "", label: "Crore Annual Revenue" },
+  { prefix: "", num: 500, suffix: "+", stringVal: "", label: "Enterprise & Govt Clients" },
+  { prefix: "", num: 10, suffix: "+", stringVal: "", label: "Industries Served" },
+  { prefix: "", num: 0, suffix: "", stringVal: "Pan India", label: "Operational Presence" },
+];
+
+const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, num: number, suffix: string, stringVal: string }) => {
+  const nodeRef = useRef<HTMLSpanElement>(null);
+  const inView = useInView(nodeRef, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (stringVal) return;
+    if (!inView || !nodeRef.current) return;
+
+    const controls = animate(0, num, {
+      duration: 2.5,
+      ease: "easeOut",
+      onUpdate(value) {
+        if (nodeRef.current) {
+          nodeRef.current.textContent = Math.round(value).toString();
+        }
+      }
+    });
+
+    return () => controls.stop();
+  }, [num, inView, stringVal]);
+
+  return (
+    <span>
+      {prefix}
+      <span ref={nodeRef}>{stringVal ? stringVal : "0"}</span>
+      {suffix}
+    </span>
+  );
+};
+
 const Banking = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
-
       {/* Hero Section */}
-      <section
-        className="relative overflow-hidden pt-36 pb-24 flex items-center"
-        style={{ height: "753px" }}
-      >
-        {/* Swiper Background Container */}
-        <div className="absolute inset-0 z-0">
+      {/* MOBILE: image on top, content below */}
+      <section className="relative overflow-hidden">
+
+
+        {/* Mobile image block */}
+        <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
           <Swiper
-            modules={[Autoplay, Pagination, EffectFade]}
-            effect="fade"
+            modules={[Autoplay, Pagination]}
+            slidesPerView={1}
+            speed={1000}
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
-            loop={true}
-            className="w-full h-full hero-swiper"
+            loop
+            onSlideChange={(s) => setActiveIndex(s.realIndex)}
+            className="w-full h-full mobile-swiper"
           >
-            {[bankingBg, DashboardMain, aboutCtaBg].map((img, idx) => (
+            {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
                 <div
                   className="w-full h-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${img})` }}
+                  style={{ backgroundImage: `url(${s.img})` }}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Active Cameras UI Card overlay (dynamic content based on activeIndex) */}
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-2.5">
+              <Video className="w-4 h-4" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold text-slate-500 leading-none mb-1">Active Cameras</p>
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex items-baseline"
+              >
+                <span className="text-sm font-bold text-slate-800">
+                  {heroSlides[activeIndex]?.cameras || "20"}
+                </span>
+                <span className="text-[9px] text-slate-400 font-medium ml-1">
+                  / {heroSlides[activeIndex]?.totalCameras || "24"} Total
+                </span>
+              </motion.div>
+            </div>
+            <div className="flex items-center gap-1 border border-red-200 bg-red-50 px-2 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-[8px] font-bold text-red-600 uppercase tracking-wider">Live</span>
+            </div>
+          </div>
+
+          {/* Premium dark gradient fade overlay merging to solid black at the bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/10 to-[#07090e] z-10 pointer-events-none" />
         </div>
 
-        <div
-          className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
-          style={{
-            backgroundImage: `url(${heroBgStripes})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-
-        <div className="relative z-20 max-w-7xl mx-auto px-4 text-center w-full">
+        {/* Mobile content block */}
+        <div className="block lg:hidden bg-[#07090e] px-6 pt-6 pb-12 text-center">
           <div className="flex justify-center mb-6">
-            <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-              <span className="text-xs tracking-widest text-white font-semibold">
+            <div className="px-5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
+              <span className="font-roboto font-medium text-[11px] text-white tracking-widest uppercase">
                 INDUSTRY SOLUTIONS
               </span>
             </div>
           </div>
-          <motion.h1
-            className="text-white font-calistoga font-normal not-italic text-[46px] md:text-[56px] leading-[1.2] tracking-tight mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE_OUT }}
-          >
-            CamPulse for Railways <br />
-            & Transport Infrastructure
-          </motion.h1>
-          <motion.p
-            className="text-white font-roboto font-regular md:text-sm max-w-3xl mx-auto mb-5"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
-          >
-            End-to-end smarter, high-assurance security platform by Transline
-            Technologies for Indian Railways.
-          </motion.p>
+
+          {/* Dynamic text based on slide change with micro-animations */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            key={activeIndex}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: EASE_OUT }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <button className="group relative flex items-center mx-auto rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] hover:bg-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-
-              {/* BLUE DEFAULT → HIDE ON HOVER */}
-              <span className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
-
-              {/* ICON */}
-              <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-white group-hover:bg-blue-700 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                <ArrowUpRight className="w-4 h-4 text-blue-700 group-hover:text-white transition-all duration-500 group-hover:rotate-45" />
-              </span>
-
-              {/* TEXT */}
-              <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-white group-hover:text-blue-700">
-                Book a Demo
-              </span>
-
-            </button>
+            <h1 className="text-white font-calistoga font-normal text-[31px] leading-[1.15] tracking-tight mb-4 max-w-md mx-auto">
+              {heroSlides[activeIndex]?.title}
+            </h1>
+            <p className="text-neutral-300 font-roboto text-sm mb-8 leading-relaxed max-w-sm mx-auto">
+              {heroSlides[activeIndex]?.desc}
+            </p>
           </motion.div>
+          <div className="flex justify-center">
+            <button className="inline-flex items-center justify-center bg-white text-blue-600 font-semibold px-8 py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-base">
+              Book a Demo
+              <ArrowUpRight className="w-5 h-5 ml-2 text-blue-600" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop full-height overlay layout */}
+        <div
+          className="hidden lg:flex relative overflow-hidden pt-36 pb-24 items-center"
+          style={{ height: "753px" }}
+        >
+          {/* Swiper Background */}
+          <div className="absolute inset-0 z-0">
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              speed={900}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              loop={true}
+              className="w-full h-full hero-swiper"
+            >
+              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+                <SwiperSlide key={idx}>
+                  <div
+                    className="w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${img})` }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <div
+            className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
+            style={{
+              backgroundImage: `url(${heroBgStripes})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div className="relative z-20 max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row items-center justify-between">
+            <div className="max-w-2xl text-left w-full lg:w-1/2">
+              <div className="flex justify-start mb-6">
+                <div className="px-5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
+                  <span className="font-roboto font-medium text-[12px] text-white leading-[150%] tracking-[0.015em] text-center align-middle mb-[12px]">
+                    INDUSTRY SOLUTIONS
+                  </span>
+                </div>
+              </div>
+              <motion.h1
+                className="text-white font-calistoga font-normal not-italic text-[46px] md:text-[52px] leading-[1.1] tracking-tight mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: EASE_OUT }}
+              >
+                CamPulse for <br />
+                Banking
+              </motion.h1>
+              <motion.p
+                className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
+              >
+                Secure branches, ATMs, and critical assets with real-time monitoring.
+              </motion.p>
+
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                className="inline-block"
+              >
+                <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                  {/* Gradient Overlay */}
+                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+
+                  {/* Circle */}
+                  <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                    <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+                  </span>
+
+                  {/* Text */}
+                  <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                    Book a Demo
+                  </span>
+                </button>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <style>{`
+        /* Mobile Swiper pagination dots */
+        .mobile-swiper .swiper-pagination {
+          bottom: 20px !important;
+          z-index: 30;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .mobile-swiper .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.4) !important;
+          opacity: 1 !important;
+          width: 6px;
+          height: 6px;
+          margin: 0 4px !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-swiper .swiper-pagination-bullet-active {
+          background: #ffffff !important;
+          width: 20px;
+          border-radius: 3px;
+        }
+
+        /* Desktop Swiper pagination dots */
+        .hero-swiper .swiper-pagination {
+          bottom: 30px !important;
+          z-index: 30;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .hero-swiper .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.4) !important;
+          opacity: 1 !important;
+          width: 8px;
+          height: 8px;
+          margin: 0 5px !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-swiper .swiper-pagination-bullet-active {
+          background: #ffffff !important;
+          width: 24px;
+          border-radius: 4px;
+        }
+
+        /* Make transition right to left sliding super smooth */
+        .hero-swiper .swiper-wrapper,
+        .mobile-swiper .swiper-wrapper {
+          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+      `}</style>
 
       {/* How CamPulse Powers Banking */}
       <section className="py-24 bg-white relative">
@@ -127,8 +362,9 @@ const Banking = () => {
             <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
               How CamPulse powers Banking
             </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500 flex justify-center text-lg max-w-2xl mx-auto mb-16">
-              Built on uncompromising security architectures for financial institutions.
+            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
+              Tailor-made for high-assurance deployments, CamPulse helps
+              authorities secure infrastructure, proactively.
             </p>
           </ScrollReveal>
 
@@ -136,33 +372,33 @@ const Banking = () => {
             {[
               {
                 icon: SecurityCameraIcon,
-                title: "ATM Surveillance",
-                desc: "Monitor ATMs for unusual behavior and track suspicious activity.",
+                title: "Platform Surveillance",
+                desc: "Monitor platforms for crowding and unattended objects.",
               },
               {
-                icon: Building2,
-                title: "Branch Monitoring",
-                desc: "Track wait times and monitor branch security effortlessly.",
+                icon: TrackCameraIcon,
+                title: "Track Monitoring",
+                desc: "Detect trespassing and unauthorized movement on tracks.",
               },
               {
-                icon: Vault,
-                title: "Vault Security",
-                desc: "Detect unauthorized access with multi-factor video support.",
+                icon: ProhibitIcon,
+                title: "Intrusion Detection",
+                desc: "Identify restricted area access in real time.",
               },
               {
-                icon: ShieldAlert,
-                title: "Fraud Detection Support",
-                desc: "Quickly gather visual evidence for fraudulent transactions.",
+                icon: CrowdIcon,
+                title: "Crowd Monitoring",
+                desc: "Track passenger movement and density.",
               },
               {
-                icon: Fingerprint,
-                title: "Access Control Integration",
-                desc: "Manage staff credentials alongside live video monitoring.",
+                icon: WarningIcon,
+                title: "Incident Alerts",
+                desc: "Enable real-time alerts for faster response.",
               },
               {
-                icon: Users,
-                title: "Customer Flow Monitoring",
-                desc: "Evaluate customer paths and optimize bank service areas.",
+                icon: MonitorPlayIcon,
+                title: "Centralized Monitoring",
+                desc: "Manage multiple stations from one system.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
@@ -171,8 +407,8 @@ const Banking = () => {
                 delay={100 * idx}
                 className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center mb-2">
-                  <feature.icon className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
+                  <feature.icon />
                 </div>
                 <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
@@ -182,30 +418,39 @@ const Banking = () => {
         </div>
       </section>
 
-      {/* Centralized Banking Security Dashboard */}
-      <section className="py-8 relative overflow-hidden">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-[#0B1220] rounded-md py-16">
-            <div className="text-center mb-2">
+      {/* Centralized Banking Control Dashboard */}
+      <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
+          <div className="pt-10">
+            {/* Heading */}
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
+                  <span className="w-1.5 h-1.5 rotate-45 bg-white" />
+                  COMMAND CENTRE
+                </span>
+              </div>
               <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
-                Centralized Banking Security Dashboard
+                Centralized Banking Control Dashboard
               </h2>
-              <p className="text-slate-300 text-lg max-w-[31rem] mx-auto">
-                Oversee every branch, ATM, and secure facility from one unified platform.
-              </p>
             </div>
 
-            <div className="relative flex justify-center items-center rounded-2xl">
-              <div className="relative max-w-7xl p-8 w-full flex justify-center items-center">
+            {/* Dashboard Container */}
+
+            <div className="relative flex justify-center items-center  rounded-2xl">
+
+              {/* Dark background frame */}
+              <div className="relative max-w-7xl  w-full flex justify-center items-center">
+
                 {/* Main dashboard image */}
                 <motion.img
-                  initial={{ opacity: 0, y: 120 }}
+                  initial={{ opacity: 0, y: 250 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={DashboardMain}
+                  src={RailwayMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -214,9 +459,9 @@ const Banking = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={etatop}
+                  src={unathorized}
                   alt=""
-                  className="hidden xl:block absolute -left-0 top-8 w-52 rounded-xl shadow-xl z-30"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -225,9 +470,10 @@ const Banking = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  src={etaalert}
+
+                  src={etatop}
                   alt=""
-                  className="hidden xl:block absolute -left-0 bottom-[164px] w-[200px] rounded-xl shadow-xl z-30"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -236,9 +482,9 @@ const Banking = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  src={etaatop}
+                  src={compernsive_alert}
                   alt=""
-                  className="hidden xl:block absolute -right-10 top-5 w-80 rounded-xl shadow-xl z-30"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -247,68 +493,23 @@ const Banking = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={etaright}
+                  src={clustermemory}
                   alt=""
-                  className="hidden xl:block absolute -right-[-30px] bottom-8 w-60 rounded-xl shadow-xl z-30"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
+
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stronger Security. Smarter Monitoring. */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-[#171717] font-aleo font-semibold text-3xl md:text-[36px] tracking-tight mb-4">
-              Stronger Security. Smarter Monitoring.
-            </h2>
-            <p className="text-black font-roboto font-regular text-md max-w-2xl mx-auto">
-              From dispute resolution across branches to protecting deep vault infrastructure, CamPulse protects your enterprise.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Lock,
-                title: "Reduce fraud and security risks",
-              },
-              {
-                icon: Video,
-                title: "Faster dispute resolution with video proof",
-              },
-              {
-                icon: ClipboardCheck,
-                title: "Improve compliance and standard audit reporting",
-              },
-              {
-                icon: TrendingDown,
-                title: "Lower security operational overheads",
-              },
-            ].map((stat, idx) => (
-              <ScrollReveal
-                key={idx}
-                direction="up"
-                delay={100 * idx}
-                className="text-center px-4"
-              >
-                <div className="w-12 h-12 mx-auto bg-blue-50/50 rounded-full flex items-center justify-center mb-4">
-                  <stat.icon className="w-5 h-5 text-blue-600" />
-                </div>
-                <p className="font-roboto font-normal text-[15px] leading-[150%] tracking-[0%] text-center mb-4">
-                  {stat.title}
-                </p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MeasurableSecurity />
 
       {/* About Us Sub-section */}
-      <section className="py-24 bg-[#FAFAFA] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
           <ScrollReveal direction="up" delay={100} className="flex justify-center mb-6">
             <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EBF1FF] text-[#2563EB] text-[10px] font-bold tracking-[0.15em] uppercase">
               <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB]" />
@@ -317,58 +518,78 @@ const Banking = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={200}>
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-16 tracking-tight">
+            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] tracking-tight">
               Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
             </h2>
           </ScrollReveal>
 
+          {/* Stats Row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12 mt-20">
+            {stats.map((stat, idx) => (
+              <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
+                <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
+                  <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
+                </p>
+                <p className="font-roboto text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
+              </ScrollReveal>
+            ))}
+          </div>
+
           <ProfileFeature
-            imageSrc={founderImg}
-            imageAlt="Mr. Arun Gupta - Founder and Chairman"
-            profileName="Mr. Arun Gupta"
-            profileDesignation="Founder and Chairman, Transline Technologies"
+            imageSrc={railway_about}
+            variant="image"
             title={<>CAMPULSE BY TRANSLINE<br />TECHNOLOGIES</>}
             descriptions={[
               "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across India.",
               "Deep engineering capability, field-proven deployment expertise, and an unwavering commitment to seamless integration and service uptime."
             ]}
-            className="mb-16 mx-auto max-w-5xl"
+            className="mb-10 mx-auto max-w-7xl"
           />
+
+          <ScrollReveal direction="up" delay={250} className="mb-16">
+            <CertificationStrip />
+          </ScrollReveal>
 
           {/* CTA Custom Banner for Banking */}
           <ScrollReveal
             direction="up"
             delay={300}
-            className="grid grid-cols-12 max-w-5xl mx-auto"
+            className="grid grid-cols-10 max-w-7xl m-auto"
           >
-            <div className="col-span-12">
-              <div className="relative rounded-[20px] overflow-hidden h-[340px] flex items-center justify-center text-center shadow-xl">
+            <div className="col-span-12 ">
+
+              <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
+
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${aboutCtaBg})` }}
                 />
+
                 <div className="absolute inset-0 bg-[#0B2A5B]/80" />
 
                 {/* CONTENT */}
-                <div className="relative z-10 max-w-6xl px-6">
-                  <h2 className="text-white font-aleo font-semibold text-[50px] leading-[140%] tracking-[-0.01em] text-center mb-6">
-                    Strengthen your banking security <br />
+                <div className="relative z-10 max-w-4xl px-6">
+
+                  <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
+                    Transform your banking security
                     with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
+
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
+
                   </button>
                 </div>
+
               </div>
             </div>
           </ScrollReveal>
+
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

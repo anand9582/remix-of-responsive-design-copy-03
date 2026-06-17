@@ -79,7 +79,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             </div>
 
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-4xl md:text-[46px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
+            <h2 className="font-aleo font-semibold text-4xl md:text-[32px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
               <span className="text-[#2563EB]">{titlePath1}</span><br />
               {titlePath2}
             </h2>

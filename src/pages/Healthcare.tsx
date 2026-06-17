@@ -34,7 +34,7 @@ const heroSlides = [
     img: railwayBg,
     title: (
       <>
-        CamPulse for Oil & Gas <br />
+        CamPulse for Healthcare <br />
         Security
       </>
     ),
@@ -119,7 +119,7 @@ const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, n
   );
 };
 
-const OilGas = () => {
+const Healthcare = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -266,7 +266,7 @@ const OilGas = () => {
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
                 CamPulse for <br />
-                Oil & Gas
+                Healthcare
               </motion.h1>
               <motion.p
                 className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
@@ -355,12 +355,12 @@ const OilGas = () => {
         }
       `}</style>
 
-      {/* How CamPulse Powers Oil & Gas */}
+      {/* How CamPulse Powers Healthcare */}
       <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Oil & Gas
+              How CamPulse powers Healthcare
             </h2>
             <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
               Tailor-made for high-assurance deployments, CamPulse helps
@@ -418,7 +418,7 @@ const OilGas = () => {
         </div>
       </section>
 
-      {/* Centralized Oil & Gas Control Dashboard */}
+      {/* Centralized Healthcare Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
           <div className="pt-10">
@@ -431,7 +431,7 @@ const OilGas = () => {
                 </span>
               </div>
               <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
-                Centralized Oil & Gas Control Dashboard
+                Centralized Healthcare Control Dashboard
               </h2>
             </div>
 
@@ -550,7 +550,7 @@ const OilGas = () => {
             <CertificationStrip />
           </ScrollReveal>
 
-          {/* CTA Custom Banner for Oil & Gas */}
+          {/* CTA Custom Banner for Healthcare */}
           <ScrollReveal
             direction="up"
             delay={300}
@@ -571,7 +571,7 @@ const OilGas = () => {
                 <div className="relative z-10 max-w-4xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your oil & gas security
+                    Transform your healthcare security
                     with CamPulse.
                   </h2>
 
@@ -594,4 +594,4 @@ const OilGas = () => {
   );
 };
 
-export default OilGas;
+export default Healthcare;

@@ -23,6 +23,7 @@ import compernsive_alert from "@/assets/compernsive_alert.png";
 import clustermemory from "@/assets/cluster-memory.png";
 import railwayBg from "@/assets/railway-bg.jpg";
 import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import MobileHeader from "@/components/MobileHeader";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -126,57 +127,8 @@ const Railway = () => {
 
   return (
     <div className="min-h-screen bg-white pt-16 lg:pt-0">
-      {/* Desktop Floating White Navbar */}
-      <div className="hidden lg:block">
-        <Navbar />
-      </div>
-
-      {/* Mobile Custom Dark Header (matches the screenshot design) */}
-      <header className="block lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#07090e] border-b border-white/10 h-16 flex items-center">
-        <div className="w-full px-6 flex items-center justify-between">
-          <Link to="/">
-            <img src={logoCam} alt="CamPulse" className="h-10 w-auto object-contain" />
-          </Link>
-          <button onClick={() => setMobileMenuOpen(true)} className="text-white focus:outline-none">
-            <Menu className="w-6 h-6" />
-          </button>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      {/* MOBILE: image on top, content below */}
       <section className="relative overflow-hidden">
 
-        {/* Mobile Drawer Overlay */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-[#07090e] flex flex-col p-6 animate-in fade-in slide-in-from-right duration-300">
-            <div className="flex items-center justify-between mb-8">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                <img src={logoCam} alt="CamPulse" className="h-8 w-auto object-contain" />
-              </Link>
-              <button onClick={() => setMobileMenuOpen(false)} className="text-white focus:outline-none">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <nav className="flex flex-col gap-6 text-lg font-medium text-neutral-300">
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">About us</a>
-              <a href="#solutions" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Our Solutions</a>
-              <Link to="/railway" onClick={() => setMobileMenuOpen(false)} className="text-white font-semibold">Railways</Link>
-              <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">FAQ</a>
-              <Link to="/pricing" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Pricing</Link>
-            </nav>
-            <div className="mt-auto flex flex-col gap-4">
-              <a href="#login" onClick={() => setMobileMenuOpen(false)} className="text-center text-white py-3 rounded-full border border-white/20 hover:bg-white/5 transition-colors">
-                Login
-              </a>
-              <button onClick={() => setMobileMenuOpen(false)} className="text-center bg-blue-600 text-white py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
-                Book a Demo
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Mobile image block */}
         <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
@@ -469,11 +421,11 @@ const Railway = () => {
       {/* Centralized Railway Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
-          <div className="pt-24">
+          <div className="pt-10">
             {/* Heading */}
             <div className="text-center mb-16">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-[#93c5fd] text-[10px] font-bold tracking-[0.15em] uppercase">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
@@ -639,7 +591,6 @@ const Railway = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

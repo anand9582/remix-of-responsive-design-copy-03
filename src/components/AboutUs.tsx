@@ -130,10 +130,10 @@ const AboutUs = () => {
               height={512}
             />
             {/* Dramatic dark overlay */}
-            <div className="absolute inset-0 bg-[#060B14]/70" />
+            <div className="absolute inset-0 bg-[#060B14]/30" />
 
             <div className="absolute inset-0 flex items-center justify-center p-8">
-              <h3 className="text-white font-display font-medium text-[32px] sm:text-[40px] xl:text-[44px] text-center leading-[1.1] tracking-tight drop-shadow-2xl">
+              <h3 className="text-white font-calistoga font-medium text-[20px] sm:text-[30px] xl:text-[35px] text-center leading-[1.1]">
                 One Platform.<br />Total Control.
               </h3>
             </div>

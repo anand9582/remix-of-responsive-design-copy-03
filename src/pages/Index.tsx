@@ -1,10 +1,9 @@
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TrustedBy from "@/components/TrustedBy";
 import AboutUs from "@/components/AboutUs";
 import ComplianceSecurity from "@/components/ComplianceSecurity";
 import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+
 import WhatIsCamPulse from "@/components/WhatIsCamPulse";
 import SeeEverything from "@/components/SeeEverything";
 import TheChallenge from "@/components/TheChallenge";
@@ -17,7 +16,7 @@ import CTABanner from "@/components/CTABanner";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
+
       {/* Add top padding to compensate for fixed navbar */}
       <div className="bg-hero">
         <HeroSection />
@@ -64,7 +63,7 @@ const Index = () => {
         <CTABanner />
       </ScrollReveal>
 
-      <Footer />
+
     </div>
   );
 };

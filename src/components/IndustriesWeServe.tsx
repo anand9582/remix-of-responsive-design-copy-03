@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Diamond, Train, Factory, Landmark, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
+import { Diamond, Train, Factory, Landmark, ChevronDown, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
 import industryRailways from "@/assets/industry-railways.png";
 import industryManufacturing from "@/assets/industry-manufacturing.png";
 import industryBanking from "@/assets/industry-banking.png";
@@ -69,6 +69,7 @@ const industries = [
   },
 ];
 
+
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
 
 const sidebarVariants = {
@@ -106,34 +107,28 @@ const cardVariants = {
 
 const IndustriesWeServe = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const desktopSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mobileSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isClickScroll = useRef(false);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    const observerOptions = {
-      threshold: 0,
-      rootMargin: "-40% 0px -40% 0px",
-    };
-
-    const handleIntersect = (i: number) => ([entry]: IntersectionObserverEntry[]) => {
-      if (entry.isIntersecting && !isClickScroll.current) {
-        setActiveIndex(i);
-      }
-    };
-
-    desktopSectionRefs.current.forEach((el, i) => {
+    sectionRefs.current.forEach((el, i) => {
       if (!el) return;
-      const observer = new IntersectionObserver(handleIntersect(i), observerOptions);
-      observer.observe(el);
-      observers.push(observer);
-    });
 
-    mobileSectionRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(handleIntersect(i), observerOptions);
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isClickScroll.current) {
+            setActiveIndex(i);
+          }
+        },
+        {
+          threshold: 0,
+          rootMargin: "-45% 0px -45% 0px",
+        }
+      );
+
       observer.observe(el);
       observers.push(observer);
     });
@@ -141,26 +136,29 @@ const IndustriesWeServe = () => {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
+
   const handleTabClick = useCallback((index: number) => {
     setActiveIndex(index);
     isClickScroll.current = true;
 
-    // Use desktop ref if on desktop and it exists, else use mobile
-    const isDesktop = window.innerWidth >= 1024;
-    const element = isDesktop ? desktopSectionRefs.current[index] : mobileSectionRefs.current[index];
-
+    const element = sectionRefs.current[index];
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
       window.setTimeout(() => {
         isClickScroll.current = false;
-      }, 1000);
+      }, 900);
     }
   }, []);
 
+  const toggleMobileAccordion = useCallback((index: number) => {
+    setMobileOpenIndex((prev) => (prev === index ? null : index));
+  }, []);
+
   return (
-    <section className="bg-background py-16 lg:pt-24 lg:pb-0" id="industries">
+    <section className="bg-background py-16 sm:py-24" id="industries">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-14">
+        {/* DESKTOP */}
+        <div className="hidden lg:flex flex-col lg:flex-row gap-10 lg:gap-14">
           <motion.div
             className="lg:w-[420px] flex-shrink-0 lg:sticky lg:top-24 lg:self-start flex flex-col items-center lg:items-start"
             variants={sidebarVariants}
@@ -179,14 +177,14 @@ const IndustriesWeServe = () => {
               Security That Adapts <span className="text-[#111827]">to<br />Every Industry</span>
             </motion.h2>
 
-            <div className="hidden lg:block space-y-1">
+            <div className="space-y-1">
               {industries.map((industry, index) => {
                 const isActive = index === activeIndex;
                 return (
                   <motion.button
                     key={industry.label}
                     variants={itemVariants}
-                    onClick={() => handleTabClick(index)}
+                    onClick={() => handleTabClick(index)} a
                     whileHover={{ x: isActive ? 0 : 4 }}
                     whileTap={{ scale: 0.99 }}
                     className={`relative w-full flex  font-roboto font-regular items-center gap-3 px-5 py-3.5 rounded-[8px] text-left transition-colors duration-300 z-10 ${isActive
@@ -210,131 +208,132 @@ const IndustriesWeServe = () => {
             </div>
           </motion.div>
 
-          <div className="flex-1 min-w-0 relative  lg:pb-32">
-            {/* STICKY LEFT, SCROLLING RIGHT CONTENT */}
-            <div className="hidden lg:flex flex-col space-y-[12vh] pt-8">
-              {industries.map((industry, index) => {
-                const isActive = activeIndex === index;
-                return (
-                  <motion.div
-                    key={`desktop-${industry.title}`}
-                    ref={(el) => {
-                      desktopSectionRefs.current[index] = el;
-                    }}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.2 }}
-                    transition={{ duration: 1, ease: EASE_OUT_EXPO }}
-                    className="w-full relative scroll-m-32 origin-left"
+          <div className="flex-1 min-w-0 space-y-20">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={industry.title}
+                ref={(el) => {
+                  sectionRefs.current[index] = el;
+                }}
+                className="scroll-mt-24"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
+                    {industry.title}
+                  </h3>
+                  <a
+                    href="#"
+                    className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1 transition-colors hover:text-blue-700"
                   >
-                    <div
-                      className="transition-all duration-700 ease-out"
-                      onClick={() => !isActive && handleTabClick(index)}
-                    >
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
-                          {industry.title}
-                        </h3>
-                        <a
-                          href="#"
-                          className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1 transition-colors hover:text-blue-700"
-                        >
-                          Learn more
-                          <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
-                        </a>
-                      </div>
+                    Learn more
+                    <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
+                  </a>
+                </div>
 
-                      <p className="text-[#52525B] font-roboto font-normal text-[15.5px] leading-[1.7] mb-6 max-w-xl">
-                        {industry.description}
-                      </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
+                  {industry.description}
+                </p>
 
-                      <div className=" overflow-hidden">
-                        <img
-                          src={industry.image}
-                          alt={industry.title}
-                          className="w-full h-auto object-cover transition-transform duration-1000 ease-[0.16,1,0.3,1] hover:scale-[1.04]"
-                          loading="lazy"
-                          width={960}
-                          height={640}
-                        />
-                      </div>
+                <motion.div
+                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0.88, y: 24 }}
+                  transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 0.08 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                >
+                  <img
+                    src={industry.image}
+                    alt={industry.title}
+                    className="w-full object-cover"
+                    loading="lazy"
+                    width={960}
+                    height={640}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* MOBILE ACCORDION */}
+        <div className="lg:hidden">
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
+              <Diamond className="w-3.5 h-3.5 text-primary" fill="currentColor" />
+              <span className="text-xs font-semibold tracking-widest uppercase text-primary">
+                Industries We Serve
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground leading-snug">
+              Security That <span className="text-primary italic">Adapts</span> to Every Industry
+            </h2>
+          </motion.div>
+
+          <div className="space-y-3">
+            {industries.map((industry, index) => {
+              const isOpen = mobileOpenIndex === index;
+              return (
+                <motion.div
+                  key={industry.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: index * 0.05 }}
+                  className="border border-border rounded-xl overflow-hidden bg-card"
+                >
+                  <button
+                    onClick={() => toggleMobileAccordion(index)}
+                    className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left"
+                  >
+                    <div className="flex items-center gap-3">
+                      <industry.icon className="w-5 h-5 text-primary flex-shrink-0" strokeWidth={1.5} />
+                      <span className="font-medium text-sm text-foreground">
+                        {industry.label}
+                      </span>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* MOBILE: ACCORDION LIST */}
-            <div className="block lg:hidden pt-4 border-t border-gray-200 mt-2">
-              {industries.map((industry, index) => {
-                const isActive = activeIndex === index;
-                return (
-                  <div
-                    key={`mobile-${industry.title}`}
-                    className="border-b border-gray-200 bg-white"
-                  >
-                    <button
-                      onClick={() => setActiveIndex(isActive ? -1 : index)}
-                      className="w-full flex items-center justify-between py-4 bg-white text-left group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <industry.icon
-                          className={`w-[18px] h-[18px] flex-shrink-0 transition-colors duration-300 ${isActive ? "text-[#2563EB]" : "text-gray-700 group-hover:text-[#2563EB]"}`}
-                          strokeWidth={2}
-                        />
-                        <h3 className={`text-[16px] font-sans font-semibold transition-colors duration-300 ${isActive ? "text-[#2563EB]" : "text-gray-700 group-hover:text-[#2563EB]"}`}>
-                          {industry.label}
-                        </h3>
-                      </div>
-                      <div className="flex-shrink-0 ml-1">
-                        <svg
-                          className={`w-4 h-4 transition-transform duration-300 ${isActive ? "rotate-180 text-[#2563EB]" : "text-gray-400 group-hover:text-[#2563EB]"
-                            }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </button>
-
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pb-5">
-                            <p className="text-[#52525B] font-roboto font-normal text-[15px] leading-[1.6] mb-4 pr-2">
-                              {industry.description}
-                            </p>
-                            <div className="rounded-md overflow-hidden">
-                              <img
-                                src={industry.image}
-                                alt={industry.title}
-                                className="w-full object-cover"
-                                loading="lazy"
-                                width={960}
-                                height={640}
-                              />
-                            </div>
+                    <ChevronDown
+                      className={`w-4 h-4 text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: EASE_OUT_EXPO }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 pt-0">
+                          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                            {industry.description}
+                          </p>
+                          <div className="rounded-md overflow-hidden">
+                            <img
+                              src={industry.image}
+                              alt={industry.title}
+                              className="w-full object-cover"
+                              loading="lazy"
+                              width={960}
+                              height={640}
+                            />
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

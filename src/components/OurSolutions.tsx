@@ -222,14 +222,14 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
                     loop
                     muted
                     playsInline
-                    className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
+                    className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-contain"
                   />
                 ) : <div className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl bg-neutral-100/50" />
               ) : (
                 <img
                   src={solution.image}
                   alt={solution.imageAlt}
-                  className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-cover"
+                  className="w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl object-contain"
                   loading="lazy"
                 />
               )}
