@@ -1,33 +1,32 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
-import { ArrowUpRight, Diamond, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-
+import { ArrowUpRight, Diamond, Video, TrendingDown, ShieldCheck, Lock } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
-import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import manufacturingthirdBg from "@/assets/manufacturing-third.jpg";
+import aboutCtaBg from "@/assets/cta_bg.jpg";
+import manufacturingfourth from "@/assets/manufacturing-fourth.jpg";
+import RailwayMain from "@/assets/manufacturing-dashboard.png";
+import manufacturingsecond from "@/assets/manufacturing-second.jpg";
 import railway_about from "@/assets/railway_about.png";
-import unathorized from "@/assets/unathorized.png";
-import etatop from "@/assets/eta-top.png";
+import manufacturingtop from "@/assets/manufacturingtop.png";
+import manufacturinglfbt from "@/assets/manufacturinglfbt.png";
 import bgrailway from "@/assets/bg_railway.png";
-import compernsive_alert from "@/assets/compernsive_alert.png";
-import clustermemory from "@/assets/cluster-memory.png";
-import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import compernsive_alert from "@/assets/manufacturing-right.png";
+import manufacturingbt from "@/assets/manufacturing-bt.png";
+import railwayBg from "@/assets/manufacturing-bg.jpg";
+import { PPEIcon, RestrictedAreaIcon, MapPinAreaIcon, GearIcon, RootIcon, FireIcon, PersonIcon, EnhancedIcon, UptimeIcon } from "@/components/icons/ManufacturingIcons";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { RapidIcon } from "@/components/icons/HomeIcons";
+import whychosesection from "@/assets/whychosesection.png";
 
 const heroSlides = [
   {
@@ -43,7 +42,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: Railwaysecond,
+    img: manufacturingsecond,
     title: (
       <>
         Smart Platform <br />
@@ -55,7 +54,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: manufacturingthirdBg,
     title: (
       <>
         Real-time Intrusion <br />
@@ -67,7 +66,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutctafourth,
+    img: manufacturingfourth,
     title: (
       <>
         Centralized Station <br />
@@ -128,16 +127,14 @@ const Manufacturing = () => {
       {/* MOBILE: image on top, content below */}
       <section className="relative overflow-hidden">
 
-
-
         {/* Mobile image block */}
         <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
-            speed={1000}
+            speed={600}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 1000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
             className="w-full h-full mobile-swiper"
@@ -225,13 +222,13 @@ const Manufacturing = () => {
             <Swiper
               modules={[Autoplay, Pagination]}
               slidesPerView={1}
-              speed={900}
+              speed={600}
               pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 1000, disableOnInteraction: false }}
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              {[railwayBg, manufacturingsecond, manufacturingthirdBg, manufacturingfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <div
                     className="w-full h-full bg-cover bg-center"
@@ -266,8 +263,8 @@ const Manufacturing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
-                CamPulse for <br />
-                Manufacturing
+                CamPulse for Manufacturing <br />
+                Industrial Security
               </motion.h1>
               <motion.p
                 className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
@@ -275,7 +272,7 @@ const Manufacturing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
               >
-                Secure branches, ATMs, and critical assets with real-time monitoring.
+                Ensure safety, compliance, and operational control across production environments.
               </motion.p>
 
               <motion.div
@@ -304,115 +301,117 @@ const Manufacturing = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Manufacturing */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Manufacturing
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Manufacturing
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                icon: PPEIcon,
+                title: "PPE Compliance Detection",
+                desc: "Detect missing safety gear in real time.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                icon: RestrictedAreaIcon,
+                title: "Restricted Area Monitoring",
+                desc: "Prevent unauthorized access to critical zones.",
               },
               {
-                icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                icon: MapPinAreaIcon,
+                title: "Perimeter Security",
+                desc: "Monitor facility boundaries for intrusion.",
               },
               {
-                icon: CrowdIcon,
-                title: "Crowd Monitoring",
-                desc: "Track passenger movement and density.",
+                icon: GearIcon,
+                title: "Equipment Monitoring",
+                desc: "Track machinery usage and movement.",
               },
               {
-                icon: WarningIcon,
-                title: "Incident Alerts",
-                desc: "Enable real-time alerts for faster response.",
+                icon: FireIcon,
+                title: "Workforce Safety Monitoring",
+                desc: "Identify unsafe behavior on the shop floor.",
               },
               {
-                icon: MonitorPlayIcon,
-                title: "Centralized Monitoring",
-                desc: "Manage multiple stations from one system.",
+                icon: PersonIcon,
+                title: "Fire & Hazard Detection",
+                desc: "Detect fire, smoke, and environmental risks.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+                group
+                bg-white
+                rounded-[14px]
+                p-7
+                min-h-[165px]
+
+              shadow-lg
+                hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+                transition-all
+                duration-500
+                ease-out
+
+                hover:-translate-y-1
+              "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                      w-11 h-11
+                      rounded-xl
+                      bg-[#EEF4FF]
+                      flex items-center justify-center
+                      mb-5
+                      transition-all
+                      duration-500
+                      group-hover:bg-[#2563EB]
+                    "
+                  >
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
@@ -432,7 +431,7 @@ const Manufacturing = () => {
                 </span>
               </div>
               <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
-                Centralized Manufacturing Control Dashboard
+                Centralized Industrial Control Dashboard
               </h2>
             </div>
 
@@ -460,9 +459,9 @@ const Manufacturing = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={unathorized}
+                  src={manufacturingtop}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-[10px] xl:w-72 rounded-xl  z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -471,10 +470,9 @@ const Manufacturing = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-
-                  src={etatop}
+                  src={manufacturinglfbt}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[180px] xl:-left-[-5px] xl:bottom-12 xl:w-[380px]  z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -485,7 +483,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={compernsive_alert}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-0 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -494,9 +492,9 @@ const Manufacturing = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={clustermemory}
+                  src={manufacturingbt}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-15px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>
@@ -505,7 +503,38 @@ const Manufacturing = () => {
         </div>
       </section>
 
-      <MeasurableSecurity />
+      <MeasurableSecurity
+        badgeTitle="WHY CHOOSE US"
+        titlePath1="Safer Operations."
+        titlePath2="Fewer Incidents."
+        description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
+        buttonText="Book a Demo"
+        backgroundImage={whychosesection}
+        sectionClassName="py-32"
+        cardClassName="hover:-translate-y-1"
+        stats={[
+          {
+            icon: TrendingDown,
+            title: "Accident Reduction",
+            desc: "Fewer workplace accidents and compliance violations.",
+          },
+          {
+            icon: EnhancedIcon,
+            title: "Enhanced Safety",
+            desc: "Improve worker safety without increasing staffing requirements.",
+          },
+          {
+            icon: UptimeIcon,
+            title: "Operational Uptime",
+            desc: "Increase production uptime and operational reliability.",
+          },
+          {
+            icon: RootIcon,
+            title: "Root Analysis",
+            desc: "Faster incident investigation and root-cause identification.",
+          },
+        ]}
+      />
 
       {/* About Us Sub-section */}
       <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">

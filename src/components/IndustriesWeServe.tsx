@@ -215,7 +215,7 @@ const IndustriesWeServe = () => {
                 ref={(el) => {
                   sectionRefs.current[index] = el;
                 }}
-                className="scroll-mt-24"
+                className="scroll-mt-20"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"

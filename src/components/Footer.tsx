@@ -146,7 +146,7 @@ const Footer = () => {
 
         {/* Large Background Watermark Text positioned behind bottom bar overlay */}
         <div className="w-full flex justify-center pb-0 pt-8 sm:pt-0 overflow-hidden pointer-events-none select-none relative z-0 translate-y-[3%] pl-2">
-          <p className="font-dmSerif text-[25vw] xl:text-[340px] font-medium text-white/[0.04] leading-[0.75] tracking-normal">
+          <p className="font-dmSerif text-[25vw] xl:text-[340px] font-medium text-white/[0.06] leading-[0.75] tracking-normal">
             CamPulse
           </p>
         </div>

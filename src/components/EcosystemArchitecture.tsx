@@ -290,7 +290,7 @@ const EcosystemArchitecture = () => {
       <div className="relative w-full  px-2 sm:px-6">
         <div className="absolute inset-x-2 sm:inset-x-8 inset-y-0 rounded-[1.6rem] border border-blue-500/10 bg-[linear-gradient(113.96deg,_#121C31_5.62%,_#1C3468_109.2%)] p-6" />
 
-        <div className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-16 pb-16 w-full flex flex-col items-center">
+        <div className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-16  w-full flex flex-col items-center">
           {/* Header */}
           <div className="text-center">
             <div className="inline-flex items-center gap-2 bg-[#1A253E] border border-[#2B3F6C] rounded-full px-4 py-1.5 mb-6 shadow-md">

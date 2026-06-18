@@ -236,9 +236,28 @@ const Navbar = () => {
             </a>
 
             <Button
-              className="group h-9 
-              bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] 
-              text-white rounded-full px-4 text-sm font-semibold"
+              className="
+    group
+    h-9
+    rounded-full
+    px-4
+    text-sm
+    font-semibold
+    text-white
+
+    bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]
+
+    shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
+
+    transition-all
+    duration-300
+    ease-out
+
+    hover:bg-[linear-gradient(96.6deg,#2753B5_5.01%,#00226C_92.14%)]
+    hover:shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
+
+    active:scale-[0.98]
+  "
             >
               Book a Demo
             </Button>

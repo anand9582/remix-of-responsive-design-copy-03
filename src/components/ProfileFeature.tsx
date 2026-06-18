@@ -48,7 +48,7 @@ const ProfileFeature = ({
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover h-[319px]"
               loading="lazy"
             />
 
@@ -88,7 +88,7 @@ const ProfileFeature = ({
       <ScrollReveal
         direction="right"
         delay={200}
-        className="md:col-span-7 rounded-md bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-10 sm:p-12 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
+        className="md:col-span-7 rounded-md bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-5 sm:p-5 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
       >
         {/* Watermark */}
         <div className="absolute top-[15px] right-[15px] opacity-50">

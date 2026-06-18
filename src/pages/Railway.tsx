@@ -1,17 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
-import { ArrowUpRight, Diamond, Menu, X, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-import logoCam from "@/assets/logo-cam.png";
+import { ArrowUpRight, Diamond, ShieldCheck, Video, TrendingDown } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
+import aboutCtaBg from "@/assets/cta_bg.jpg";
 import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
 import RailwayMain from "@/assets/railway-dashbaord.png";
 import Railwaysecond from "@/assets/railway-second-bg.jpg";
@@ -22,14 +17,14 @@ import bgrailway from "@/assets/bg_railway.png";
 import compernsive_alert from "@/assets/compernsive_alert.png";
 import clustermemory from "@/assets/cluster-memory.png";
 import railwayBg from "@/assets/railway-bg.jpg";
+import whychosesection from "@/assets/whychosesection.png";
 import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
-import MobileHeader from "@/components/MobileHeader";
-
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { RapidIcon } from "@/components/icons/HomeIcons";
 
 const heroSlides = [
   {
@@ -135,7 +130,7 @@ const Railway = () => {
             slidesPerView={1}
             speed={1000}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 1000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
             className="w-full h-full mobile-swiper"
@@ -223,9 +218,9 @@ const Railway = () => {
             <Swiper
               modules={[Autoplay, Pagination]}
               slidesPerView={1}
-              speed={900}
+              speed={600}
               pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 1000, disableOnInteraction: false }}
               loop={true}
               className="w-full h-full hero-swiper"
             >
@@ -265,7 +260,7 @@ const Railway = () => {
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
                 CamPulse for <br />
-                Railways &amp; Transport <br />
+                Railways & Transport <br />
                 Infrastructure
               </motion.h1>
               <motion.p
@@ -274,7 +269,7 @@ const Railway = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
               >
-                Secure branches, ATMs, and critical assets with real-time monitoring.
+                Ensure passenger safety, monitor critical assets, and manage operations across stations, tracks, and transit networks.
               </motion.p>
 
               <motion.div
@@ -303,87 +298,50 @@ const Railway = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Railways */}
-      <section className="py-24 bg-white relative">
+      {/* How CamPulse Powers Transport Infrastructure */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Railways
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance public transport deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Transport Infrastructure
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: SecurityCameraIcon,
                 title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                desc: "Monitor crowds and unattended objects.",
               },
               {
                 icon: TrackCameraIcon,
                 title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                desc: "Identify fire, smoke, and gas risks.",
               },
               {
                 icon: ProhibitIcon,
                 title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                desc: "Unauthorized track movement detection.",
               },
               {
                 icon: CrowdIcon,
@@ -404,14 +362,54 @@ const Railway = () => {
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+              group
+              bg-white
+              rounded-[14px]
+              p-7
+              min-h-[165px]
+
+             shadow-lg
+              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+              transition-all
+              duration-500
+              ease-out
+
+              hover:-translate-y-1
+            "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                    w-11 h-11
+                    rounded-xl
+                    bg-[#EEF4FF]
+                    flex items-center justify-center
+                    mb-5
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#2563EB]
+                  "
+                  >
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
@@ -425,7 +423,7 @@ const Railway = () => {
             {/* Heading */}
             <div className="text-center mb-16">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
+                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111e38]   text-neutral-300 text-[12px] font-medium tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
@@ -473,7 +471,7 @@ const Railway = () => {
 
                   src={etatop}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[100px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -504,7 +502,39 @@ const Railway = () => {
         </div>
       </section>
 
-      <MeasurableSecurity />
+      <MeasurableSecurity
+        badgeTitle="WHY CHOOSE US"
+        titlePath1="Real Impact."
+        titlePath2="Measurable Security."
+        description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
+        buttonText="Book a Demo"
+        backgroundImage={whychosesection}
+        sectionClassName="py-32"
+        cardClassName="hover:-translate-y-1"
+
+        stats={[
+          {
+            icon: RapidIcon,
+            title: "Rapid Response",
+            desc: "Faster response to intrusions and safety violations",
+          },
+          {
+            icon: TrendingDown,
+            title: "Effort Reduction",
+            desc: "Reduce manual monitoring effort at control centers",
+          },
+          {
+            icon: CrowdIcon,
+            title: "Crowd Optimisation",
+            desc: "Improve crowd and passenger flow management efficiency",
+          },
+          {
+            icon: ShieldCheck,
+            title: "Disruption Reduction",
+            desc: "Minimize service disruptions and safety-related incidents",
+          },
+        ]}
+      />
 
       {/* About Us Sub-section */}
       <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
