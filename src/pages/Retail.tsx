@@ -1,27 +1,24 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
-import { ArrowUpRight, Diamond, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-
+import { ArrowUpRight, Video, Diamond } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
-import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
+import retailbannerfourth from "@/assets/retailbannerfourth.jpg";
 import RailwayMain from "@/assets/railway-dashbaord.png";
-import Railwaysecond from "@/assets/railway-second-bg.jpg";
 import railway_about from "@/assets/railway_about.png";
 import unathorized from "@/assets/unathorized.png";
 import etatop from "@/assets/eta-top.png";
 import bgrailway from "@/assets/bg_railway.png";
 import compernsive_alert from "@/assets/compernsive_alert.png";
 import clustermemory from "@/assets/cluster-memory.png";
-import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import retailbannerfirst from "@/assets/retailbannerfirst.jpg";
+import retailbannersecond from "@/assets/retailbannersecond.jpg";
+import retailbannerthird from "@/assets/retailbannerthird.jpg";
+import { ShoppingCartIcon, MultiStoreIcon } from "@/components/icons/retailIcons";
+import { SecurityCameraIcon, CrowdIcon, WarningIcon } from "@/components/icons/RailwayIcons";
+import { LockKeyIcon } from "@/components/icons/logisticsIcons";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -31,7 +28,7 @@ import 'swiper/css/pagination';
 
 const heroSlides = [
   {
-    img: railwayBg,
+    img: retailbannerfirst,
     title: (
       <>
         CamPulse for Retail <br />
@@ -43,7 +40,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: Railwaysecond,
+    img: retailbannersecond,
     title: (
       <>
         Smart Platform <br />
@@ -55,7 +52,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: retailbannerthird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -67,7 +64,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutctafourth,
+    img: retailbannerfourth,
     title: (
       <>
         Centralized Station <br />
@@ -230,7 +227,7 @@ const Retail = () => {
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              {[retailbannerfirst, retailbannersecond, retailbannerthird, retailbannerfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <div
                     className="w-full h-full bg-cover bg-center"
@@ -244,7 +241,6 @@ const Retail = () => {
           <div
             className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
             style={{
-              backgroundImage: `url(${heroBgStripes})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -266,7 +262,7 @@ const Retail = () => {
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
                 CamPulse for <br />
-                Retail
+                Retail Security
               </motion.h1>
               <motion.p
                 className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
@@ -274,7 +270,7 @@ const Retail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
               >
-                Secure branches, ATMs, and critical assets with real-time monitoring.
+                Protect stores, monitor customer activity, and prevent losses across retail environments.
               </motion.p>
 
               <motion.div
@@ -303,87 +299,50 @@ const Retail = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Retail */}
-      <section className="py-24 bg-white relative">
+      {/* How CamPulse Powers Transport Infrastructure */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Retail
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Transport Infrastructure
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                icon: ShoppingCartIcon,
+                title: "Shoplifting Detection",
+                desc: "Identify suspicious behavior in real time.",
+              },
+              {
                 icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                title: "Store Monitoring & Analytics",
+                desc: "Track store activity and gain actionable insights.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
-              },
-              {
-                icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                icon: LockKeyIcon,
+                title: "Stockroom Security",
+                desc: "Control access across restricted areas securely.",
               },
               {
                 icon: CrowdIcon,
@@ -396,7 +355,7 @@ const Retail = () => {
                 desc: "Enable real-time alerts for faster response.",
               },
               {
-                icon: MonitorPlayIcon,
+                icon: MultiStoreIcon,
                 title: "Centralized Monitoring",
                 desc: "Manage multiple stations from one system.",
               },
@@ -404,19 +363,61 @@ const Retail = () => {
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+              group
+              bg-white
+              rounded-[14px]
+              p-7
+              min-h-[165px]
+
+             shadow-lg
+              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+              transition-all
+              duration-500
+              ease-out
+
+              hover:-translate-y-1
+            "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                    w-11 h-11
+                    rounded-xl
+                    bg-[#EEF4FF]
+                    flex items-center justify-center
+                    mb-5
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#2563EB]
+                  "
+                  >
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
+
+
 
       {/* Centralized Retail Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
@@ -562,7 +563,7 @@ const Retail = () => {
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
+                  style={{ backgroundImage: `url(${retailbannerfirst})` }}
                 />
 
                 <div className="absolute inset-0 bg-[#0B2A5B]/80" />

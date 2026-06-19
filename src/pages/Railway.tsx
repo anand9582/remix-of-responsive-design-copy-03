@@ -18,7 +18,7 @@ import compernsive_alert from "@/assets/compernsive_alert.png";
 import clustermemory from "@/assets/cluster-memory.png";
 import railwayBg from "@/assets/railway-bg.jpg";
 import whychosesection from "@/assets/whychosesection.png";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import { SecurityCameraIcon, TrackCameraIcon, CrowdOptimisationIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -117,7 +117,6 @@ const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, n
 };
 
 const Railway = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -524,7 +523,7 @@ const Railway = () => {
             desc: "Reduce manual monitoring effort at control centers",
           },
           {
-            icon: CrowdIcon,
+            icon: CrowdOptimisationIcon,
             title: "Crowd Optimisation",
             desc: "Improve crowd and passenger flow management efficiency",
           },

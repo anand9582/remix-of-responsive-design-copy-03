@@ -86,14 +86,14 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             >
               <span className="w-2 h-2 rotate-45 bg-blue-600" />
 
-              <span className="text-[#2563EB] font-roboto text-[13px] font-semibold tracking-[0.1em] uppercase">
+              <span className="text-blue-700 font-roboto text-[13px] font-semibold tracking-[0.1em] uppercase">
                 {badgeTitle}
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="font-aleo font-semibold text-4xl md:text-[32px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
-              <span className="text-[#2563EB]">
+              <span className="text-blue-700">
                 {titlePath1}
               </span>
 
@@ -103,7 +103,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             </h2>
 
             {/* Description */}
-            <p className="font-roboto text-[16px] text-black leading-[1.6] mb-8">
+            <p className="font-roboto text-[16px] text-black leading-[1.6] mb-8 text-black">
               {description}
             </p>
 
@@ -141,7 +141,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
                   ${cardClassName}
                 `}
               >
-                <div className="text-[#2563EB] mb-5">
+                <div className="text-[#2563EB] mb-3">
                   <stat.icon className="w-7 h-7 stroke-[1.5]" />
                 </div>
 

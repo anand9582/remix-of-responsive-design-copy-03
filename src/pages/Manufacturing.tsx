@@ -3,7 +3,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
-import { ArrowUpRight, Diamond, Video, TrendingDown, ShieldCheck, Lock } from "lucide-react";
+import { ArrowUpRight, Diamond, Video, TrendingDown, } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
 import manufacturingthirdBg from "@/assets/manufacturing-third.jpg";
@@ -25,7 +25,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { RapidIcon } from "@/components/icons/HomeIcons";
 import whychosesection from "@/assets/whychosesection.png";
 
 const heroSlides = [
@@ -308,9 +307,9 @@ const Manufacturing = () => {
           {/* Badge */}
           <ScrollReveal direction="up" delay={100}>
             <div className="flex justify-center mb-5">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#eff6ff]">
                 <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
-                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                <span className="text-[13px] font-aleo font-bold uppercase text-blue-600">
                   Our Capabilities
                 </span>
               </div>
@@ -319,7 +318,7 @@ const Manufacturing = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[30px] sm:text-[38px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Manufacturing
@@ -351,12 +350,12 @@ const Manufacturing = () => {
                 desc: "Track machinery usage and movement.",
               },
               {
-                icon: FireIcon,
+                icon: PersonIcon,
                 title: "Workforce Safety Monitoring",
                 desc: "Identify unsafe behavior on the shop floor.",
               },
               {
-                icon: PersonIcon,
+                icon: FireIcon,
                 title: "Fire & Hazard Detection",
                 desc: "Detect fire, smoke, and environmental risks.",
               },
@@ -403,7 +402,7 @@ const Manufacturing = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-lg leading-none font-roboto font-medium text-neutral-800 mb-2">
                     {feature.title}
                   </h3>
 

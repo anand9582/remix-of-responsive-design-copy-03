@@ -1,27 +1,25 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Diamond, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
-import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import LogisticsThird from "@/assets/logistics-third.jpg";
+import aboutCtaBg from "@/assets/cta_bg.jpg";
+import Logisticsfourth from "@/assets/logistics-fourth.jpg";
+import logisticsdashboard from "@/assets/logistics-dashboard.png";
+import Logisticssecond from "@/assets/logistics-second.jpg";
 import railway_about from "@/assets/railway_about.png";
-import unathorized from "@/assets/unathorized.png";
-import etatop from "@/assets/eta-top.png";
+import logisticslefttop from "@/assets/logisticsleft-top.png";
+import logisticsleftbottom from "@/assets/logisticsleft-bottom.png";
 import bgrailway from "@/assets/bg_railway.png";
-import compernsive_alert from "@/assets/compernsive_alert.png";
-import clustermemory from "@/assets/cluster-memory.png";
+import logisticsright from "@/assets/logisticsright-top.png";
+import logisticsbottom from "@/assets/logistics-bottom.png";
 import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import { WarehouseIcon, DockIcon, TheftIcon, TruckIcon, LockKeyIcon, ChartBarIcon, ThroughputIcon, ZoneIcon, LossIcon, Operationalcon } from "@/components/icons/logisticsIcons";
+import whychosesection from "@/assets/whychosesection.png";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -43,7 +41,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: Railwaysecond,
+    img: Logisticssecond,
     title: (
       <>
         Smart Platform <br />
@@ -55,7 +53,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: LogisticsThird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -67,7 +65,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutctafourth,
+    img: Logisticsfourth,
     title: (
       <>
         Centralized Station <br />
@@ -134,9 +132,9 @@ const Logistics = () => {
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
-            speed={1000}
+            speed={600}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 1000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
             className="w-full h-full mobile-swiper"
@@ -224,13 +222,13 @@ const Logistics = () => {
             <Swiper
               modules={[Autoplay, Pagination]}
               slidesPerView={1}
-              speed={900}
+              speed={600}
               pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 1000, disableOnInteraction: false }}
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              {[railwayBg, Logisticssecond, LogisticsThird, Logisticsfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <div
                     className="w-full h-full bg-cover bg-center"
@@ -302,120 +300,132 @@ const Logistics = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Logistics */}
-      <section className="py-24 bg-white relative">
+      {/* How CamPulse powers Logistics */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Logistics
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Logistics
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                icon: WarehouseIcon,
+                title: "Warehouse Monitoring",
+                desc: "Track activity across warehouse storage areas.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                icon: DockIcon,
+                title: "Dock Surveillance",
+                desc: "Monitor loading and unloading zones in real time.",
               },
               {
-                icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                icon: TheftIcon,
+                title: "Theft Detection",
+                desc: "Detect suspicious warehouse movement.",
               },
               {
-                icon: CrowdIcon,
-                title: "Crowd Monitoring",
-                desc: "Track passenger movement and density.",
+                icon: TruckIcon,
+                title: "Vehicle Monitoring",
+                desc: "Track vehicle entry and exit across premises.",
               },
               {
-                icon: WarningIcon,
-                title: "Incident Alerts",
-                desc: "Enable real-time alerts for faster response.",
+                icon: LockKeyIcon,
+                title: "Access Control",
+                desc: "Secure all warehouse entry and exit points.",
               },
               {
-                icon: MonitorPlayIcon,
-                title: "Centralized Monitoring",
-                desc: "Manage multiple stations from one system.",
+                icon: ChartBarIcon,
+                title: "Operational Visibility",
+                desc: "Monitor goods movement across warehouse.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+              group
+              bg-white
+              rounded-[14px]
+              p-7
+              min-h-[165px]
+
+             shadow-lg
+              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+              transition-all
+              duration-500
+              ease-out
+
+              hover:-translate-y-1
+            "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                    w-11 h-11
+                    rounded-xl
+                    bg-[#EEF4FF]
+                    flex items-center justify-center
+                    mb-5
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#2563EB]
+                  "
+                  >
+                    <div
+                      className="
+                        flex items-center justify-center
+                        w-full h-full
+                        text-[#2563EB]
+                        group-hover:text-white
+                        transition-colors duration-500
+                      "
+                    >
+                      <feature.icon className="w-6 h-6 flex-shrink-0" />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Centralized Logistics Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
@@ -447,7 +457,7 @@ const Logistics = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={RailwayMain}
+                  src={logisticsdashboard}
                   alt="dashboard"
                   className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
                 />
@@ -458,9 +468,9 @@ const Logistics = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={unathorized}
+                  src={logisticslefttop}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-[360px] rounded-xl  z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -470,9 +480,9 @@ const Logistics = () => {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
 
-                  src={etatop}
+                  src={logisticsleftbottom}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[360px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -481,7 +491,7 @@ const Logistics = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  src={compernsive_alert}
+                  src={logisticsright}
                   alt=""
                   className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
@@ -492,9 +502,9 @@ const Logistics = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={clustermemory}
+                  src={logisticsbottom}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-12 xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>
@@ -503,7 +513,38 @@ const Logistics = () => {
         </div>
       </section>
 
-      <MeasurableSecurity />
+      <MeasurableSecurity
+        badgeTitle="WHY CHOOSE US"
+        titlePath1="Better Visibility."
+        titlePath2="Reduced Losses."
+        description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
+        buttonText="Book a Demo"
+        backgroundImage={whychosesection}
+        sectionClassName="py-32"
+        cardClassName="hover:-translate-y-1"
+        stats={[
+          {
+            icon: ThroughputIcon,
+            title: "Throughput Acceleration",
+            desc: "Increase cargo throughput and optimize yard management efficiency.",
+          },
+          {
+            icon: ZoneIcon,
+            title: "Zone Safety",
+            desc: "Enhance safety across heavy equipment operation zones.",
+          },
+          {
+            icon: LossIcon,
+            title: "Loss Prevention",
+            desc: "Reduce misplaced items and minimize loss incidents.",
+          },
+          {
+            icon: Operationalcon,
+            title: "Operational Intelligence",
+            desc: "Enable data-driven insights for planning and optimization.",
+          },
+        ]}
+      />
 
       {/* About Us Sub-section */}
       <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
@@ -570,8 +611,7 @@ const Logistics = () => {
                 <div className="relative z-10 max-w-4xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your logistics security
-                    with CamPulse.
+                    Transform your logistics security with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}
