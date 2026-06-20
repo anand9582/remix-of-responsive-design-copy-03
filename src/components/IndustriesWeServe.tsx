@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Diamond, Train, Factory, Landmark, ChevronDown, Fuel, Warehouse, ShoppingBag, GraduationCap, Hospital, ArrowUpRight } from "lucide-react";
 import industryRailways from "@/assets/industry-railways.png";
 import industryManufacturing from "@/assets/industry-manufacturing.png";
@@ -17,6 +18,7 @@ const industries = [
     title: "Railways & Transport Infrastructure",
     description: "Monitor platforms, tracks, and entry points with real-time alerts for crowding, trespassing, and unattended objects. Enable centralized control rooms to track and respond to incidents instantly across locations.",
     image: industryRailways,
+    href: "/railway",
   },
   {
     icon: Factory,
@@ -24,6 +26,7 @@ const industries = [
     title: "Manufacturing & Industrial Facilities",
     description: "Detect PPE violations, restricted access, and unsafe movement on the shop floor. Monitor facilities in real time to prevent incidents and ensure safety compliance.",
     image: industryManufacturing,
+    href: "/manufacturing",
   },
   {
     icon: Landmark,
@@ -31,6 +34,7 @@ const industries = [
     title: "Banking & Financial Institutions",
     description: "Track activity across branches and ATMs with alerts for unauthorized access and suspicious behavior. Secure vaults and critical areas with real-time monitoring and incident visibility.",
     image: industryBanking,
+    href: "/banking",
   },
   {
     icon: Fuel,
@@ -38,6 +42,7 @@ const industries = [
     title: "Oil & Gas",
     description: "Monitor high-risk zones for intrusion, fire hazards, and unsafe activity across sites. Enable instant alerts and rapid response to prevent operational risks.",
     image: OilGas,
+    href: "/oil-gas",
   },
   {
     icon: Warehouse,
@@ -45,6 +50,7 @@ const industries = [
     title: "Logistics & Warehousing",
     description: "Track movement across warehouses and transit hubs with real-time visibility. Detect unauthorized access, losses, and delays as they happen.",
     image: LogisticsWarehousing,
+    href: "/logistics",
   },
   {
     icon: ShoppingBag,
@@ -52,6 +58,7 @@ const industries = [
     title: "Retail & Large Commercial Chains",
     description: "Identify shoplifting, suspicious activity, and unauthorized stockroom access in real time. Monitor store operations across locations with better visibility and control.",
     image: retailLarge,
+    href: "/retail",
   },
   {
     icon: GraduationCap,
@@ -59,6 +66,7 @@ const industries = [
     title: "Education Campuses & Universities",
     description: "Monitor campus entry points and common areas for unauthorized access and unusual activity. Enable quick response with centralized visibility across the campus.",
     image: educationuniversities,
+    href: "/education",
   },
   {
     icon: Hospital,
@@ -66,6 +74,7 @@ const industries = [
     title: "Hospitals & Healthcare Networks",
     description: "Control access to ICUs, pharmacies, and restricted zones while monitoring critical areas. Detect unusual activity and respond quickly to ensure safety at all times.",
     image: hospital,
+    href: "/healthcare",
   },
 ];
 
@@ -225,13 +234,13 @@ const IndustriesWeServe = () => {
                   <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
                     {industry.title}
                   </h3>
-                  <a
-                    href="#"
+                  <Link
+                    to={industry.href}
                     className="flex items-center gap-1 text-[#2563EB] text-[14px] font-semibold hover:underline flex-shrink-0 mt-1 transition-colors hover:text-blue-700"
                   >
                     Learn more
                     <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
-                  </a>
+                  </Link>
                 </div>
 
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
@@ -317,6 +326,13 @@ const IndustriesWeServe = () => {
                           <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                             {industry.description}
                           </p>
+                          <Link
+                            to={industry.href}
+                            className="inline-flex items-center gap-1 text-[#2563EB] text-[13px] font-semibold hover:underline mb-4 transition-colors hover:text-blue-700"
+                          >
+                            Learn more
+                            <ArrowUpRight className="w-3.5 h-3.5 ml-[2px]" strokeWidth={2.5} />
+                          </Link>
                           <div className="rounded-md overflow-hidden">
                             <img
                               src={industry.image}

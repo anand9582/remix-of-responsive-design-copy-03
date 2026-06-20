@@ -184,9 +184,10 @@ const Navbar = () => {
                           const Icon = item.icon;
 
                           return (
-                            <a
+                            <Link
                               key={item.name}
-                              href={item.href}
+                              to={item.href}
+                              onClick={() => setDesktopDropdownOpen(false)}
                               className="group/item flex items-start gap-3 p-3 rounded-xl transition-colors"
                             >
                               <div className="w-9 h-9 rounded-sm bg-blue-50 flex items-center justify-center flex-shrink-0">
@@ -204,7 +205,7 @@ const Navbar = () => {
                                   {item.desc}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           );
                         })}
 
@@ -213,13 +214,23 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-slate-700 hover:text-blue-600 text-sm transition-colors flex items-center gap-1"
-                >
-                  {link.label}
-                </a>
+                link.href.startsWith("#") ? (
+                  <a
+                    key={link.label}
+                    href={isIndustryPage ? `/${link.href}` : link.href}
+                    className="text-slate-700 hover:text-blue-600 text-sm transition-colors flex items-center gap-1"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="text-slate-700 hover:text-blue-600 text-sm transition-colors flex items-center gap-1"
+                  >
+                    {link.label}
+                  </Link>
+                )
               )
             )}
 
@@ -229,7 +240,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
 
             <a
-              href="#login"
+              href={isIndustryPage ? "/#login" : "#login"}
               className="text-gray-600 hover:text-gray-900 text-sm font-medium transition-colors"
             >
               Login
@@ -330,9 +341,9 @@ const Navbar = () => {
                             const Icon = item.icon;
 
                             return (
-                              <a
+                              <Link
                                 key={item.name}
-                                href={item.href}
+                                to={item.href}
                                 onClick={() => setMobileOpen(false)}
                                 className="flex items-start gap-3 text-neutral-300 hover:text-white hover:bg-white/5 text-xs font-medium py-2.5 px-3 rounded-lg transition-all"
                               >
@@ -349,7 +360,7 @@ const Navbar = () => {
                                   </p>
                                 </div>
 
-                              </a>
+                              </Link>
                             );
                           })}
 
@@ -358,14 +369,25 @@ const Navbar = () => {
 
                     </div>
                   ) : (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3 text-neutral-300 hover:text-white hover:bg-white/5 text-sm font-medium py-3 px-4 rounded-lg transition-all"
-                    >
-                      {link.label}
-                    </a>
+                    link.href.startsWith("#") ? (
+                      <a
+                        key={link.label}
+                        href={isIndustryPage ? `/${link.href}` : link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center gap-3 text-neutral-300 hover:text-white hover:bg-white/5 text-sm font-medium py-3 px-4 rounded-lg transition-all"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        key={link.label}
+                        to={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center gap-3 text-neutral-300 hover:text-white hover:bg-white/5 text-sm font-medium py-3 px-4 rounded-lg transition-all"
+                      >
+                        {link.label}
+                      </Link>
+                    )
                   )
                 )}
 
@@ -375,7 +397,7 @@ const Navbar = () => {
               <div className="px-4 pb-6 space-y-3 border-t border-white/10 pt-4">
 
                 <a
-                  href="#login"
+                  href={isIndustryPage ? "/#login" : "#login"}
                   onClick={() => setMobileOpen(false)}
                   className="block text-center text-neutral-300 hover:text-white text-sm font-medium py-2.5 rounded-full border border-white/10 transition-colors"
                 >

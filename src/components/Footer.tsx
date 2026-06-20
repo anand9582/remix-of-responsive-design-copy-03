@@ -2,6 +2,7 @@ import { ArrowUpRight, MapPin, Mail, Phone, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import logowhite from "@/assets/logowhite.png";
+import { Link, useLocation } from "react-router-dom";
 
 const productLinks = [
   "Overview",
@@ -14,14 +15,14 @@ const productLinks = [
 ];
 
 const industryLinks = [
-  "Railways & Transport Infrastructure",
-  "Manufacturing & Industrial Facilities",
-  "Banking & Financial Institutions",
-  "Oil & Gas",
-  "Logistics & Warehousing",
-  "Retail & Large Commercial Chains",
-  "Education Campuses & Universities",
-  "Hospitals & Healthcare Networks",
+  { name: "Railways & Transport Infrastructure", href: "/railway" },
+  { name: "Manufacturing & Industrial Facilities", href: "/manufacturing" },
+  { name: "Banking & Financial Institutions", href: "/banking" },
+  { name: "Oil & Gas", href: "/oil-gas" },
+  { name: "Logistics & Warehousing", href: "/logistics" },
+  { name: "Retail & Large Commercial Chains", href: "/retail" },
+  { name: "Education Campuses & Universities", href: "/education" },
+  { name: "Hospitals & Healthcare Networks", href: "/healthcare" },
 ];
 
 const resourceLinks = [
@@ -37,6 +38,21 @@ const companyLinks = [
 
 const Footer = () => {
   const [showTop, setShowTop] = useState(false);
+  const location = useLocation();
+
+  const industryPages = [
+    "/railway",
+    "/manufacturing",
+    "/banking",
+    "/oil-gas",
+    "/logistics",
+    "/retail",
+    "/education",
+    "/healthcare",
+    "/pricing",
+  ];
+
+  const isInnerPage = industryPages.includes(location.pathname);
 
   useEffect(() => {
     const handle = () => setShowTop(window.scrollY > 400);
@@ -96,8 +112,8 @@ const Footer = () => {
               <h4 className="text-white  font-roboto font-medium text-[13px] mb-6 uppercase tracking-wider">Industries</h4>
               <ul className="space-y-3.5">
                 {industryLinks.map((l) => (
-                  <li key={l}>
-                    <a href="#industries" className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l}</a>
+                  <li key={l.name}>
+                    <Link to={l.href} className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -109,7 +125,12 @@ const Footer = () => {
               <ul className="space-y-3.5 mb-8">
                 {resourceLinks.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l.label}</a>
+                    <a
+                      href={l.href.startsWith("#") && isInnerPage ? `/${l.href}` : l.href}
+                      className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors"
+                    >
+                      {l.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -117,7 +138,12 @@ const Footer = () => {
               <ul className="space-y-3.5">
                 {companyLinks.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l.label}</a>
+                    <a
+                      href={l.href.startsWith("#") && isInnerPage ? `/${l.href}` : l.href}
+                      className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors"
+                    >
+                      {l.label}
+                    </a>
                   </li>
                 ))}
               </ul>

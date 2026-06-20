@@ -444,10 +444,9 @@ const Banking = () => {
 
                 {/* Main dashboard image */}
                 <motion.img
-                  initial={{ opacity: 0, y: 250 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={RailwayMain}
                   alt="dashboard"
                   className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
@@ -455,10 +454,9 @@ const Banking = () => {
 
                 {/* LEFT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: -140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={unathorized}
                   alt=""
                   className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
@@ -466,10 +464,9 @@ const Banking = () => {
 
                 {/* LEFT BOTTOM ALERT */}
                 <motion.img
-                  initial={{ opacity: 0, x: -140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
 
                   src={etatop}
                   alt=""
@@ -478,10 +475,9 @@ const Banking = () => {
 
                 {/* RIGHT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={compernsive_alert}
                   alt=""
                   className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
@@ -489,10 +485,9 @@ const Banking = () => {
 
                 {/* RIGHT BOTTOM CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={clustermemory}
                   alt=""
                   className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"

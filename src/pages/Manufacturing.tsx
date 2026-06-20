@@ -440,13 +440,11 @@ const Manufacturing = () => {
 
               {/* Dark background frame */}
               <div className="relative max-w-7xl  w-full flex justify-center items-center">
-
                 {/* Main dashboard image */}
                 <motion.img
-                  initial={{ opacity: 0, y: 250 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={RailwayMain}
                   alt="dashboard"
                   className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
@@ -454,10 +452,9 @@ const Manufacturing = () => {
 
                 {/* LEFT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: -140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturingtop}
                   alt=""
                   className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-[10px] xl:w-72 rounded-xl  z-30 block lg:hidden xl:block"
@@ -465,10 +462,9 @@ const Manufacturing = () => {
 
                 {/* LEFT BOTTOM ALERT */}
                 <motion.img
-                  initial={{ opacity: 0, x: -140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturinglfbt}
                   alt=""
                   className="absolute left-0 bottom-4 w-[80px] sm:w-[180px] xl:-left-[-5px] xl:bottom-12 xl:w-[380px]  z-30 block lg:hidden xl:block"
@@ -476,10 +472,9 @@ const Manufacturing = () => {
 
                 {/* RIGHT TOP CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={compernsive_alert}
                   alt=""
                   className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-0 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
@@ -487,15 +482,13 @@ const Manufacturing = () => {
 
                 {/* RIGHT BOTTOM CARD */}
                 <motion.img
-                  initial={{ opacity: 0, x: 140 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturingbt}
                   alt=""
                   className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-15px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
-
               </div>
             </div>
           </div>
