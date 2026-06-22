@@ -18,7 +18,7 @@ import bgrailway from "@/assets/bg_railway.png";
 import logisticsright from "@/assets/logisticsright-top.png";
 import logisticsbottom from "@/assets/logistics-bottom.png";
 import railwayBg from "@/assets/railway-bg.jpg";
-import { WarehouseIcon, DockIcon, TheftIcon, TruckIcon, LockKeyIcon, ChartBarIcon, ThroughputIcon, ZoneIcon, LossIcon, Operationalcon } from "@/components/icons/logisticsIcons";
+import { WarehouseIcon, DockIcon, TheftIcon, TruckIcon, LockKeyIcon, ChartBarIcon, ThroughputIcon, ZoneIcon, LossIcon, Operationalcon } from "@/components/icons/LogisticsIcons";
 import whychosesection from "@/assets/whychosesection.png";
 
 // Swiper

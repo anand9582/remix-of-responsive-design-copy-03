@@ -6,21 +6,22 @@ import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Video, Diamond } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
 import retailbannerfourth from "@/assets/retailbannerfourth.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
+import retailMain from "@/assets/retail_dashboard.png";
 import railway_about from "@/assets/railway_about.png";
-import unathorized from "@/assets/unathorized.png";
-import etatop from "@/assets/eta-top.png";
+import retailrt from "@/assets/retailrtimg.png";
+import retailbl from "@/assets/retailbl.png";
 import bgrailway from "@/assets/bg_railway.png";
-import compernsive_alert from "@/assets/compernsive_alert.png";
-import clustermemory from "@/assets/cluster-memory.png";
+import retailbr from "@/assets/retail-br.png";
+import retailtl from "@/assets/retailtl.png";
 import retailbannerfirst from "@/assets/retailbannerfirst.jpg";
 import retailbannersecond from "@/assets/retailbannersecond.jpg";
 import retailbannerthird from "@/assets/retailbannerthird.jpg";
 import { ShoppingCartIcon, MultiStoreIcon } from "@/components/icons/retailIcons";
 import { SecurityCameraIcon, CrowdIcon, WarningIcon } from "@/components/icons/RailwayIcons";
 import { ChartLineDownIcon, StaffingIcon, FediverseIcon, HandCoinIcon } from "@/components/icons/retailIcons";
-import { LockKeyIcon } from "@/components/icons/logisticsIcons";
+import { LockKeyIcon } from "@/components/icons/LogisticsIcons";
 import whychosesection from "@/assets/whychosesection.png";
+import aboutCtaBg from "@/assets/cta_bg.jpg";
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -439,18 +440,18 @@ const Retail = () => {
 
             {/* Dashboard Container */}
 
-            <div className="relative flex justify-center items-center  rounded-2xl">
+            <div className="relative flex justify-center items-center  rounded-2xl ">
 
               {/* Dark background frame */}
-              <div className="relative max-w-7xl  w-full flex justify-center items-center">
+              <div className="relative max-w-7xl  w-full flex justify-center items-center ">
                 {/* Main dashboard image */}
                 <motion.img
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={RailwayMain}
+                  src={retailMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] -mb-16  xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -458,9 +459,9 @@ const Retail = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={unathorized}
+                  src={retailtl}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1  xl:top-[-20px]  xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -469,9 +470,9 @@ const Retail = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
 
-                  src={etatop}
+                  src={retailbl}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-1 w-[80px] sm:w-[120px] xl:-left-[-30px]  xl:bottom-12  xl:w-[260px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -479,9 +480,9 @@ const Retail = () => {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  src={compernsive_alert}
+                  src={retailrt}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-[-20px] xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -489,9 +490,9 @@ const Retail = () => {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={clustermemory}
+                  src={retailbr}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-2 w-[110px] sm:w-[160px] xl:-right-[60px] xl:bottom-2 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>
@@ -519,18 +520,18 @@ const Retail = () => {
           },
           {
             icon: StaffingIcon,
-            title: "Effort Reduction",
-            desc: "Reduce manual monitoring effort at control centers",
+            title: "Smart Staffing",
+            desc: "Enable better staffing and customer flow decisions.",
           },
           {
             icon: FediverseIcon,
-            title: "Crowd Optimisation",
-            desc: "Improve crowd and passenger flow management efficiency",
+            title: "Centralized Control",
+            desc: "Manage operations with consistent rules across locations.",
           },
           {
             icon: HandCoinIcon,
-            title: "Disruption Reduction",
-            desc: "Minimize service disruptions and safety-related incidents",
+            title: "Cost Efficiency",
+            desc: "Reduce overall surveillance and operational costs.",
           },
         ]}
       />
@@ -591,7 +592,7 @@ const Retail = () => {
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${retailbannerfirst})` }}
+                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
                 />
 
                 <div className="absolute inset-0 bg-[#0B2A5B]/80" />
@@ -600,8 +601,7 @@ const Retail = () => {
                 <div className="relative z-10 max-w-4xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your retail security
-                    with CamPulse.
+                    Enhance your Retail Security with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}

@@ -76,23 +76,22 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-12 items-center">
 
         {/* LEFT */}
-        <div className="lg:w-[45%] text-left">
+        <div className="lg:w-[40%] text-left">
           <ScrollReveal direction="up">
 
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-300 shadow-sm mb-8"
-              style={{ background: "rgba(255,255,255,0.4)" }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DBEAFE66] border border-gray-300 shadow-sm mb-8"
             >
               <span className="w-2 h-2 rotate-45 bg-blue-600" />
 
-              <span className="text-blue-700 font-roboto text-[13px] font-semibold tracking-[0.1em] uppercase">
+              <span className="text-blue-600 font-roboto text-[13px] font-medium tracking-[0.1em] uppercase">
                 {badgeTitle}
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-4xl md:text-[32px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
+            <h2 className="font-aleo font-semibold text-3xl md:text-[40px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
               <span className="text-blue-700">
                 {titlePath1}
               </span>
@@ -108,19 +107,45 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             </p>
 
             {/* Button */}
-            <button className="group relative flex items-center justify-between rounded-full h-11 bg-[#1D4ED8] hover:bg-[#1e40af] text-white px-6 w-fit shadow-md transition-all duration-300">
-              <span className="text-sm font-medium mr-4">
-                {buttonText}
-              </span>
+            <button
+              className="
+    group
+    relative
+    flex items-center gap-2
+    rounded-full
+    px-8
+    h-[45px]
+    text-white
+    font-semibold
+    text-[15px]
 
-              <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
+    bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
+
+    shadow-[0_8px_20px_rgba(37,99,235,0.35)]
+    transition-all duration-300
+    hover:scale-[1.02]
+  "
+            >
+              <span>Book a Demo</span>
+
+              <ArrowUpRight
+                className="
+      w-4 h-4
+      transition-transform duration-300
+      group-hover:translate-x-0.5
+      group-hover:-translate-y-0.5
+    "
+                strokeWidth={2.5}
+              />
+
+
             </button>
 
           </ScrollReveal>
         </div>
 
         {/* RIGHT */}
-        <div className="lg:w-[55%]">
+        <div className="lg:w-[60%]">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
             {stats.map((stat, idx) => (
@@ -142,14 +167,14 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
                 `}
               >
                 <div className="text-[#2563EB] mb-3">
-                  <stat.icon className="w-7 h-7 stroke-[1.5]" />
+                  <stat.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
 
-                <h3 className="font-roboto font-semibold text-[20px] text-neutral-800 mb-[8px]">
+                <h3 className="font-roboto font-medium text-lg text-neutral-800 mb-[5px]">
                   {stat.title}
                 </h3>
 
-                <p className="text-[14px] text-[#6b7280] leading-[1.6]">
+                <p className="font-roboto text-[14px] text-neutral-500 leading-[1.6]">
                   {stat.desc}
                 </p>
               </ScrollReveal>
