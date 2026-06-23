@@ -316,9 +316,9 @@ const Railway = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[36px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
               How{" "}
-              <span className="text-blue-700">
+              <span className="text-blue-600">
                 CamPulse powers Transport Infrastructure
               </span>
             </h2>
@@ -400,7 +400,7 @@ const Railway = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
                     {feature.title}
                   </h3>
 
@@ -422,7 +422,7 @@ const Railway = () => {
             {/* Heading */}
             <div className="text-center mb-16">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111e38]   text-neutral-300 text-[12px] font-medium tracking-[0.15em] uppercase">
+                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111e38]  mb-4  text-neutral-300 text-[12px] font-medium tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
@@ -446,7 +446,7 @@ const Railway = () => {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={RailwayMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto -mb-40  xl:h-[660px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -464,7 +464,6 @@ const Railway = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-
                   src={etatop}
                   alt=""
                   className="absolute left-0 bottom-4 w-[100px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px] rounded-xl z-30 block lg:hidden xl:block"

@@ -320,7 +320,7 @@ const Retail = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[36px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Transport Infrastructure
@@ -404,7 +404,7 @@ const Retail = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
                     {feature.title}
                   </h3>
 

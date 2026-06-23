@@ -424,12 +424,12 @@ const Manufacturing = () => {
             {/* Heading */}
             <div className="text-center mb-16">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] mb-4 border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
               </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
+              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight">
                 Centralized Industrial Control Dashboard
               </h2>
             </div>
@@ -447,7 +447,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={RailwayMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto -mb-40  xl:h-[660px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -457,7 +457,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturingtop}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-[10px] xl:w-72 rounded-xl  z-30 block lg:hidden xl:block"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-[-10px] xl:w-72 rounded-xl  z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -467,7 +467,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturinglfbt}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[180px] xl:-left-[-5px] xl:bottom-12 xl:w-[380px]  z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[180px] xl:-left-[-5px] xl:bottom-5 xl:w-[380px]  z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -477,7 +477,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={compernsive_alert}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-0 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-0 xl:top-[-10px] xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -487,7 +487,7 @@ const Manufacturing = () => {
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={manufacturingbt}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-15px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-15px] xl:bottom-5 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
               </div>
             </div>

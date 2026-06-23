@@ -397,21 +397,13 @@ const Logistics = () => {
                     group-hover:bg-[#2563EB]
                   "
                   >
-                    <div
-                      className="
-                        flex items-center justify-center
-                        w-full h-full
-                        text-[#2563EB]
-                        group-hover:text-white
-                        transition-colors duration-500
-                      "
-                    >
-                      <feature.icon className="w-6 h-6 flex-shrink-0" />
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-4">
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
                     {feature.title}
                   </h3>
 
@@ -458,7 +450,7 @@ const Logistics = () => {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={logisticsdashboard}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[640px] -mb-40  object-cover"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -479,7 +471,7 @@ const Logistics = () => {
 
                   src={logisticsleftbottom}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[360px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-5 xl:w-[360px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -489,7 +481,7 @@ const Logistics = () => {
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={logisticsright}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-5 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -499,7 +491,7 @@ const Logistics = () => {
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={logisticsbottom}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-12 xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-4 xl:bottom-0 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>

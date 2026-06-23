@@ -1,27 +1,27 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
-import { ArrowUpRight, Diamond, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-
+import { ArrowUpRight, Video, Diamond, TrendingDown } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
-import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import OilCtaBg from "@/assets/oil-cta.png";
+import oilgasMain from "@/assets/oilgas-main.png";
 import railway_about from "@/assets/railway_about.png";
-import unathorized from "@/assets/unathorized.png";
-import etatop from "@/assets/eta-top.png";
+import oilgaslt from "@/assets/oilgaslt.png";
+import oilgasfirst from "@/assets/oilgasfirst.jpg";
+import oilgassecond from "@/assets/oilgassecond.jpg";
+import oilgasthird from "@/assets/oilgasthird.jpg";
+import oilgasfourth from "@/assets/oilgasfourth.jpg";
+import oilgaslb from "@/assets/oilgaslb.png";
 import bgrailway from "@/assets/bg_railway.png";
-import compernsive_alert from "@/assets/compernsive_alert.png";
-import clustermemory from "@/assets/cluster-memory.png";
-import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
+import oilrt from "@/assets/oilright.png";
+import { ProhibitIcon, ToolboxIcon, MonitorPlayIcon, WarningIcon, MapPinSimpleAreaIcon } from "@/components/icons/RailwayIcons";
+import { MapPinAreaIcon, FireIcon, EnhancedIcon } from "@/components/icons/ManufacturingIcons";
+
+import whychosesection from "@/assets/whychosesection.png";
+import { RapidIcon } from "@/components/icons/HomeIcons";
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -31,7 +31,7 @@ import 'swiper/css/pagination';
 
 const heroSlides = [
   {
-    img: railwayBg,
+    img: oilgasfirst,
     title: (
       <>
         CamPulse for Oil & Gas <br />
@@ -43,7 +43,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: Railwaysecond,
+    img: oilgassecond,
     title: (
       <>
         Smart Platform <br />
@@ -55,7 +55,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: oilgasthird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -67,7 +67,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutctafourth,
+    img: oilgasfourth,
     title: (
       <>
         Centralized Station <br />
@@ -230,7 +230,7 @@ const OilGas = () => {
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              {[oilgasfirst, oilgassecond, oilgasthird, oilgasfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <div
                     className="w-full h-full bg-cover bg-center"
@@ -266,7 +266,7 @@ const OilGas = () => {
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
                 CamPulse for <br />
-                Oil & Gas
+                Oil & gas Security
               </motion.h1>
               <motion.p
                 className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
@@ -303,115 +303,118 @@ const OilGas = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Oil & Gas */}
-      <section className="py-24 bg-white relative">
+      {/* How CamPulse Powers Transport Infrastructure */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Oil & Gas
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Oil & Gas
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                icon: MapPinAreaIcon,
+                title: "Perimeter Monitoring",
+                desc: "Detect intrusion across remote sites.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                icon: FireIcon,
+                title: "Fire & Hazard Detection",
+                desc: "Identify fire, smoke, and gas risks early.",
               },
               {
                 icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                title: "Restricted Zone Monitoring",
+                desc: "Control access to high-risk and restricted areas.",
               },
               {
-                icon: CrowdIcon,
-                title: "Crowd Monitoring",
-                desc: "Track passenger movement and density.",
+                icon: ToolboxIcon,
+                title: "Asset Monitoring",
+                desc: "Track critical infrastructure and equipment.",
               },
               {
                 icon: WarningIcon,
                 title: "Incident Alerts",
-                desc: "Enable real-time alerts for faster response.",
+                desc: "Enable real-time alerts for critical emergencies.",
               },
               {
                 icon: MonitorPlayIcon,
                 title: "Centralized Monitoring",
-                desc: "Manage multiple stations from one system.",
+                desc: "Manage multiple sites through one unified system.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+              group
+              bg-white
+              rounded-[14px]
+              p-7
+              min-h-[165px]
+
+             shadow-lg
+              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+              transition-all
+              duration-500
+              ease-out
+
+              hover:-translate-y-1
+            "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                    w-11 h-11
+                    rounded-xl
+                    bg-[#EEF4FF]
+                    flex items-center justify-center
+                    mb-5
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#2563EB]
+                  "
+                  >
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[13px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
@@ -430,7 +433,7 @@ const OilGas = () => {
                   COMMAND CENTRE
                 </span>
               </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
+              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4 mt-10">
                 Centralized Oil & Gas Control Dashboard
               </h2>
             </div>
@@ -441,56 +444,46 @@ const OilGas = () => {
 
               {/* Dark background frame */}
               <div className="relative max-w-7xl  w-full flex justify-center items-center">
-                 {/* Main dashboard image */}
-                 <motion.img
-                   initial={{ opacity: 0, y: 50 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                   src={RailwayMain}
-                   alt="dashboard"
-                   className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
-                 />
- 
-                 {/* LEFT TOP CARD */}
-                 <motion.img
-                   initial={{ opacity: 0, x: -50 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                   src={unathorized}
-                   alt=""
-                   className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
-                 />
- 
-                 {/* LEFT BOTTOM ALERT */}
-                 <motion.img
-                   initial={{ opacity: 0, x: -50 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
- 
-                   src={etatop}
-                   alt=""
-                   className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
-                 />
- 
-                 {/* RIGHT TOP CARD */}
-                 <motion.img
-                   initial={{ opacity: 0, x: 50 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                   src={compernsive_alert}
-                   alt=""
-                   className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
-                 />
- 
-                 {/* RIGHT BOTTOM CARD */}
-                 <motion.img
-                   initial={{ opacity: 0, x: 50 }}
-                   animate={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                   src={clustermemory}
-                   alt=""
-                   className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
-                 />
+                {/* Main dashboard image */}
+                <motion.img
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  src={oilgasMain}
+                  alt="dashboard"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[660px] -mb-40  object-cover"
+                />
+
+                {/* LEFT TOP CARD */}
+                <motion.img
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  src={oilgaslt}
+                  alt=""
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl  z-30 block lg:hidden xl:block"
+                />
+
+                {/* LEFT BOTTOM ALERT */}
+                <motion.img
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  src={oilgaslb}
+                  alt=""
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-18 xl:bottom-2 xl:w-[350px] rounded-xl z-30 block lg:hidden xl:block"
+                />
+
+                {/* RIGHT TOP CARD */}
+                <motion.img
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  src={oilrt}
+                  alt=""
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                />
+
 
               </div>
             </div>
@@ -498,7 +491,39 @@ const OilGas = () => {
         </div>
       </section>
 
-      <MeasurableSecurity />
+      <MeasurableSecurity
+        badgeTitle="WHY CHOOSE US"
+        titlePath1="Safer Operations."
+        titlePath2="Reduced Risk."
+        description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
+        buttonText="Book a Demo"
+        backgroundImage={whychosesection}
+        sectionClassName="py-32"
+        cardClassName="hover:-translate-y-1"
+
+        stats={[
+          {
+            icon: MapPinSimpleAreaIcon,
+            title: "Perimeter Security",
+            desc: "Enhance perimeter protection across remote operational environments.",
+          },
+          {
+            icon: RapidIcon,
+            title: "Rapid Response",
+            desc: "Enable faster response to critical safety incidents.",
+          },
+          {
+            icon: TrendingDown,
+            title: "Downtime Reduction",
+            desc: "Reduce operational downtime through proactive issue detection.",
+          },
+          {
+            icon: EnhancedIcon,
+            title: "Safety Compliance",
+            desc: "Strengthen environmental and worker safety compliance standards.",
+          },
+        ]}
+      />
 
       {/* About Us Sub-section */}
       <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
@@ -556,17 +581,16 @@ const OilGas = () => {
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
+                  style={{ backgroundImage: `url(${OilCtaBg})` }}
                 />
 
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
+                <div className="absolute inset-0 bg-[#051639c9]" />
 
                 {/* CONTENT */}
                 <div className="relative z-10 max-w-4xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your oil & gas security
-                    with CamPulse.
+                    Secure your Oil & Gas Operations with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}

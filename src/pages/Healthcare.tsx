@@ -1,29 +1,27 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import ScrollReveal from "@/components/ScrollReveal";
 import ProfileFeature from "@/components/ProfileFeature";
 import CertificationStrip from "@/components/CertificationStrip";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Diamond, Video } from "lucide-react";
-import logo from "@/assets/logo.png";
-
 import { motion, useInView, animate } from "framer-motion";
 import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
-import RailwayMain from "@/assets/railway-dashbaord.png";
-import Railwaysecond from "@/assets/railway-second-bg.jpg";
+import healthcarecta_bg from "@/assets/healthcarecta_bg.png";
+import HealthcareMain from "@/assets/healthcare-dashbaord.png";
+import healthcarefirst from "@/assets/healthcarefirst.jpg";
+import healthcaresecond from "@/assets/healthcaresecond.jpg";
+import healthcarethird from "@/assets/healthcarethird.jpg";
+import healthcarefourth from "@/assets/healthcarefourth.jpg";
 import railway_about from "@/assets/railway_about.png";
-import unathorized from "@/assets/unathorized.png";
-import etatop from "@/assets/eta-top.png";
+import healthcarelt from "@/assets/healthcarelt.png";
+import healthcarelb from "@/assets/healthcarelb.png";
 import bgrailway from "@/assets/bg_railway.png";
-import compernsive_alert from "@/assets/compernsive_alert.png";
-import clustermemory from "@/assets/cluster-memory.png";
-import railwayBg from "@/assets/railway-bg.jpg";
-import { SecurityCameraIcon, TrackCameraIcon, CrowdIcon, WarningIcon, MonitorPlayIcon, ProhibitIcon } from "@/components/icons/RailwayIcons";
-
-// Swiper
+import healthcarert from "@/assets/healthcarert.png";
+import healthcarerb from "@/assets/healthcarerb.png";
+import { LockKeyIcon } from "@/components/icons/LogisticsIcons";
+import { SecurityCameraIcon, WarningIcon, ShieldCheckIcon, CrowdIcon, FirstAidIcon, RapidIcon, CalendarCheckIcon, GearIcon } from "@/components/icons/RailwayIcons";
+import whychosesection from "@/assets/whychosesection.png";
+import { MultiStoreIcon } from "@/components/icons/retailIcons";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -31,7 +29,7 @@ import 'swiper/css/pagination';
 
 const heroSlides = [
   {
-    img: railwayBg,
+    img: healthcarefirst,
     title: (
       <>
         CamPulse for Healthcare <br />
@@ -43,7 +41,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: Railwaysecond,
+    img: healthcaresecond,
     title: (
       <>
         Smart Platform <br />
@@ -55,7 +53,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: healthcarethird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -67,7 +65,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutctafourth,
+    img: healthcarefourth,
     title: (
       <>
         Centralized Station <br />
@@ -230,7 +228,7 @@ const Healthcare = () => {
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Railwaysecond, aboutCtaBg, aboutctafourth].map((img, idx) => (
+              {[healthcarefirst, healthcaresecond, healthcarethird, healthcarefourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <div
                     className="w-full h-full bg-cover bg-center"
@@ -266,7 +264,8 @@ const Healthcare = () => {
                 transition={{ duration: 0.8, ease: EASE_OUT }}
               >
                 CamPulse for <br />
-                Healthcare
+                Healthcare & <br />
+                Hospital Security
               </motion.h1>
               <motion.p
                 className="text-neutral-300 font-roboto text-sm max-w-md mb-8 leading-relaxed"
@@ -274,7 +273,7 @@ const Healthcare = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
               >
-                Secure branches, ATMs, and critical assets with real-time monitoring.
+                Ensure safety, control access, and monitor critical areas in real time.
               </motion.p>
 
               <motion.div
@@ -303,120 +302,124 @@ const Healthcare = () => {
         </div>
       </section>
 
-      <style>{`
-        /* Mobile Swiper pagination dots */
-        .mobile-swiper .swiper-pagination {
-          bottom: 20px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .mobile-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 6px;
-          height: 6px;
-          margin: 0 4px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .mobile-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 20px;
-          border-radius: 3px;
-        }
 
-        /* Desktop Swiper pagination dots */
-        .hero-swiper .swiper-pagination {
-          bottom: 30px !important;
-          z-index: 30;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .hero-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4) !important;
-          opacity: 1 !important;
-          width: 8px;
-          height: 8px;
-          margin: 0 5px !important;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          background: #ffffff !important;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* Make transition right to left sliding super smooth */
-        .hero-swiper .swiper-wrapper,
-        .mobile-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-      `}</style>
-
-      {/* How CamPulse Powers Healthcare */}
-      <section className="py-24 bg-white relative">
+      {/* How CamPulse Powers Transport Infrastructure */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] mb-4 tracking-tight">
-              How CamPulse powers Healthcare
-            </h2>
-            <p className="text-center font-roboto font-regular text-neutral-500   text-lg max-w-2xl mx-auto mb-16">
-              Tailor-made for high-assurance deployments, CamPulse helps
-              authorities secure infrastructure, proactively.
-            </p>
+
+          {/* Badge */}
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex justify-center mb-5">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
+                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+                  Our Capabilities
+                </span>
+              </div>
+            </div>
           </ScrollReveal>
 
+          {/* Heading */}
+          <ScrollReveal direction="up" delay={150}>
+            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+              How{" "}
+              <span className="text-blue-700">
+                CamPulse powers Oil & Gas
+              </span>
+            </h2>
+          </ScrollReveal>
+
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: SecurityCameraIcon,
-                title: "Platform Surveillance",
-                desc: "Monitor platforms for crowding and unattended objects.",
+                title: "Critical Area Monitoring",
+                desc: "Monitor ICUs and restricted hospital zones.",
               },
               {
-                icon: TrackCameraIcon,
-                title: "Track Monitoring",
-                desc: "Detect trespassing and unauthorized movement on tracks.",
+                icon: LockKeyIcon,
+                title: "Access Control",
+                desc: "Secure all sensitive areas across hospitals.",
               },
               {
-                icon: ProhibitIcon,
-                title: "Intrusion Detection",
-                desc: "Identify restricted area access in real time.",
+                icon: ShieldCheckIcon,
+                title: "Patient Safety Monitoring",
+                desc: "Detect unusual activity across hospitals.",
               },
               {
                 icon: CrowdIcon,
-                title: "Crowd Monitoring",
-                desc: "Track passenger movement and density.",
+                title: "Visitor Management ",
+                desc: "Track visitor access across hospital entry points.",
               },
               {
                 icon: WarningIcon,
-                title: "Incident Alerts",
-                desc: "Enable real-time alerts for faster response.",
+                title: "Incident Detection",
+                desc: "Enable real-time alerts for critical incidents.",
               },
               {
-                icon: MonitorPlayIcon,
+                icon: MultiStoreIcon,
                 title: "Centralized Monitoring",
-                desc: "Manage multiple stations from one system.",
+                desc: "Manage hospital-wide security from one platform.",
               },
             ].map((feature, idx) => (
               <ScrollReveal
                 key={idx}
                 direction="up"
-                delay={100 * idx}
-                className="bg-white rounded-md p-8 shadow-lg hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 transition-all duration-300"
+                delay={idx * 100}
               >
-                <div className="w-12 h-12 rounded-xl  flex items-center justify-center mb-2">
-                  <feature.icon />
+                <div
+                  className="
+              group
+              bg-white
+              rounded-[14px]
+              p-7
+              min-h-[165px]
+
+             shadow-lg
+              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+
+              transition-all
+              duration-500
+              ease-out
+
+              hover:-translate-y-1
+            "
+                >
+                  {/* Icon */}
+                  <div
+                    className="
+                    w-11 h-11
+                    rounded-xl
+                    bg-[#EEF4FF]
+                    flex items-center justify-center
+                    mb-5
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#2563EB]
+                  "
+                  >
+                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                      <feature.icon />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                    {feature.title}
+                  </h3>
+
+                  {/* Desc */}
+                  <p className="text-[13px] leading-[1.7] text-neutral-500 font-normal ">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-roboto font-medium tex-neutral-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Centralized Healthcare Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
@@ -441,15 +444,15 @@ const Healthcare = () => {
 
               {/* Dark background frame */}
               <div className="relative max-w-7xl  w-full flex justify-center items-center">
-                
+
                 {/* Main dashboard image */}
                 <motion.img
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={RailwayMain}
+                  src={HealthcareMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] xl:w-auto h-auto xl:h-[660px] -mb-40  object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -457,9 +460,9 @@ const Healthcare = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={unathorized}
+                  src={healthcarelt}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-[-25px] xl:w-80 rounded-xl  z-30 block lg:hidden xl:block"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -467,10 +470,9 @@ const Healthcare = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-
-                  src={etatop}
+                  src={healthcarelb}
                   alt=""
-                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-5px] xl:bottom-12 xl:w-[220px] rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute left-0 bottom-4 w-[80px] sm:w-[120px] xl:-left-[-25px] xl:bottom-0 xl:w-[270px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -478,9 +480,9 @@ const Healthcare = () => {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  src={compernsive_alert}
+                  src={healthcarert}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-[-25px] xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -488,9 +490,9 @@ const Healthcare = () => {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  src={clustermemory}
+                  src={healthcarerb}
                   alt=""
-                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  className="absolute right-0 bottom-4 w-[110px] sm:w-[160px] xl:-right-[-25px] xl:bottom-8 xl:w-[450px] rounded-xl z-30 block lg:hidden xl:block"
                 />
 
               </div>
@@ -499,7 +501,40 @@ const Healthcare = () => {
         </div>
       </section>
 
-      <MeasurableSecurity />
+      <MeasurableSecurity
+        badgeTitle="WHY CHOOSE US"
+        titlePath1="Safer Care."
+        titlePath2="Better Control."
+        description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
+        buttonText="Book a Demo"
+        backgroundImage={whychosesection}
+        sectionClassName="py-32"
+        cardClassName="hover:-translate-y-1"
+
+        stats={[
+          {
+            icon: FirstAidIcon,
+            title: "Patient Safety",
+            desc: "Strengthen safety measures for patients, staff, and visitors across all zones.",
+          },
+          {
+            icon: RapidIcon,
+            title: "Access Response",
+            desc: "Respond faster to unauthorized entries and breaches.",
+          },
+          {
+            icon: CalendarCheckIcon,
+            title: "Event Visibility",
+            desc: "Maintain clear records of all critical incidents and events.",
+          },
+          {
+            icon: GearIcon,
+            title: "Admin Efficiency",
+            desc: "Reduce administrative burden on hospital staff operations.",
+          },
+        ]}
+      />
+
 
       {/* About Us Sub-section */}
       <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
@@ -557,17 +592,16 @@ const Healthcare = () => {
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
+                  style={{ backgroundImage: `url(${healthcarecta_bg})` }}
                 />
 
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
+                <div className="absolute inset-0 bg-[#0B2A5B]/70" />
 
                 {/* CONTENT */}
                 <div className="relative z-10 max-w-4xl px-6">
 
                   <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your healthcare security
-                    with CamPulse.
+                    Enhance your Hospital Security with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}

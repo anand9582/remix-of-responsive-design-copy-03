@@ -11,7 +11,7 @@ import educationfirst from "@/assets/education-first.jpg";
 import educationsecond from "@/assets/education-second.jpg";
 import educationthird from "@/assets/education-third.jpg";
 import educationfourth from "@/assets/education-fourth.jpg";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
+import eduCtaBg from "@/assets/edu_cta.jpg";
 import aboutctafourth from "@/assets/railway-fourth-bg.jpg";
 import educationMain from "@/assets/education-main.png";
 import educationrt from "@/assets/educationrt.png";
@@ -59,7 +59,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: eduCtaBg,
     title: (
       <>
         Real-time Intrusion <br />
@@ -597,17 +597,16 @@ const Education = () => {
 
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
+                  style={{ backgroundImage: `url(${eduCtaBg})` }}
                 />
 
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
+                <div className="absolute inset-0 bg-[#0a2153d6]" />
 
                 {/* CONTENT */}
                 <div className="relative z-10 max-w-4xl px-6">
 
-                  <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your education security
-                    with CamPulse.
+                  <h2 className="text-white font-aleo font-semibold lg:text-[56px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
+                    Build a safer Campus with CamPulse.
                   </h2>
 
                   {/* SIMPLE BUTTON */}
