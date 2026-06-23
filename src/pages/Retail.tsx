@@ -142,15 +142,17 @@ const Retail = () => {
           >
             {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
-                <div
-                  className="w-full h-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${s.img})` }}
+                <img
+                  src={s.img}
+                  alt=""
+                  className="w-full h-full object-cover object-center"
+                  loading={idx === 0 ? "eager" : "lazy"}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Active Cameras UI Card overlay (dynamic content based on activeIndex) */}
+          {/* Active Cameras UI Card overlay (static content) */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
             <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-2.5">
               <Video className="w-4 h-4" />
@@ -158,16 +160,15 @@ const Retail = () => {
             <div className="flex-1 min-w-0">
               <p className="text-[10px] font-semibold text-slate-500 leading-none mb-1">Active Cameras</p>
               <motion.div
-                key={activeIndex}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex items-baseline"
               >
                 <span className="text-sm font-bold text-slate-800">
-                  {heroSlides[activeIndex]?.cameras || "20"}
+                  {heroSlides[0]?.cameras || "20"}
                 </span>
                 <span className="text-[9px] text-slate-400 font-medium ml-1">
-                  / {heroSlides[activeIndex]?.totalCameras || "24"} Total
+                  / {heroSlides[0]?.totalCameras || "24"} Total
                 </span>
               </motion.div>
             </div>
@@ -191,18 +192,17 @@ const Retail = () => {
             </div>
           </div>
 
-          {/* Dynamic text based on slide change with micro-animations */}
+          {/* Static text on mobile */}
           <motion.div
-            key={activeIndex}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <h1 className="text-white font-calistoga font-normal text-[31px] leading-[1.15] tracking-tight mb-4 max-w-md mx-auto">
-              {heroSlides[activeIndex]?.title}
+              {heroSlides[0]?.title}
             </h1>
             <p className="text-neutral-300 font-roboto text-sm mb-8 leading-relaxed max-w-sm mx-auto">
-              {heroSlides[activeIndex]?.desc}
+              {heroSlides[0]?.desc}
             </p>
           </motion.div>
           <div className="flex justify-center">
@@ -231,9 +231,11 @@ const Retail = () => {
             >
               {[retailbannerfirst, retailbannersecond, retailbannerthird, retailbannerfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
-                  <div
-                    className="w-full h-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${img})` }}
+                  <img
+                    src={img}
+                    alt=""
+                    className="w-full h-full object-cover object-center"
+                    loading={idx === 0 ? "eager" : "lazy"}
                   />
                 </SwiperSlide>
               ))}
@@ -438,9 +440,7 @@ const Retail = () => {
               </h2>
             </div>
 
-            {/* Dashboard Container */}
-
-            <div className="relative flex justify-center items-center  rounded-2xl ">
+            {/* Dashboard Container */}            <div className="relative flex justify-center items-center  rounded-2xl ">
 
               {/* Dark background frame */}
               <div className="relative max-w-7xl  w-full flex justify-center items-center ">
@@ -451,7 +451,8 @@ const Retail = () => {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   src={retailMain}
                   alt="dashboard"
-                  className="rounded-xl relative z-20 w-[84%] sm:w-[80%] -mb-16  xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
+                  loading="lazy"
+                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] -mb-8 md:-mb-12 xl:-mb-16  xl:w-auto h-auto xl:h-[560px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -461,7 +462,8 @@ const Retail = () => {
                   transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   src={retailtl}
                   alt=""
-                  className="absolute left-0 top-1 w-[110px] sm:w-[160px] xl:-left-0 xl:top-1  xl:top-[-20px]  xl:w-72 rounded-xl shadow-xl z-30 block lg:hidden xl:block"
+                  loading="lazy"
+                  className="absolute z-30 left-2 top-[-10px] xl:top-[-20px] w-[100px] sm:w-[140px] xl:-left-0 xl:w-72 rounded-xl shadow-xl"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -469,10 +471,10 @@ const Retail = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-
                   src={retailbl}
                   alt=""
-                  className="absolute left-0 bottom-1 w-[80px] sm:w-[120px] xl:-left-[-30px]  xl:bottom-12  xl:w-[260px] rounded-xl z-30 block lg:hidden xl:block"
+                  loading="lazy"
+                  className="absolute z-30 left-2 bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-30px]  xl:bottom-12  xl:w-[260px] rounded-xl"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -482,7 +484,8 @@ const Retail = () => {
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   src={retailrt}
                   alt=""
-                  className="absolute right-0 top-1 w-[120px] sm:w-[180px] xl:-right-10 xl:top-[-20px] xl:w-80 rounded-xl z-30 block lg:hidden xl:block"
+                  loading="lazy"
+                  className="absolute z-30 right-2 top-[-10px] xl:top-[-20px] w-[110px] sm:w-[150px] xl:-right-10 xl:w-80 rounded-xl"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -492,7 +495,8 @@ const Retail = () => {
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   src={retailbr}
                   alt=""
-                  className="absolute right-0 bottom-2 w-[110px] sm:w-[160px] xl:-right-[60px] xl:bottom-2 xl:w-72 rounded-xl z-30 block lg:hidden xl:block"
+                  loading="lazy"
+                  className="absolute z-30 right-2 bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[60px] xl:bottom-2 xl:w-72 rounded-xl"
                 />
 
               </div>

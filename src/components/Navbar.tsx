@@ -178,7 +178,7 @@ const Navbar = () => {
                   {desktopDropdownOpen && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
 
-                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 min-w-[640px] grid grid-rows-4 grid-flow-col gap-x-8 gap-y-1">
+                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 min-w-[700px] grid grid-rows-4 grid-flow-col gap-x-8 gap-y-1">
 
                         {industryItems.map((item) => {
                           const Icon = item.icon;
@@ -188,20 +188,18 @@ const Navbar = () => {
                               key={item.name}
                               to={item.href}
                               onClick={() => setDesktopDropdownOpen(false)}
-                              className="group/item flex items-start gap-3 p-3 rounded-xl transition-colors"
+                              className="group flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-slate-50"
                             >
-                              <div className="w-9 h-9 rounded-sm bg-blue-50 flex items-center justify-center flex-shrink-0">
-
+                              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 transition-colors duration-200">
                                 <Icon className="w-[18px] h-[18px] text-blue-600" />
-
                               </div>
 
                               <div>
-                                <p className="text-sm font-semibold text-gray-900 leading-tight">
+                                <p className="text-sm font-semibold text-gray-900 leading-tight transition-colors duration-200 group-hover:text-blue-600">
                                   {item.name}
                                 </p>
 
-                                <p className="text-xs text-gray-500 mt-0.5 leading-snug">
+                                <p className="text-xs text-gray-500 leading-snug">
                                   {item.desc}
                                 </p>
                               </div>
@@ -248,27 +246,27 @@ const Navbar = () => {
 
             <Button
               className="
-    group
-    h-9
-    rounded-full
-    px-4
-    text-sm
-    font-semibold
-    text-white
+                group
+                h-9
+                rounded-full
+                px-4
+                text-sm
+                font-semibold
+                text-white
 
-    bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]
+                bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]
 
-    shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
+                shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
 
-    transition-all
-    duration-300
-    ease-out
+                transition-all
+                duration-300
+                ease-out
 
-    hover:bg-[linear-gradient(96.6deg,#2753B5_5.01%,#00226C_92.14%)]
-    hover:shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
+                hover:bg-[linear-gradient(96.6deg,#2753B5_5.01%,#00226C_92.14%)]
+                hover:shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10),0_10px_15px_-3px_rgba(0,0,0,0.10)]
 
-    active:scale-[0.98]
-  "
+                active:scale-[0.98]
+              "
             >
               Book a Demo
             </Button>
