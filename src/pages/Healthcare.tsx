@@ -435,7 +435,7 @@ const Healthcare = () => {
                   COMMAND CENTRE
                 </span>
               </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
+              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[36px] tracking-tight mb-4">
                 Centralized Healthcare Control Dashboard
               </h2>
             </div>

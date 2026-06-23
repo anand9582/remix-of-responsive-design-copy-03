@@ -446,51 +446,51 @@ const OilGas = () => {
 
               {/* Dark background frame */}
               <div className="relative max-w-7xl  w-full flex justify-center items-center">
-                {/* Main dashboard image */}
-                <motion.img
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={oilgasMain}
-                  alt="dashboard"
-                  loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto xl:h-[660px] -mb-16 md:-mb-28 xl:-mb-40  object-cover"
-                />
+                <div className="relative w-[90%] sm:w-[80%] xl:w-auto -mb-16 md:-mb-28 xl:-mb-40">
+                  {/* Main dashboard image */}
+                  <motion.img
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    src={oilgasMain}
+                    alt="dashboard"
+                    loading="lazy"
+                    className="rounded-xl relative z-20 w-full h-auto xl:w-auto xl:h-[660px] object-cover"
+                  />
 
-                {/* LEFT TOP CARD */}
-                <motion.img
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  src={oilgaslt}
-                  alt=""
-                  loading="lazy"
-                  className="absolute z-30 left-2 top-1 w-[100px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl"
-                />
+                  {/* LEFT TOP CARD */}
+                  <motion.img
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    src={oilgaslt}
+                    alt=""
+                    loading="lazy"
+                    className="absolute z-30 left-[-8px] top-1 w-[110px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl"
+                  />
 
-                {/* LEFT BOTTOM ALERT */}
-                <motion.img
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  src={oilgaslb}
-                  alt=""
-                  loading="lazy"
-                  className="absolute z-30 left-2 bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-18 xl:bottom-2 xl:w-[350px] rounded-xl"
-                />
+                  {/* LEFT BOTTOM ALERT */}
+                  <motion.img
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    src={oilgaslb}
+                    alt=""
+                    loading="lazy"
+                    className="absolute z-30 left-[-8px] bottom-[-10px] w-[90px] sm:w-[110px] xl:-left-18 xl:bottom-2 xl:w-[350px] rounded-xl"
+                  />
 
-                {/* RIGHT TOP CARD */}
-                <motion.img
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  src={oilrt}
-                  alt=""
-                  loading="lazy"
-                  className="absolute z-30 right-2 top-1 w-[110px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl"
-                />
-
-
+                  {/* RIGHT TOP CARD */}
+                  <motion.img
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    src={oilrt}
+                    alt=""
+                    loading="lazy"
+                    className="absolute z-30 right-[-8px] top-1 w-[120px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl"
+                  />
+                </div>
               </div>
             </div>
           </div>
