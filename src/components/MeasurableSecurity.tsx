@@ -123,12 +123,12 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
     rounded-full
 
     w-50 sm:w-auto
-
     bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
 
-    shadow-[0_8px_20px_rgba(37,99,235,0.35)]
 
-    transition-all duration-300
+    transition-all duration-300 ease-out
+
+    hover:-translate-y-[2px]
     hover:scale-[1.02]
   "
             >
@@ -144,7 +144,6 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
                 strokeWidth={2.5}
               />
             </button>
-
           </ScrollReveal>
         </div>
 

@@ -17,7 +17,7 @@ import logisticsleftbottom from "@/assets/logisticsleft-bottom.png";
 import bgrailway from "@/assets/bg_railway.png";
 import logisticsright from "@/assets/logisticsright-top.png";
 import logisticsbottom from "@/assets/logistics-bottom.png";
-import railwayBg from "@/assets/railway-bg.jpg";
+import logisticsfirst from "@/assets/logistics-first.jpg";
 import { WarehouseIcon, DockIcon, TheftIcon, TruckIcon, LockKeyIcon, ChartBarIcon, ThroughputIcon, ZoneIcon, LossIcon, Operationalcon } from "@/components/icons/LogisticsIcons";
 import whychosesection from "@/assets/whychosesection.png";
 
@@ -29,7 +29,7 @@ import 'swiper/css/pagination';
 
 const heroSlides = [
   {
-    img: railwayBg,
+    img: logisticsfirst,
     title: (
       <>
         CamPulse for Logistics <br />
@@ -228,7 +228,7 @@ const Logistics = () => {
               loop={true}
               className="w-full h-full hero-swiper"
             >
-              {[railwayBg, Logisticssecond, LogisticsThird, Logisticsfourth].map((img, idx) => (
+              {[logisticsfirst, Logisticssecond, LogisticsThird, Logisticsfourth].map((img, idx) => (
                 <SwiperSlide key={idx}>
                   <img
                     src={img}
@@ -321,7 +321,7 @@ const Logistics = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[28px] sm:text-[35px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Logistics
@@ -391,21 +391,19 @@ const Logistics = () => {
                     className="
                     w-11 h-11
                     rounded-xl
-                    bg-[#EEF4FF]
                     flex items-center justify-center
-                    mb-5
+                    mb-2
                     transition-all
                     duration-500
-                    group-hover:bg-[#2563EB]
                   "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB] transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-[18px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 

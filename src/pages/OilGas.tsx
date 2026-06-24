@@ -380,7 +380,6 @@ const OilGas = () => {
               min-h-[165px]
 
              shadow-lg
-              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
 
               transition-all
               duration-500
@@ -393,22 +392,19 @@ const OilGas = () => {
                   <div
                     className="
                     w-11 h-11
-                    rounded-xl
-                    bg-[#EEF4FF]
                     flex items-center justify-center
-                    mb-5
+                    mb-1
                     transition-all
                     duration-500
-                    group-hover:bg-[#2563EB]
                   "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB] transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-[18px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 

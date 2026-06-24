@@ -8,7 +8,7 @@ export interface CustomIconProps extends SVGProps<SVGSVGElement> {
 export const IconWrapper = ({
   size = 36,
   className = "",
-  viewBox = "0 0 36 30",
+  viewBox = "0 0 36 34",
   children,
   ...props
 }: CustomIconProps & { children: React.ReactNode }) => {

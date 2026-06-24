@@ -88,20 +88,20 @@ const ProfileFeature = ({
       <ScrollReveal
         direction="right"
         delay={200}
-        className="md:col-span-7 rounded-md bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-5 sm:p-5 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
+        className="md:col-span-7 rounded-md bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-5 sm:p-20 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
       >
         {/* Watermark */}
         <div className="absolute top-[15px] right-[15px] opacity-50">
           <img src={logoT} alt="Logo" className="h-16 object-contain" />
         </div>
 
-        <h3 className="text-white font-calistoga font-regular text-lg md:text-[20px] uppercase mb-6 leading-[1.3] max-w-2xl">
+        <h3 className="text-white font-calistoga font-regular text-lg md:text-[30px] uppercase mb-6 leading-[1.3] max-w-2xl">
           {title}
         </h3>
 
         <div className="space-y-5 max-w-2xl">
           {descriptions.map((desc, idx) => (
-            <p key={idx} className="text-blue-100/80 text-[12px]  lg:text-[15px] leading-relaxed">
+            <p key={idx} className="text-blue-100/80 text-[12px]  lg:text-[14px] leading-relaxed">
               {desc}
             </p>
           ))}

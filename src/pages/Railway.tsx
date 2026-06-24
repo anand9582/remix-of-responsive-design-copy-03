@@ -383,36 +383,31 @@ const Railway = () => {
               >
                 <div
                   className="
-              group
-              bg-white
-              rounded-[14px]
-              p-7
-              min-h-[165px]
-
-             shadow-lg
-              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
-
-              transition-all
-              duration-500
-              ease-out
-
-              hover:-translate-y-1
-            "
+                    group
+                    bg-white
+                    rounded-[14px]
+                    p-7
+                    min-h-[165px]
+                    shadow-lg
+                    hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+                    transition-all
+                    duration-500
+                    ease-out
+                    hover:-translate-y-1
+                  "
                 >
                   {/* Icon */}
                   <div
                     className="
-                    w-11 h-11
+                    w-10 h-10
                     rounded-xl
-                    bg-[#EEF4FF]
                     flex items-center justify-center
                     mb-5
                     transition-all
                     duration-500
-                    group-hover:bg-[#2563EB]
                   "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB]  transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
@@ -465,7 +460,7 @@ const Railway = () => {
                   src={RailwayMain}
                   alt="dashboard"
                   loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto  md:-mb-28 xl:-mb-40  xl:h-[660px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto  -mb-10 xl:-mb-40  xl:h-[660px] object-cover"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -476,7 +471,7 @@ const Railway = () => {
                   src={unathorized}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 top-1 w-[100px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl"
+                  className="absolute z-30 left-2 top-1 w-[100px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -487,7 +482,7 @@ const Railway = () => {
                   src={etatop}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 bottom-[30px] sm:bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px] rounded-xl"
+                  className="absolute z-30 left-2 bottom-[30px] sm:bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px]"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -498,7 +493,7 @@ const Railway = () => {
                   src={compernsive_alert}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 top-1 w-[110px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl"
+                  className="absolute z-30 right-2 top-1 w-[110px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -509,7 +504,7 @@ const Railway = () => {
                   src={clustermemory}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 bottom-[30px] sm:bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl"
+                  className="absolute z-30 right-2 bottom-[30px] sm:bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-25px] xl:bottom-8 xl:w-72 "
                 />
 
               </div>

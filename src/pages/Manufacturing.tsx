@@ -203,10 +203,26 @@ const Manufacturing = () => {
               {heroSlides[0]?.desc}
             </p>
           </motion.div>
-          <div className="flex justify-center">
-            <button className="inline-flex items-center justify-center bg-white text-blue-600 font-semibold px-8 py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-base">
-              Book a Demo
-              <ArrowUpRight className="w-5 h-5 ml-2 text-blue-600" />
+          <div className="flex justify-center w-full">
+            <button
+              className="
+                             inline-flex items-center justify-center gap-2
+                             sm:w-auto
+                             max-w-[260px]
+                             px-6 sm:px-8
+                             py-3 sm:py-3.5
+                             rounded-full
+                             bg-white
+                             text-blue-600
+                             text-[14px] sm:text-base
+                             font-semibold
+                             hover:bg-neutral-100
+                             transition-all duration-300
+                             shadow-md
+                            "
+            >
+              <span>Book a Demo</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
             </button>
           </div>
         </div>
@@ -303,7 +319,7 @@ const Manufacturing = () => {
       </section>
 
 
-      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="lg:py-24 py-10 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Badge */}
@@ -320,7 +336,7 @@ const Manufacturing = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[30px] sm:text-[38px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[22px] sm:text-[38px] leading-[1.2] tracking-[-0.03em] mb-6 sm:mb-16 text-[#111827]">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Manufacturing
@@ -369,47 +385,31 @@ const Manufacturing = () => {
               >
                 <div
                   className="
-                group
-                bg-white
-                rounded-[14px]
-                p-7
-                min-h-[165px]
-
-              shadow-lg
-                hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
-
-                transition-all
-                duration-500
-                ease-out
-
-                hover:-translate-y-1
-              "
+                     group bg-white rounded-[14px] p-7 min-h-[165px] shadow-lg hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)] transition-all duration-500 ease-out hover:-translate-y-1 
+                  "
                 >
                   {/* Icon */}
                   <div
                     className="
-                      w-11 h-11
-                      rounded-xl
-                      bg-[#EEF4FF]
-                      flex items-center justify-center
-                      mb-5
-                      transition-all
-                      duration-500
-                      group-hover:bg-[#2563EB]
-                    "
+                    w-10 h-10
+                    flex items-center justify-center
+                    mb-2
+                    transition-all
+                    duration-500
+                  "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB] transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-lg leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 
                   {/* Desc */}
-                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                  <p className="text-[13px] leading-[1.7] text-neutral-500 font-normal ">
                     {feature.desc}
                   </p>
                 </div>
@@ -422,16 +422,16 @@ const Manufacturing = () => {
       {/* Centralized Manufacturing Control Dashboard */}
       <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
-          <div className="pt-10">
+          <div className="lg:pt-10 pt-0">
             {/* Heading */}
-            <div className="text-center mb-16">
-              <div className="flex justify-center mb-4">
+            <div className="text-center mb-7 lg:mb-16">
+              <div className="flex justify-center lg:mb-4">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] mb-4 border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
               </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight">
+              <h2 className="text-white font-aleo font-semibold text-1xl sm:text-4xl md:text-[40px] tracking-tight">
                 Centralized Industrial Control Dashboard
               </h2>
             </div>
@@ -450,7 +450,7 @@ const Manufacturing = () => {
                   src={RailwayMain}
                   alt="dashboard"
                   loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto -mb-16 md:-mb-28 xl:-mb-40  xl:h-[660px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto  md:-mb-28 xl:-mb-40 xl:h-[660px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -472,7 +472,7 @@ const Manufacturing = () => {
                   src={manufacturinglfbt}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-5 xl:w-[380px]"
+                  className="absolute z-30 left-2 bottom-6 md:bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-5 xl:w-[380px]"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -494,13 +494,13 @@ const Manufacturing = () => {
                   src={manufacturingbt}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-15px] xl:bottom-5 xl:w-72 rounded-xl"
+                  className="absolute z-30 right-2 bottom-3 md:bottom-[-10px] xl:bottom-5 w-[110px] sm:w-[150px] xl:-right-[-15px] xl:bottom-5 xl:w-72 rounded-xl"
                 />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       <MeasurableSecurity
         badgeTitle="WHY CHOOSE US"
@@ -606,10 +606,8 @@ const Manufacturing = () => {
 
                   {/* SIMPLE BUTTON */}
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
-
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
-
                   </button>
                 </div>
 
@@ -619,7 +617,7 @@ const Manufacturing = () => {
 
         </div>
       </section>
-    </div>
+    </div >
   );
 };
 

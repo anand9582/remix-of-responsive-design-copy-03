@@ -132,7 +132,6 @@ const Banking = () => {
       {/* MOBILE: image on top, content below */}
       <section className="relative overflow-hidden">
 
-
         {/* Mobile image block */}
         <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
           <Swiper
@@ -156,32 +155,6 @@ const Banking = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Active Cameras UI Card overlay (static content) */}
-          <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-2.5">
-              <Video className="w-4 h-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] font-semibold text-slate-500 leading-none mb-1">Active Cameras</p>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex items-baseline"
-              >
-                <span className="text-sm font-bold text-slate-800">
-                  {heroSlides[0]?.cameras || "20"}
-                </span>
-                <span className="text-[9px] text-slate-400 font-medium ml-1">
-                  / {heroSlides[0]?.totalCameras || "24"} Total
-                </span>
-              </motion.div>
-            </div>
-            <div className="flex items-center gap-1 border border-red-200 bg-red-50 px-2 py-0.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[8px] font-bold text-red-600 uppercase tracking-wider">Live</span>
-            </div>
-          </div>
 
           {/* Premium dark gradient fade overlay merging to solid black at the bottom */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/10 to-[#07090e] z-10 pointer-events-none" />
@@ -310,7 +283,7 @@ const Banking = () => {
       </section>
 
       {/* How CamPulse Powers Transport Infrastructure */}
-      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="py-12 md:py-20  bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Badge */}
@@ -381,14 +354,10 @@ const Banking = () => {
               rounded-[14px]
               p-7
               min-h-[165px]
-
              shadow-lg
-              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
-
               transition-all
               duration-500
               ease-out
-
               hover:-translate-y-1
             "
                 >
@@ -396,22 +365,19 @@ const Banking = () => {
                   <div
                     className="
                     w-11 h-11
-                    rounded-xl
-                    bg-[#EEF4FF]
                     flex items-center justify-center
-                    mb-5
+                    mb-1
                     transition-all
                     duration-500
-                    group-hover:bg-[#2563EB]
                   "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB]  transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-[18px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 
@@ -456,7 +422,7 @@ const Banking = () => {
                   src={bankingMain}
                   alt="dashboard"
                   loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto -mb-16 md:-mb-28 xl:-mb-40 xl:h-[700px] object-cover shadow-2xl"
+                  className="relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto -mb-10 md:-mb-28 xl:-mb-40 xl:h-[700px] object-cover"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -467,7 +433,7 @@ const Banking = () => {
                   src={bankinglt}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 top-[-10px] w-[100px] sm:w-[140px] xl:-left-0 xl:top-[-18px] xl:w-80 rounded-xl shadow-xl"
+                  className="absolute z-30 left-2 top-[-10px] w-[100px] sm:w-[140px] xl:-left-0 xl:top-[-18px] xl:w-80"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -478,7 +444,7 @@ const Banking = () => {
                   src={bankinglb}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[280px] rounded-xl"
+                  className="absolute z-30 left-2 bottom-[-2px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[280px]"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -489,7 +455,7 @@ const Banking = () => {
                   src={bankingrt}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 top-[-10px] w-[110px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80 rounded-xl"
+                  className="absolute z-30 right-2 top-[-10px] w-[110px] sm:w-[150px] xl:-right-10 xl:top-1 xl:w-80"
                 />
 
                 {/* RIGHT BOTTOM CARD */}
@@ -500,7 +466,7 @@ const Banking = () => {
                   src={bankingrb}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-5px] xl:bottom-8 xl:w-72 rounded-xl"
+                  className="absolute z-30 right-2 bottom-[-2px] w-[110px] sm:w-[150px] xl:-right-[-5px] xl:bottom-8 xl:w-72"
                 />
 
               </div>

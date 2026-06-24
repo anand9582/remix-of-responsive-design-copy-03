@@ -305,7 +305,7 @@ const Retail = () => {
 
 
       {/* How CamPulse Powers Transport Infrastructure */}
-      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="py-10 lg:py-20 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Badge */}
@@ -322,7 +322,7 @@ const Retail = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[36px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[28px] sm:text-[36px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Transport Infrastructure
@@ -371,42 +371,37 @@ const Retail = () => {
               >
                 <div
                   className="
-              group
-              bg-white
-              rounded-[14px]
-              p-7
-              min-h-[165px]
-
-             shadow-lg
-              hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
-
-              transition-all
-              duration-500
-              ease-out
-
-              hover:-translate-y-1
-            "
+                    group
+                    bg-white
+                    rounded-[14px]
+                    p-7
+                    min-h-[165px]
+                    shadow-lg
+                    hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+                    transition-all
+                    duration-500
+                    ease-out
+                    hover:-translate-y-1
+                  "
                 >
                   {/* Icon */}
                   <div
                     className="
-                    w-11 h-11
+                    w-10 h-10
                     rounded-xl
-                    bg-[#EEF4FF]
                     flex items-center justify-center
-                    mb-5
+                    mb-1
                     transition-all
                     duration-500
-                    group-hover:bg-[#2563EB]
                   "
                   >
-                    <div className="text-[#2563EB] group-hover:text-white transition-colors duration-500">
+                    <div className="text-[#2563EB]  transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="text-[18px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 
