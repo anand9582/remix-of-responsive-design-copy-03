@@ -553,7 +553,7 @@ const Manufacturing = () => {
           </ScrollReveal>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12 mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-12 lg:mb-24 px-4 lg:px-12 lg:mt-20 mt-6">
             {stats.map((stat, idx) => (
               <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
                 <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">

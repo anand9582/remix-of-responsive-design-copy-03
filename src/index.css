@@ -156,13 +156,15 @@
 }
 
 .mobile-swiper .swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.4) !important;
+  background: #ffffff !important;
   opacity: 1 !important;
   width: 6px;
   height: 6px;
   margin: 0 4px !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+
 
 .mobile-swiper .swiper-pagination-bullet-active {
   background: #ffffff !important;
@@ -197,4 +199,28 @@
 .hero-swiper .swiper-wrapper,
 .mobile-swiper .swiper-wrapper {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Mobile Swiper pagination dots */
+.mobile-swiper .swiper-pagination {
+  bottom: 20px !important;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-swiper .swiper-pagination-bullet {
+  background: #ffffff !important;
+  opacity: 1 !important;
+  width: 6px;
+  height: 6px;
+  margin: 0 4px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-swiper .swiper-pagination-bullet-active {
+  background: #ffffff !important;
+  width: 20px;
+  border-radius: 3px;
 }

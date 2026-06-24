@@ -69,14 +69,14 @@ const Footer = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
 
           {/* Main Footer Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-14 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 lg:gap-y-14 lg:gap-y-8 gap-y-6 lg:pb-12 pb-4 border-b border-white/10">
 
             {/* Column 1: Brand Info */}
             <div className="lg:pr-8">
               <div className="flex items-center mb-6">
                 <img src={logowhite} alt="CamPulse by Transline Technologies" className="w-[155px] h-[36px] object-contain object-left" />
               </div>
-              <p className="text-white font-roboto font-regular text-[13px] leading-[1.6] mb-8 pr-4">
+              <p className="text-white font-roboto font-regular text-[13px] leading-[1.6] lg:mb-8 mb-6 pr-4">
                 AI-powered unified security & smart infrastructure platform by Transline Technologies.
               </p>
               <div className="space-y-4 text-[#9DB2D6] text-[13px]">
@@ -97,8 +97,8 @@ const Footer = () => {
 
             {/* Column 2: PRODUCT */}
             <div>
-              <h4 className="text-white font-sans font-bold text-[13px] mb-6 uppercase tracking-wider">Product</h4>
-              <ul className="space-y-3.5">
+              <h4 className="text-white font-sans font-bold text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Product</h4>
+              <ul className="lg:space-y-3.5 space-y-2">
                 {productLinks.map((l) => (
                   <li key={l}>
                     <a href="#" className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l}</a>
@@ -109,8 +109,8 @@ const Footer = () => {
 
             {/* Column 3: INDUSTRIES */}
             <div>
-              <h4 className="text-white  font-roboto font-medium text-[13px] mb-6 uppercase tracking-wider">Industries</h4>
-              <ul className="space-y-3.5">
+              <h4 className="text-white  font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Industries</h4>
+              <ul className="lg:space-y-3.5 space-y-2">
                 {industryLinks.map((l) => (
                   <li key={l.name}>
                     <Link to={l.href} className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l.name}</Link>
@@ -121,8 +121,8 @@ const Footer = () => {
 
             {/* Column 4: RESOURCES & COMPANY */}
             <div>
-              <h4 className="text-white   font-roboto font-medium text-[13px] mb-6 uppercase tracking-wider">Resources</h4>
-              <ul className="space-y-3.5 mb-8">
+              <h4 className="text-white font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Resources</h4>
+              <ul className="lg:space-y-3.5 space-y-2 mb-4 lg:mb-6">
                 {resourceLinks.map((l) => (
                   <li key={l.label}>
                     <a
@@ -134,8 +134,8 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-              <h4 className="text-white font-roboto font-medium text-[13px]  mb-6 uppercase tracking-wider">Company</h4>
-              <ul className="space-y-3.5">
+              <h4 className="text-white font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Company</h4>
+              <ul className="lg:space-y-3.5 space-y-2">
                 {companyLinks.map((l) => (
                   <li key={l.label}>
                     <a
@@ -151,7 +151,7 @@ const Footer = () => {
           </div>
 
           {/* Bottom bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between py-6 gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between lg:py-6 py-4 gap-4">
             <p className="text-[#9DB2D6] text-[12px] tracking-wide">
               2025 @ CamPulse. Powered by Transline Technologies Limited
             </p>

@@ -123,7 +123,7 @@ const Railway = () => {
     <div className="min-h-screen bg-white pt-16 lg:pt-0">
       <section className="relative overflow-hidden">
 
-        <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
+        <div className="block lg:hidden relative h-[350px] w-full overflow-hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -199,10 +199,26 @@ const Railway = () => {
               {heroSlides[0]?.desc}
             </p>
           </motion.div>
-          <div className="flex justify-center">
-            <button className="inline-flex items-center justify-center bg-white text-blue-600 font-semibold px-8 py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-base">
-              Book a Demo
-              <ArrowUpRight className="w-5 h-5 ml-2 text-blue-600" />
+          <div className="flex justify-center w-full">
+            <button
+              className="
+                    inline-flex items-center justify-center gap-2
+                    sm:w-auto
+                    max-w-[260px]
+                    px-6 sm:px-8
+                    py-3 sm:py-3.5
+                    rounded-full
+                    bg-white
+                    text-blue-600
+                    text-[14px] sm:text-base
+                    font-semibold
+                    hover:bg-neutral-100
+                    transition-all duration-300
+                    shadow-md
+                   "
+            >
+              <span>Book a Demo</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
             </button>
           </div>
         </div>
@@ -301,7 +317,7 @@ const Railway = () => {
 
 
       {/* How CamPulse Powers Transport Infrastructure */}
-      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="md:py-24 py-8 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Badge */}
@@ -318,7 +334,7 @@ const Railway = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[36px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[20px] md:text-[36px] leading-[1.2] tracking-[-0.03em] lg:mb-16  text-[#111827]">
               How{" "}
               <span className="text-blue-600">
                 CamPulse powers Transport Infrastructure
@@ -402,12 +418,12 @@ const Railway = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-2">
+                  <h3 className="lg:text-[20px] text-[16px] leading-none font-roboto font-medium text-neutral-800 mb-2">
                     {feature.title}
                   </h3>
 
                   {/* Desc */}
-                  <p className="text-[14px] leading-[1.7] text-neutral-500 font-normal ">
+                  <p className="lg:text-[14px] text-[14px] leading-[1.7] text-neutral-500 font-normal ">
                     {feature.desc}
                   </p>
                 </div>
@@ -418,18 +434,18 @@ const Railway = () => {
       </section>
 
       {/* Centralized Railway Control Dashboard */}
-      <section className="py-8 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
+      <section className="lg:py-8 py-2 pb-0 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgrailway})` }}>
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
           <div className="pt-10">
             {/* Heading */}
-            <div className="text-center mb-16">
+            <div className="text-center lg:mb-16 mb-6">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111e38]  mb-4  text-neutral-300 text-[12px] font-medium tracking-[0.15em] uppercase">
+                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111e38]  lg:mb-4  text-neutral-300 text-[12px] font-medium tracking-[0.15em] uppercase">
                   <span className="w-1.5 h-1.5 rotate-45 bg-white" />
                   COMMAND CENTRE
                 </span>
               </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
+              <h2 className="text-white font-aleo font-semibold text-1xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
                 Centralized Transport Control Dashboard
               </h2>
             </div>
@@ -449,7 +465,7 @@ const Railway = () => {
                   src={RailwayMain}
                   alt="dashboard"
                   loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto -mb-16 md:-mb-28 xl:-mb-40  xl:h-[660px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto  md:-mb-28 xl:-mb-40  xl:h-[660px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -460,7 +476,7 @@ const Railway = () => {
                   src={unathorized}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 top-1 w-[100px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl shadow-xl"
+                  className="absolute z-30 left-2 top-1 w-[100px] sm:w-[140px] xl:-left-0 xl:top-1 xl:w-72 rounded-xl"
                 />
 
                 {/* LEFT BOTTOM ALERT */}
@@ -471,7 +487,7 @@ const Railway = () => {
                   src={etatop}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 left-2 bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px] rounded-xl"
+                  className="absolute z-30 left-2 bottom-[30px] sm:bottom-[-10px] w-[80px] sm:w-[110px] xl:-left-[-5px] xl:bottom-12 xl:w-[250px] rounded-xl"
                 />
 
                 {/* RIGHT TOP CARD */}
@@ -493,7 +509,7 @@ const Railway = () => {
                   src={clustermemory}
                   alt=""
                   loading="lazy"
-                  className="absolute z-30 right-2 bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl"
+                  className="absolute z-30 right-2 bottom-[30px] sm:bottom-[-10px] w-[110px] sm:w-[150px] xl:-right-[-25px] xl:bottom-8 xl:w-72 rounded-xl"
                 />
 
               </div>
@@ -548,19 +564,19 @@ const Railway = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={200}>
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] tracking-tight">
+            <h2 className="text-center text-[#111827] font-aleo font-medium text-2xl sm:text-4xl md:text-[40px] tracking-tight">
               Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
             </h2>
           </ScrollReveal>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12 mt-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 lg:mb-24 mb-14  px-4 lg:px-12 lg:mt-20 mt-6">
             {stats.map((stat, idx) => (
               <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
-                <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
+                <p className="text-[#111827] font-display font-bold text-2xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
                   <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
                 </p>
-                <p className="font-roboto text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
+                <p className="font-roboto text-neutral-600 font-medium text-[9px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
               </ScrollReveal>
             ))}
           </div>
@@ -595,7 +611,7 @@ const Railway = () => {
                   style={{ backgroundImage: `url(${aboutCtaBg})` }}
                 />
 
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
+                <div className="absolute inset-0 bg-[#0A2153]/80" />
 
                 {/* CONTENT */}
                 <div className="relative z-10 max-w-4xl px-6">
@@ -607,10 +623,8 @@ const Railway = () => {
 
                   {/* SIMPLE BUTTON */}
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
-
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
-
                   </button>
                 </div>
 

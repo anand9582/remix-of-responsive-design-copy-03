@@ -58,7 +58,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
 }) => {
   return (
     <section
-      className={`py-24 relative overflow-hidden bg-cover bg-center bg-no-repeat ${sectionClassName}`}
+      className={`py-8 lg:py-24 relative overflow-hidden bg-cover bg-center bg-no-repeat ${sectionClassName}`}
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
@@ -73,7 +73,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
 
         {/* LEFT */}
         <div className="lg:w-[40%] text-left">
@@ -81,7 +81,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
 
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DBEAFE66] border border-gray-300 shadow-sm mb-8"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DBEAFE66] border border-gray-300 shadow-sm lg:mb-8 mb-4"
             >
               <span className="w-2 h-2 rotate-45 bg-blue-600" />
 
@@ -91,7 +91,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             </div>
 
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-3xl md:text-[40px] leading-[1.2] tracking-tight mb-6 text-[#171717]">
+            <h2 className="font-aleo font-semibold text-3xl md:text-[40px] leading-[1.2] tracking-tight lg:mb-6 mb-2 text-[#171717]">
               <span className="text-blue-700">
                 {titlePath1}
               </span>
@@ -102,7 +102,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
             </h2>
 
             {/* Description */}
-            <p className="font-roboto text-[16px] text-black leading-[1.6] mb-8 text-black">
+            <p className="font-roboto text-[16px] text-black leading-[1.6] lg:mb-8 mb-4 text-black">
               {description}
             </p>
 
@@ -111,17 +111,23 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
               className="
     group
     relative
-    flex items-center gap-2
-    rounded-full
-    px-8
-    h-[45px]
-    text-white
+    inline-flex items-center justify-center gap-2
+
+    h-[42px] sm:h-[45px]
+    px-5 sm:px-8
+
+    text-[13px] sm:text-[15px]
     font-semibold
-    text-[15px]
+    text-white
+
+    rounded-full
+
+    w-50 sm:w-auto
 
     bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
 
     shadow-[0_8px_20px_rgba(37,99,235,0.35)]
+
     transition-all duration-300
     hover:scale-[1.02]
   "
@@ -137,8 +143,6 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
     "
                 strokeWidth={2.5}
               />
-
-
             </button>
 
           </ScrollReveal>
