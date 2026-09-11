@@ -1,26 +1,29 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 
 import ScrollReveal from "@/components/ScrollReveal";
-import ProfileFeature from "@/components/ProfileFeature";
-import CertificationStrip from "@/components/CertificationStrip";
+import AboutUs from "@/components/AboutUs";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Diamond, Video } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
-import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import aboutCtaBg from "@/assets/railway-bc.jpg";
-import bankingfirst from "@/assets/bankingfirst.jpg";
+import bankingfirst from "@/assets/bankingfirst.webp";
 import bankingMain from "@/assets/banking-main.png";
-import bankingsecond from "@/assets/bankingsecond.jpg";
-import bankingfourth from "@/assets/bankingfourth.jpg";
-import railway_about from "@/assets/railway_about.png";
+import bankingsecond from "@/assets/bankingsecond.webp";
+import bankingfourth from "@/assets/bankingfourth.webp";
 import bankingcta from "@/assets/bankingcta.jpg";
 import bankinglt from "@/assets/bankinglt.png";
 import bankinglb from "@/assets/bankinglb.png";
 import bgrailway from "@/assets/bg_railway.png";
 import bankingrt from "@/assets/bankingrt.png";
 import bankingrb from "@/assets/bankingrb.png";
-import bankingthird from "@/assets/bankingthird.jpg";
+import bankingthird from "@/assets/bankingthird.webp";
+
+import bankingmobilefirst from "@/assets/banking-mb-bg.jpg";
+import bankingmobilesecond from "@/assets/banking-mob-second.jpg";
+import bankingmobilethird from "@/assets/banking-mob-third.jpg";
+import bankingmobilefourth from "@/assets/banking-mob-fourth.jpg";
+
 import { SecurityCameraIcon, MonitorPlayIcon, ClockClockwise, Vault, UserCircleMinus, AuditIcon } from "@/components/icons/RailwayIcons";
 import { HandCoinIcon } from "@/components/icons/retailIcons";
 
@@ -35,19 +38,19 @@ import 'swiper/css/pagination';
 
 const heroSlides = [
   {
-    img: bankingfirst,
+    img: bankingmobilefirst,
     title: (
       <>
         CamPulse for Banking <br />
-        Security
+        & Financial Security
       </>
     ),
-    desc: "Ensure safety, control access, and monitor critical areas in real time.",
+    desc: "Secure branches, ATMs, and critical assets with real-time monitoring.",
     cameras: "20",
     totalCameras: "24",
   },
   {
-    img: aboutCtaBg,
+    img: bankingmobilesecond,
     title: (
       <>
         Smart Platform <br />
@@ -59,7 +62,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: aboutCtaBg,
+    img: bankingmobilethird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -71,7 +74,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: aboutCtaBg,
+    img: bankingmobilefourth,
     title: (
       <>
         Centralized Station <br />
@@ -86,85 +89,62 @@ const heroSlides = [
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
-const stats = [
-  { prefix: "₹", num: 350, suffix: "+", stringVal: "", label: "Crore Annual Revenue" },
-  { prefix: "", num: 500, suffix: "+", stringVal: "", label: "Enterprise & Govt Clients" },
-  { prefix: "", num: 10, suffix: "+", stringVal: "", label: "Industries Served" },
-  { prefix: "", num: 0, suffix: "", stringVal: "Pan India", label: "Operational Presence" },
-];
-
-const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, num: number, suffix: string, stringVal: string }) => {
-  const nodeRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(nodeRef, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (stringVal) return;
-    if (!inView || !nodeRef.current) return;
-
-    const controls = animate(0, num, {
-      duration: 2.5,
-      ease: "easeOut",
-      onUpdate(value) {
-        if (nodeRef.current) {
-          nodeRef.current.textContent = Math.round(value).toString();
-        }
-      }
-    });
-
-    return () => controls.stop();
-  }, [num, inView, stringVal]);
-
-  return (
-    <span>
-      {prefix}
-      <span ref={nodeRef}>{stringVal ? stringVal : "0"}</span>
-      {suffix}
-    </span>
-  );
-};
-
 const Banking = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const bankingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "CamPulse Banking Security Solution",
+    "description": "AI-powered ATM surveillance, vault security and real-time fraud prevention VMS for banking institutions.",
+    "brand": { "@type": "Brand", "name": "CamPulse" }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16 lg:pt-0">
+      <SEO
+        title="Banking & Financial VMS Security Solutions | CamPulse"
+        description="Secure bank branches, ATMs, vaults, and corporate headquarters with CamPulse. AI-powered real-time security surveillance and fraud prevention systems."
+        keywords="banking security, ATM surveillance, vault security, bank fraud prevention, financial institution VMS"
+        path="/banking"
+        schema={bankingSchema}
+      />
       {/* Hero Section */}
       {/* MOBILE: image on top, content below */}
       <section className="relative overflow-hidden">
 
         {/* Mobile image block */}
-        <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
+        <div className="block lg:hidden relative w-full overflow-hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
-            speed={1000}
+            speed={600}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 1000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
-            className="w-full h-full mobile-swiper"
+            className="w-full mobile-swiper"
           >
             {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
                 <img
                   src={s.img}
                   alt=""
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-auto object-contain object-center"
                   loading={idx === 0 ? "eager" : "lazy"}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Premium dark gradient fade overlay merging to solid black at the bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/10 to-[#07090e] z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none z-20" />
         </div>
 
         {/* Mobile content block */}
-        <div className="block lg:hidden bg-[#07090e] px-6 pt-6 pb-12 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="px-5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
-              <span className="font-roboto font-medium text-[11px] text-white tracking-widest uppercase">
+        <div className="block lg:hidden bg-[#060606] px-6 pt-6 pb-12 text-center">
+          <div className="flex justify-center mb-5">
+            <div className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/10 backdrop-blur-md px-4 py-2">
+              <span className="font-roboto text-[14px] font-normal leading-[16.5px] tracking-[0.015em] text-center uppercase text-white whitespace-nowrap">
                 INDUSTRY SOLUTIONS
               </span>
             </div>
@@ -176,18 +156,37 @@ const Banking = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <h1 className="text-white font-calistoga font-normal text-[31px] leading-[1.15] tracking-tight mb-4 max-w-md mx-auto">
+            <h1 className="text-white font-calistoga font-normal text-[28px] md:text-[31px] leading-[1.26] tracking-tight mb-4 max-w-md mx-auto">
               {heroSlides[0]?.title}
             </h1>
-            <p className="text-neutral-300 font-roboto text-sm mb-8 leading-relaxed max-w-sm mx-auto">
+            <p className="text-neutral-300 font-roboto  text-[16px] md:text-sm mb-8 leading-relaxed max-w-sm mx-auto">
               {heroSlides[0]?.desc}
             </p>
           </motion.div>
           <div className="flex justify-center">
-            <button className="inline-flex items-center justify-center bg-white text-blue-600 font-semibold px-8 py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-base">
-              Book a Demo
-              <ArrowUpRight className="w-5 h-5 ml-2 text-blue-600" />
-            </button>
+            <Link to="/pricing?type=demo">
+              <button
+                className="
+                          w-full
+                          sm:w-auto
+                          max-w-[260px]
+                          px-6 sm:px-8
+                          py-3 sm:py-3.5
+                          rounded-full
+                          bg-white
+                          text-blue-600
+                          text-[16px] sm:text-base
+                          font-semibold
+                          hover:bg-neutral-100
+                          transition-all duration-300
+                          shadow-md
+                          cursor-pointer
+                        "
+              >
+                <span>Book a Demo</span>
+                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -201,9 +200,9 @@ const Banking = () => {
             <Swiper
               modules={[Autoplay, Pagination]}
               slidesPerView={1}
-              speed={900}
+              speed={600}
               pagination={{ clickable: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 1000, disableOnInteraction: false }}
               loop={true}
               className="w-full h-full hero-swiper"
             >
@@ -220,14 +219,6 @@ const Banking = () => {
             </Swiper>
           </div>
 
-          <div
-            className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
-            style={{
-              backgroundImage: `url(${heroBgStripes})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
 
           <div className="relative z-20 max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row items-center justify-between">
             <div className="max-w-2xl text-left w-full lg:w-1/2">
@@ -262,20 +253,22 @@ const Banking = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 className="inline-block"
               >
-                <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                  {/* Gradient Overlay */}
-                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+                <Link to="/pricing?type=demo">
+                  <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer">
+                    {/* Gradient Overlay */}
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
 
-                  {/* Circle */}
-                  <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                    <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
-                  </span>
+                    {/* Circle */}
+                    <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                      <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+                    </span>
 
-                  {/* Text */}
-                  <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
-                    Book a Demo
-                  </span>
-                </button>
+                    {/* Text */}
+                    <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                      Book a Demo
+                    </span>
+                  </button>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -288,22 +281,23 @@ const Banking = () => {
 
           {/* Badge */}
           <ScrollReveal direction="up" delay={100}>
-            <div className="flex justify-center mb-5">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#eff6ff]">
-                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
-                <span className="text-[14px] font-aleo font-bold uppercase text-blue-600">
+            <div className="flex justify-center mb-3">
+              <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-5 py-3">
+                <Diamond className="w-3 h-3 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-blue-700">
                   Our Capabilities
                 </span>
               </div>
             </div>
           </ScrollReveal>
 
+
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[32px] sm:text-[40px] leading-[1.2] tracking-[-0.03em] mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[26px] md:text-[36px] leading-[1.4] tracking-[-0.03em] text-[#111827] mb-10">
               How{" "}
               <span className="text-blue-700">
-                CamPulse powers Transport Infrastructure
+                CamPulse powers Banking
               </span>
             </h2>
           </ScrollReveal>
@@ -349,40 +343,42 @@ const Banking = () => {
               >
                 <div
                   className="
-              group
-              bg-white
-              rounded-[14px]
-              p-7
-              min-h-[165px]
-             shadow-lg
-              transition-all
-              duration-500
-              ease-out
-              hover:-translate-y-1
-            "
+                     group
+                    bg-white
+                    rounded-[14px]
+                    p-7
+                    min-h-[165px]
+                    shadow-lg
+                    hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+                    transition-all
+                    duration-500
+                    ease-out
+                    hover:-translate-y-1
+                "
                 >
                   {/* Icon */}
                   <div
                     className="
-                    w-11 h-11
-                    flex items-center justify-center
-                    mb-1
+                   w-9 h-9
+                    rounded-xl
+                    flex items-center 
+                    mb-2
                     transition-all
                     duration-500
                   "
                   >
-                    <div className="text-[#2563EB]  transition-colors duration-500">
+                    <div className="text-[#2563EB] transition-colors duration-500">
                       <feature.icon />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[18px] leading-none font-roboto font-medium text-neutral-800 mb-1">
+                  <h3 className="lg:text-[18px] text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 
                   {/* Desc */}
-                  <p className="text-[13px] leading-[1.7] text-neutral-500 font-normal ">
+                  <p className="lg:text-[14px] text-[16px] leading-[150%] tracking-[0.005em] text-neutral-500  font-roboto font-normal">
                     {feature.desc}
                   </p>
                 </div>
@@ -397,14 +393,19 @@ const Banking = () => {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
           <div className="pt-10">
             {/* Heading */}
-            <div className="text-center mb-16">
-              <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
-                  <span className="w-1.5 h-1.5 rotate-45 bg-white" />
-                  COMMAND CENTRE
-                </span>
-              </div>
-              <h2 className="text-white font-aleo font-semibold text-2xl sm:text-4xl md:text-[40px] tracking-tight mb-4">
+            <div className="text-center mb-2 lg:mb-16">
+              <ScrollReveal direction="up" delay={100}>
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-2 px-8 py-3  rounded-full  bg-[#111e38]  lg:mb-4  text-neutral-300 text-[12px] font-medium tracking-[0.15em] tracking-[0.15em] uppercase">
+                    <Diamond className="w-3 h-3" fill="currentColor" />
+                    <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-neutral-300">
+                      COMMAND CENTRE
+                    </span>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <h2 className="text-white font-aleo font-semibold text-[18px] lg:text-4xl md:text-[40px] tracking-tight mb-8 mt-4 lg:mt-0">
                 Centralized Banking Control Dashboard
               </h2>
             </div>
@@ -482,7 +483,6 @@ const Banking = () => {
         description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
         buttonText="Book a Demo"
         backgroundImage={whychosesection}
-        sectionClassName="py-32"
         cardClassName="hover:-translate-y-1"
 
         stats={[
@@ -510,88 +510,46 @@ const Banking = () => {
       />
 
       {/* About Us Sub-section */}
-      <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <AboutUs variant="industry">
+        {/* CTA Custom Banner for Banking */}
+        <ScrollReveal
+          direction="up"
+          delay={300}
+          className="grid grid-cols-10 max-w-7xl m-auto"
+        >
+          <div className="col-span-12 ">
 
-          <ScrollReveal direction="up" delay={100} className="flex justify-center mb-6">
-            <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EBF1FF] text-[#2563EB] text-[10px] font-bold tracking-[0.15em] uppercase">
-              <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB]" />
-              About Us
-            </span>
-          </ScrollReveal>
+            <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
 
-          <ScrollReveal direction="up" delay={200}>
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] tracking-tight">
-              Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
-            </h2>
-          </ScrollReveal>
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${bankingcta})` }}
+              />
 
-          {/* Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-24 px-4 lg:px-12 mt-20">
-            {stats.map((stat, idx) => (
-              <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
-                <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
-                  <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
-                </p>
-                <p className="font-roboto text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
-              </ScrollReveal>
-            ))}
-          </div>
+              <div className="absolute inset-0 bg-[#0B2A5B]/80" />
 
-          <ProfileFeature
-            imageSrc={railway_about}
-            variant="image"
-            title={<>CAMPULSE BY TRANSLINE<br />TECHNOLOGIES</>}
-            descriptions={[
-              "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across India.",
-              "Deep engineering capability, field-proven deployment expertise, and an unwavering commitment to seamless integration and service uptime."
-            ]}
-            className="mb-10 mx-auto max-w-7xl"
-          />
+              {/* CONTENT */}
+              <div className="relative z-10 max-w-4xl px-6">
 
-          <ScrollReveal direction="up" delay={250} className="mb-16">
-            <CertificationStrip />
-          </ScrollReveal>
+                <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[26px]  leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
+                  Strengthen your Banking Security with CamPulse.
+                </h2>
 
-          {/* CTA Custom Banner for Banking */}
-          <ScrollReveal
-            direction="up"
-            delay={300}
-            className="grid grid-cols-10 max-w-7xl m-auto"
-          >
-            <div className="col-span-12 ">
-
-              <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
-
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${bankingcta})` }}
-                />
-
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
-
-                {/* CONTENT */}
-                <div className="relative z-10 max-w-4xl px-6">
-
-                  <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Strengthen your Banking Security with CamPulse.
-                  </h2>
-
-                  {/* SIMPLE BUTTON */}
-                  <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
+                {/* SIMPLE BUTTON */}
+                <Link to="/pricing?type=demo">
+                  <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition cursor-pointer">
 
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
 
                   </button>
-                </div>
-
+                </Link>
               </div>
-            </div>
-          </ScrollReveal>
 
-        </div>
-      </section>
+            </div>
+          </div>
+        </ScrollReveal>
+      </AboutUs>
     </div>
   );
 };

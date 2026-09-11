@@ -5,13 +5,13 @@ import logowhite from "@/assets/logowhite.png";
 import { Link, useLocation } from "react-router-dom";
 
 const productLinks = [
-  "Overview",
-  "Smart Search",
-  "Unified Device Management",
-  "Real-Time Threat Detection",
-  "Predictive Maintenance",
-  "Adaptive Streaming",
-  "Multi-Language Interface",
+  { label: "Overview", href: "#what-is-campulse" },
+  { label: "Smart Search", href: "#solutions" },
+  { label: "Unified Device Management", href: "#solutions" },
+  { label: "Real-Time Threat Detection", href: "#solutions" },
+  { label: "Predictive Maintenance", href: "#solutions" },
+  { label: "Adaptive Streaming", href: "#solutions" },
+  { label: "Multi-Language Interface", href: "#solutions" },
 ];
 
 const industryLinks = [
@@ -76,13 +76,13 @@ const Footer = () => {
               <div className="flex items-center mb-6">
                 <img src={logowhite} alt="CamPulse by Transline Technologies" className="w-[155px] h-[36px] object-contain object-left" />
               </div>
-              <p className="text-white font-roboto font-regular text-[13px] leading-[1.6] lg:mb-8 mb-6 pr-4">
+              <p className="text-neutral-100 font-roboto font-regular text-[16px] lg:text-[14px] leading-[1.6] lg:mb-8 mb-6 pr-4">
                 AI-powered unified security & smart infrastructure platform by Transline Technologies.
               </p>
-              <div className="space-y-4 text-[#9DB2D6] text-[13px]">
+              <div className="space-y-4 text-[#9DB2D6] text-[16px] lg:text-[14px]">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-white/50" />
-                  <span className="font-roboto font-regular leading-relaxed">23A, Shivaji Marg, Moti Nagar,<br />Karampura Industrial Area,<br />New Delhi, 110015</span>
+                  <span className="font-roboto font-regular text-[16px] lg:text-[14px]  text-slate-400 leading-[21px] tracking-[0.005em]">23A, Shivaji Marg, Moti Nagar,<br />Karampura Industrial Area,<br />New Delhi, 110015</span>
                 </div>
                 <div className="flex items-center gap-3 font-roboto font-regular">
                   <Mail className="w-4 h-4 shrink-0 text-white/50" />
@@ -97,11 +97,19 @@ const Footer = () => {
 
             {/* Column 2: PRODUCT */}
             <div>
-              <h4 className="text-white font-sans font-bold text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Product</h4>
-              <ul className="lg:space-y-3.5 space-y-2">
+              <h4 className="text-white font-sans font-bold text-[16px] lg:text-[14px] lg:mb-6 mb-2 uppercase tracking-wider">Product</h4>
+              <ul className="lg:space-y-1.5 space-y-2">
                 {productLinks.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l}</a>
+                  <li key={l.label}>
+                    {l.href.startsWith("#") ? (
+                      <a href={isInnerPage ? `/${l.href}` : l.href} className="font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] hover:text-white text-[16px] lg:text-[14px] transition-colors">
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link to={l.href} className="font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] hover:text-white text-[16px] lg:text-[14px] transition-colors">
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -109,11 +117,11 @@ const Footer = () => {
 
             {/* Column 3: INDUSTRIES */}
             <div>
-              <h4 className="text-white  font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Industries</h4>
-              <ul className="lg:space-y-3.5 space-y-2">
+              <h4 className="text-white  font-roboto font-medium text-[16px] lg:text-[14px] lg:mb-6 mb-2 uppercase tracking-wider">Industries</h4>
+              <ul className="lg:space-y-1.5 space-y-2">
                 {industryLinks.map((l) => (
                   <li key={l.name}>
-                    <Link to={l.href} className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors">{l.name}</Link>
+                    <Link to={l.href} className="font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] hover:text-white text-[16px] lg:text-[14px] transition-colors">{l.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -121,26 +129,26 @@ const Footer = () => {
 
             {/* Column 4: RESOURCES & COMPANY */}
             <div>
-              <h4 className="text-white font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Resources</h4>
-              <ul className="lg:space-y-3.5 space-y-2 mb-4 lg:mb-6">
+              <h4 className="text-white font-roboto font-medium text-[14px] lg:mb-6 mb-2 uppercase tracking-wider">Resources</h4>
+              <ul className="lg:space-y-1.5 space-y-2 mb-4 lg:mb-6">
                 {resourceLinks.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href.startsWith("#") && isInnerPage ? `/${l.href}` : l.href}
-                      className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors"
+                      className="font-roboto  font-regular   text-slate-400 leading-[21px] tracking-[0.005em] hover:text-white text-[16px] lg:text-[14px] transition-colors"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
               </ul>
-              <h4 className="text-white font-roboto font-medium text-[13px] lg:mb-6 mb-2 uppercase tracking-wider">Company</h4>
+              <h4 className="text-white font-roboto font-regular text-[16px] lg:text-[14px] lg:mb-6 mb-2 uppercase tracking-wider">Company</h4>
               <ul className="lg:space-y-3.5 space-y-2">
                 {companyLinks.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href.startsWith("#") && isInnerPage ? `/${l.href}` : l.href}
-                      className="text-[#9DB2D6] font-roboto font-regular hover:text-white text-[13px] transition-colors"
+                      className="font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] hover:text-white text-[16px] lg:text-[14px] transition-colors"
                     >
                       {l.label}
                     </a>
@@ -152,17 +160,17 @@ const Footer = () => {
 
           {/* Bottom bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between lg:py-6 py-4 gap-4">
-            <p className="text-[#9DB2D6] text-[12px] tracking-wide">
-              2025 @ CamPulse. Powered by Transline Technologies Limited
+            <p className="font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] text-[14px] tracking-wide">
+              {new Date().getFullYear()} @ CamPulse. Powered by Transline Technologies Limited
             </p>
             <div className="flex items-center gap-4">
               <a href="#" aria-label="LinkedIn" className="text-[#9DB2D6] hover:text-white transition-colors  p-1 rounded-sm">
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
               </a>
               <span className="text-[#9DB2D6]/80">|</span>
-              <a href="#" className="text-[#9DB2D6] hover:text-white text-[12px] transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] text-[16px] lg:text-[14px] transition-colors">Privacy Policy</a>
               <span className="text-[#9DB2D6]/80">|</span>
-              <a href="#" className="text-[#9DB2D6] hover:text-white text-[12px] transition-colors">Terms of Service</a>
+              <a href="#" className=" hover:text-white font-roboto font-regular   text-slate-400 leading-[21px] tracking-[0.005em] text-[16px] lg:text-[14px] transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -172,7 +180,7 @@ const Footer = () => {
 
         {/* Large Background Watermark Text positioned behind bottom bar overlay */}
         <div className="w-full flex justify-center pb-0 pt-8 sm:pt-0 overflow-hidden pointer-events-none select-none relative z-0 translate-y-[3%] pl-2">
-          <p className="font-dmSerif text-[25vw] xl:text-[340px] font-medium text-white/[0.06] leading-[0.75] tracking-normal">
+          <p className="font-dmSerif text-[25vw] xl:text-[340px] font-medium text-white/[0.09] leading-[0.75] tracking-normal">
             CamPulse
           </p>
         </div>

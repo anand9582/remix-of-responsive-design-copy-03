@@ -49,47 +49,49 @@ const ComplianceSecurity = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Dark Container */}
-        <ScrollReveal direction="up" delay={100} className="bg-[#131B2A] rounded-xl md:rounded-sm px-3 md:px-12 py-8 md:py-16 shadow-2xl relative overflow-hidden">
+        <ScrollReveal direction="up" delay={100} className="bg-[#131B2A] rounded-xl md:rounded-sm px-3 md:px-12 py-8 md:py-16  relative overflow-hidden ">
 
           {/* Badge */}
-          <div className="flex justify-center">
-            <div className="inline-flex justify-center items-center gap-2 bg-[#121C36] rounded-full px-4 md:px-6 py-2 md:py-3 mb-6 md:mb-8">
-              <Diamond className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" fill="currentColor" />
-              <span className="text-[10px] md:text-xs font-roboto font-medium tracking-[0.1em] text-neutral-300 uppercase">
+
+
+          <ScrollReveal direction="up" delay={100} className="flex justify-center  mb-2 lg:mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#121C36] rounded-full px-7 py-3 mb-3">
+              <Diamond className="w-3 h-3 md:w-3.4 md:h-3.4 text-neutral-300" fill="currentColor" />
+              <span className="text-[15px] md:text-[14px] font-roboto font-medium leading-[150%] tracking-[0.005em] text-neutral-300 uppercase">
                 Compliance and Certifications
               </span>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Heading */}
-          <h2 className="text-center text-white font-aleo font-bold text-2xl md:text-[40px] mb-8 md:mb-12 tracking-wide text-shadow-sm">
+          <h2 className="text-center text-white font-aleo font-bold text-[26px]  md:text-[40px] mb-8 md:mb-16 tracking-wide text-shadow-sm">
             Built with Enterprise Grade Security
           </h2>
 
           {/* Cards Layout - MOBILE (Screenshot Match) */}
-          <div className="flex md:hidden flex-wrap justify-center gap-3 w-full mt-4">
+          <div className="flex md:hidden flex-wrap justify-center  gap-x-3 gap-y-4 w-full mt-4">
             {cards.map((card, i) => (
-              <div key={i} className="bg-white rounded-[8px] p-4 text-center flex flex-col items-center justify-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1 w-[calc(50%-0.375rem)]">
+              <div key={i} className="bg-white rounded-[8px] p-2 py-3 lg:p-4 text-center flex flex-col items-center justify-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1 w-[calc(50%-0.375rem)]">
                 <div className="mb-2 h-[40px] flex items-center justify-center">
                   {card.icon}
                 </div>
-                <h3 className="text-[#0f172a] font-bold text-[11px] mb-[4px] tracking-wide">{card.title}</h3>
-                <p className="text-[#64748b] text-[9px] leading-[1.4] font-medium">{card.desc}</p>
+                <h3 className="font-roboto font-medium text-[#0f172a] text-[18px] lg:text-[18px] mb-[4px] mt-1 lg:mt-0 tracking-wide">{card.title}</h3>
+                <p className="text-neutral-500 font-roboto text-[16px] lg:text-[16px]  foleading-[150%] tracking-[0.005em] font-medium">{card.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Cards Layout - DESKTOP (Original) */}
-          <div className="hidden md:flex flex-col gap-5 w-full mt-4">
+          <div className="hidden md:flex flex-col gap-12 w-full mt-4">
             {/* Top Row - 3 cards */}
-            <div className="grid grid-cols-3 gap-5 w-full">
+            <div className="grid grid-cols-3 gap-8 w-full">
               {cards.slice(0, 3).map((card, i) => (
                 <div key={i} className="bg-white rounded-sm p-8 text-center flex flex-col items-center justify-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1">
                   <div className="mb-4 h-[60px] flex items-center justify-center">
                     {card.icon}
                   </div>
-                  <h3 className="text-[#0f172a] font-bold text-[14px] mb-[6px] tracking-wide">{card.title}</h3>
-                  <p className="text-[#64748b] text-[12px] leading-relaxed font-medium">{card.desc}</p>
+                  <h3 className="text-neutral-800 font-roboto font-medium text-[14px] md:text-[18px] mb-[6px] tracking-wide">{card.title}</h3>
+                  <p className="text-neutral-500  font-roboto text-[12px] md:text-[14px] leading-relaxed font-regular">{card.desc}</p>
                 </div>
               ))}
             </div>
@@ -101,8 +103,8 @@ const ComplianceSecurity = () => {
                   <div className="mb-4 h-[60px] flex items-center justify-center">
                     {card.icon}
                   </div>
-                  <h3 className="text-[#0f172a] font-bold text-[14px] mb-[6px] tracking-wide">{card.title}</h3>
-                  <p className="text-[#64748b] text-[12px] leading-relaxed font-medium">{card.desc}</p>
+                  <h3 className="text-neutral-800 font-roboto font-medium text-[14px] md:text-[18px] mb-[6px] tracking-wide">{card.title}</h3>
+                  <p className="text-neutral-500  font-roboto text-[12px] md:text-[14px] leading-relaxed font-regular">{card.desc}</p>
                 </div>
               ))}
             </div>
@@ -114,7 +116,7 @@ const ComplianceSecurity = () => {
           {bottomFeatures.map((feat, idx) => (
             <div key={idx} className={`flex items-center gap-1.5 group px-1 ${idx === 4 ? 'w-full justify-center mt-1' : 'w-1/2 justify-start'}`}>
               <CircleCheck className="w-[14px] h-[14px] text-[#10B981] group-hover:scale-110 transition-transform shrink-0" strokeWidth={2.5} />
-              <span className="font-roboto font-medium text-neutral-700 tracking-wide text-[11px] leading-tight">{feat}</span>
+              <span className="font-roboto font-medium text-neutral-700 leading-[150%] tracking-[0.005em] text-[14px] lg-text-[12px]">{feat}</span>
             </div>
           ))}
         </ScrollReveal>
@@ -124,7 +126,7 @@ const ComplianceSecurity = () => {
           {bottomFeatures.map((feat, idx) => (
             <div key={idx} className="flex items-center gap-2 group">
               <CircleCheck className="w-[18px] h-[18px] text-[#10B981] group-hover:scale-110 transition-transform" strokeWidth={2.5} />
-              <span className="font-roboto font-medium text-neutral-700 tracking-wide">{feat}</span>
+              <span className="font-roboto font-medium text-neutral-700  leading-[150%] tracking-[0.005em] text-[14px] lg-text-[12px]">{feat}</span>
             </div>
           ))}
         </ScrollReveal>

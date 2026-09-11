@@ -1,0 +1,18 @@
+/* Railway.module.css */
+/* Subtle gradient overlay for mobile hero background */
+.mobile-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+  z-index: 5;
+}
+/* Swiper pagination styling for subtle dots */
+.mobile-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 0.8;
+}
+.mobile-swiper .swiper-pagination-bullet-active {
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}

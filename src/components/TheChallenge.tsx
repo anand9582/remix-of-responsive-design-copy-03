@@ -61,7 +61,7 @@ const MarqueeRow = ({ items, direction = "left", offset = false }: { items: type
           >
             <item.icon className="w-5 h-5 text-white" strokeWidth={1.5} />
 
-            <span className="text-neutral-100 text-[12px] font-roboto font-normal leading-[1.5] tracking-[0.005em] whitespace-pre-line text-left">
+            <span className="text-neutral-100 pt-1  text-[15px] lg:text-[12px] font-roboto font-normal leading-[1.5] tracking-[0.005em] whitespace-pre-line text-left">
               {item.label}
             </span>
           </div>
@@ -73,21 +73,22 @@ const MarqueeRow = ({ items, direction = "left", offset = false }: { items: type
 
 const TheChallenge = () => {
   return (
-    <section className="bg-background py-2 md:py-24">
+    <section className="bg-background py-2 md:pb-20 md:mt-20">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#141A27] rounded-lg lg:rounded-[32px] py-10 sm:py-24 overflow-hidden shadow-2xl relative">
+        <div className="bg-[#141A27] rounded-lg lg:rounded-[32px] py-10 sm:py-24 overflow-hidden  relative">
 
-          <div className="text-center mb-14 px-4">
+          <div className="text-center lg:mb-14 mb-4 px-4">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-[#121C36]   rounded-full px-7 py-3 mb-8">
-              <Diamond className="w-3.5 h-3.5 text-white" fill="currentColor" />
-              <span className="text-xs font-roboto font-medium tracking-[0.1em] text-neutral-300 uppercase">
+              <Diamond className="w-3 h-3 text-white" fill="currentColor" />
+              <span className="text-[14px] lg:text-[13px]  font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-neutral-300">
                 THE CHALLENGE
               </span>
             </div>
 
+
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-white text-3xl sm:text-4xl md:text-[40px]  leading-tight">
+            <h2 className="font-aleo font-semibold text-white text-3xl lg:text-4xl md:text-[40px]  leading-tight">
               Why Traditional VMS Fails at Scale
             </h2>
           </div>

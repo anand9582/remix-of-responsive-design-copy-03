@@ -34,11 +34,11 @@ const ProfileFeature = ({
       <ScrollReveal
         direction="left"
         delay={100}
-        className={`md:col-span-5 h-full  flex flex-col ${variant === "image"
+        className={`md:col-span-5 flex flex-col ${variant === "image"
           ? profileName
-            ? "relative rounded-md overflow-hidden border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
-            : "relative rounded-md overflow-hidden"
-          : "rounded-xl bg-[#1D1D1F] p-6 items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+            ? "relative rounded-md overflow-hidden border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] h-[300px] sm:h-[380px] md:h-full"
+            : "relative rounded-md overflow-hidden h-[300px] sm:h-[380px] md:h-full"
+          : "rounded-xl bg-[#1D1D1F] p-6 items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.15)] h-full"
           }`}
       >
 
@@ -48,18 +48,18 @@ const ProfileFeature = ({
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover h-[319px]"
+              className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
 
             {/* Overlay */}
             {profileName && (
               <div className="absolute bottom-5 left-5 right-5 rounded bg-[#131313]/30 backdrop-blur-[40px] p-3 pb-5">
-                <p className="text-white text-sm font-medium">
+                <p className="font-roboto text-white text-lg lg:text-md  font-medium">
                   {profileName}
                 </p>
                 {profileDesignation && (
-                  <p className="text-neutral-300 text-xs mt-1">
+                  <p className="font-roboto text-neutral-300  text-md lg:text-md mt-1">
                     {profileDesignation}
                   </p>
                 )}
@@ -88,20 +88,20 @@ const ProfileFeature = ({
       <ScrollReveal
         direction="right"
         delay={200}
-        className="md:col-span-7 rounded-md bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-5 sm:p-20 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
+        className="md:col-span-7 rounded-lg bg-gradient-to-br from-[#1b44c8] to-[#0a2365] p-5 py-7 sm:p-12 lg:pr-16 flex flex-col justify-center relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] h-full"
       >
         {/* Watermark */}
         <div className="absolute top-[15px] right-[15px] opacity-50">
           <img src={logoT} alt="Logo" className="h-16 object-contain" />
         </div>
 
-        <h3 className="text-white font-calistoga font-regular text-lg md:text-[30px] uppercase mb-6 leading-[1.3] max-w-2xl">
+        <h3 className="text-white font-calistoga font-regular text-[28px] md:text-[30px] uppercase mb-8 leading-[39px] tracking-[0.04em] max-w-2xl">
           {title}
         </h3>
 
         <div className="space-y-5 max-w-2xl">
           {descriptions.map((desc, idx) => (
-            <p key={idx} className="text-blue-100/80 text-[12px]  lg:text-[14px] leading-relaxed">
+            <p key={idx} className="font-roboto text-[16px]  lg:text-[16px] font-normal leading-[150%] tracking-[0.005em] sm:leading-[24px] tracking-normal text-white">
               {desc}
             </p>
           ))}

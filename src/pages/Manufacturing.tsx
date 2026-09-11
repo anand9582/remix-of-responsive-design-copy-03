@@ -1,23 +1,27 @@
 import React, { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
-import ProfileFeature from "@/components/ProfileFeature";
-import CertificationStrip from "@/components/CertificationStrip";
+import SEO from "@/components/SEO";
+import AboutUs from "@/components/AboutUs";
 import MeasurableSecurity from "@/components/MeasurableSecurity";
 import { ArrowUpRight, Diamond, Video, TrendingDown, } from "lucide-react";
 import { motion, useInView, animate } from "framer-motion";
-import heroBgStripes from "@/assets/hero-bg-stripes.png";
-import manufacturingthirdBg from "@/assets/manufacturing-third.jpg";
-import aboutCtaBg from "@/assets/cta_bg.jpg";
-import manufacturingfourth from "@/assets/manufacturing-fourth.jpg";
+import manufacturingthirdBg from "@/assets/manufacturing-third.webp";
+import ManufacturingCtaBg from "@/assets/manufacturing-cta.jpg";
+import manufacturingfourth from "@/assets/manufacturing-fourth.webp";
+import manufacturmobilefirst from "@/assets/manufactur-mb-bg.jpg";
+import manufacturmobilesecond from "@/assets/manufactur-mob-second.jpg";
+import manufacturmobilethird from "@/assets/manufactur-mob-third.jpg";
+import manufacturmobilefourth from "@/assets/manufactur-mob-fourth.jpg";
+
 import RailwayMain from "@/assets/manufacturing-dashboard.png";
-import manufacturingsecond from "@/assets/manufacturing-second.jpg";
-import railway_about from "@/assets/railway_about.png";
+import manufacturingsecond from "@/assets/manufacturing-second.webp";
 import manufacturingtop from "@/assets/manufacturingtop.png";
 import manufacturinglfbt from "@/assets/manufacturinglfbt.png";
 import bgrailway from "@/assets/bg_railway.png";
 import compernsive_alert from "@/assets/manufacturing-right.png";
 import manufacturingbt from "@/assets/manufacturing-bt.png";
-import railwayBg from "@/assets/manufacturing-bg.jpg";
+import railwayBg from "@/assets/manufacturing-bg.webp";
 import { PPEIcon, RestrictedAreaIcon, MapPinAreaIcon, GearIcon, RootIcon, FireIcon, PersonIcon, EnhancedIcon, UptimeIcon } from "@/components/icons/ManufacturingIcons";
 
 // Swiper
@@ -29,7 +33,7 @@ import whychosesection from "@/assets/whychosesection.png";
 
 const heroSlides = [
   {
-    img: railwayBg,
+    img: manufacturmobilefirst,
     title: (
       <>
         CamPulse for Manufacturing <br />
@@ -41,7 +45,7 @@ const heroSlides = [
     totalCameras: "24",
   },
   {
-    img: manufacturingsecond,
+    img: manufacturmobilesecond,
     title: (
       <>
         Smart Platform <br />
@@ -53,7 +57,7 @@ const heroSlides = [
     totalCameras: "18",
   },
   {
-    img: manufacturingthirdBg,
+    img: manufacturmobilethird,
     title: (
       <>
         Real-time Intrusion <br />
@@ -65,7 +69,7 @@ const heroSlides = [
     totalCameras: "32",
   },
   {
-    img: manufacturingfourth,
+    img: manufacturmobilefourth,
     title: (
       <>
         Centralized Station <br />
@@ -80,54 +84,32 @@ const heroSlides = [
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
-const stats = [
-  { prefix: "₹", num: 350, suffix: "+", stringVal: "", label: "Crore Annual Revenue" },
-  { prefix: "", num: 500, suffix: "+", stringVal: "", label: "Enterprise & Govt Clients" },
-  { prefix: "", num: 10, suffix: "+", stringVal: "", label: "Industries Served" },
-  { prefix: "", num: 0, suffix: "", stringVal: "Pan India", label: "Operational Presence" },
-];
-
-const AnimatedCounter = ({ prefix, num, suffix, stringVal }: { prefix: string, num: number, suffix: string, stringVal: string }) => {
-  const nodeRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(nodeRef, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (stringVal) return;
-    if (!inView || !nodeRef.current) return;
-
-    const controls = animate(0, num, {
-      duration: 2.5,
-      ease: "easeOut",
-      onUpdate(value) {
-        if (nodeRef.current) {
-          nodeRef.current.textContent = Math.round(value).toString();
-        }
-      }
-    });
-
-    return () => controls.stop();
-  }, [num, inView, stringVal]);
-
-  return (
-    <span>
-      {prefix}
-      <span ref={nodeRef}>{stringVal ? stringVal : "0"}</span>
-      {suffix}
-    </span>
-  );
-};
-
 const Manufacturing = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const manufacturingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "CamPulse Manufacturing Security Solution",
+    "description": "AI-powered PPE compliance, restricted area monitoring and real-time industrial video surveillance for factories.",
+    "brand": { "@type": "Brand", "name": "CamPulse" }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16 lg:pt-0">
+      <SEO
+        title="Industrial & Manufacturing VMS Security | CamPulse"
+        description="Protect factories and optimize industrial safety with CamPulse. AI-powered real-time surveillance, PPE compliance detection, and restricted area monitoring."
+        keywords="manufacturing security, factory VMS, PPE detection, restricted zone monitoring, industrial safety"
+        path="/manufacturing"
+        schema={manufacturingSchema}
+      />
       {/* Hero Section */}
       {/* MOBILE: image on top, content below */}
       <section className="relative overflow-hidden">
 
         {/* Mobile image block */}
-        <div className="block lg:hidden relative h-[380px] w-full overflow-hidden">
+        <div className="block lg:hidden relative  w-full overflow-hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -136,55 +118,28 @@ const Manufacturing = () => {
             autoplay={{ delay: 1000, disableOnInteraction: false }}
             loop
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
-            className="w-full h-full mobile-swiper"
+            className="w-full mobile-swiper"
           >
             {heroSlides.map((s, idx) => (
               <SwiperSlide key={idx}>
                 <img
                   src={s.img}
                   alt=""
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-auto object-contain object-center"
                   loading={idx === 0 ? "eager" : "lazy"}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Active Cameras UI Card overlay (static content) */}
-          <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-xl shadow-lg border border-slate-100 p-3 flex items-center w-[205px]">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-2.5">
-              <Video className="w-4 h-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] font-semibold text-slate-500 leading-none mb-1">Active Cameras</p>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex items-baseline"
-              >
-                <span className="text-sm font-bold text-slate-800">
-                  {heroSlides[0]?.cameras || "20"}
-                </span>
-                <span className="text-[9px] text-slate-400 font-medium ml-1">
-                  / {heroSlides[0]?.totalCameras || "24"} Total
-                </span>
-              </motion.div>
-            </div>
-            <div className="flex items-center gap-1 border border-red-200 bg-red-50 px-2 py-0.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[8px] font-bold text-red-600 uppercase tracking-wider">Live</span>
-            </div>
-          </div>
-
-          {/* Premium dark gradient fade overlay merging to solid black at the bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/10 to-[#07090e] z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none z-20" />
         </div>
 
         {/* Mobile content block */}
-        <div className="block lg:hidden bg-[#07090e] px-6 pt-6 pb-12 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="px-5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
-              <span className="font-roboto font-medium text-[11px] text-white tracking-widest uppercase">
+        <div className="block lg:hidden bg-[#060606] px-6 pt-6 pb-8 text-center">
+          <div className="flex justify-center mb-5">
+            <div className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/10 backdrop-blur-md px-4 py-2">
+              <span className="font-roboto text-[14px] font-normal leading-[16.5px] tracking-[0.015em] text-center uppercase text-white whitespace-nowrap">
                 INDUSTRY SOLUTIONS
               </span>
             </div>
@@ -196,34 +151,38 @@ const Manufacturing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <h1 className="text-white font-calistoga font-normal text-[31px] leading-[1.15] tracking-tight mb-4 max-w-md mx-auto">
+            <h1 className="text-white font-calistoga font-normal text-[28px] md:text-[31px] leading-[1.26] tracking-tight mb-4 max-w-md mx-auto">
               {heroSlides[0]?.title}
             </h1>
-            <p className="text-neutral-300 font-roboto text-sm mb-8 leading-relaxed max-w-sm mx-auto">
+            <p className="text-neutral-300 font-roboto  text-[16px] md:text-sm mb-8 leading-relaxed max-w-sm mx-auto">
               {heroSlides[0]?.desc}
             </p>
           </motion.div>
-          <div className="flex justify-center w-full">
-            <button
-              className="
-                             inline-flex items-center justify-center gap-2
-                             sm:w-auto
-                             max-w-[260px]
-                             px-6 sm:px-8
-                             py-3 sm:py-3.5
-                             rounded-full
-                             bg-white
-                             text-blue-600
-                             text-[14px] sm:text-base
-                             font-semibold
-                             hover:bg-neutral-100
-                             transition-all duration-300
-                             shadow-md
-                            "
-            >
-              <span>Book a Demo</span>
-              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-            </button>
+          <div className="flex justify-center">
+            <Link to="/pricing?type=demo">
+              <button
+                className="
+                          w-full
+                          inline-flex items-center justify-center gap-2
+                          sm:w-auto
+                          max-w-[260px]
+                          px-6 sm:px-8
+                          py-3 sm:py-3.5
+                          rounded-full
+                          bg-white
+                          text-blue-600
+                          text-[16px] sm:text-base
+                          font-semibold
+                          hover:bg-neutral-100
+                          transition-all duration-300
+                          shadow-md
+                          cursor-pointer
+                        "
+              >
+                <span>Book a Demo</span>
+                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -248,22 +207,13 @@ const Manufacturing = () => {
                   <img
                     src={img}
                     alt=""
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full "
                     loading={idx === 0 ? "eager" : "lazy"}
                   />
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-
-          <div
-            className="absolute inset-0 opacity-50 mix-blend-overlay pointer-events-none z-10"
-            style={{
-              backgroundImage: `url(${heroBgStripes})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
 
           <div className="relative z-20 max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row items-center justify-between">
             <div className="max-w-2xl text-left w-full lg:w-1/2">
@@ -298,20 +248,22 @@ const Manufacturing = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 className="inline-block"
               >
-                <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                  {/* Gradient Overlay */}
-                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+                <Link to="/pricing?type=demo">
+                  <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer">
+                    {/* Gradient Overlay */}
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
 
-                  {/* Circle */}
-                  <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                    <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
-                  </span>
+                    {/* Circle */}
+                    <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                      <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+                    </span>
 
-                  {/* Text */}
-                  <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
-                    Book a Demo
-                  </span>
-                </button>
+                    {/* Text */}
+                    <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                      Book a Demo
+                    </span>
+                  </button>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -319,15 +271,15 @@ const Manufacturing = () => {
       </section>
 
 
-      <section className="lg:py-24 py-10 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="md:py-20 py-12 bg-[#F8FAFC] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Badge */}
           <ScrollReveal direction="up" delay={100}>
-            <div className="flex justify-center mb-5">
-              <div className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#eff6ff]">
-                <Diamond className="w-4 h-4 md:w-4 md:h-4 text-blue-700" fill="currentColor" />
-                <span className="text-[13px] font-aleo font-bold uppercase text-blue-600">
+            <div className="flex justify-center mb-3">
+              <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-5 py-3">
+                <Diamond className="w-3 h-3 text-blue-700" fill="currentColor" />
+                <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-blue-700">
                   Our Capabilities
                 </span>
               </div>
@@ -336,7 +288,7 @@ const Manufacturing = () => {
 
           {/* Heading */}
           <ScrollReveal direction="up" delay={150}>
-            <h2 className="text-center font-aleo font-semibold text-[22px] sm:text-[38px] leading-[1.2] tracking-[-0.03em] mb-6 sm:mb-16 text-[#111827]">
+            <h2 className="text-center font-aleo font-semibold text-[26px] md:text-[36px] leading-[1.4] tracking-[-0.03em] text-[#111827] mb-10">
               How{" "}
               <span className="text-blue-700">
                 CamPulse powers Manufacturing
@@ -385,14 +337,25 @@ const Manufacturing = () => {
               >
                 <div
                   className="
-                     group bg-white rounded-[14px] p-7 min-h-[165px] shadow-lg hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)] transition-all duration-500 ease-out hover:-translate-y-1 
-                  "
+                     group
+                    bg-white
+                    rounded-[14px]
+                    p-7
+                    min-h-[165px]
+                    shadow-lg
+                    hover:shadow-[0_12px_35px_rgba(37,99,235,0.10)]
+                    transition-all
+                    duration-500
+                    ease-out
+                    hover:-translate-y-1
+                "
                 >
                   {/* Icon */}
                   <div
                     className="
-                    w-10 h-10
-                    flex items-center justify-center
+                     w-9 h-9
+                    rounded-xl
+                    flex items-center 
                     mb-2
                     transition-all
                     duration-500
@@ -404,12 +367,12 @@ const Manufacturing = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg leading-none font-roboto font-medium text-neutral-800 mb-1">
+                  <h3 className="lg:text-[18px] text-[20px] leading-none font-roboto font-medium text-neutral-800 mb-1">
                     {feature.title}
                   </h3>
 
                   {/* Desc */}
-                  <p className="text-[13px] leading-[1.7] text-neutral-500 font-normal ">
+                  <p className="lg:text-[14px] text-[16px] leading-[150%] tracking-[0.005em] text-neutral-500  font-roboto font-normal">
                     {feature.desc}
                   </p>
                 </div>
@@ -424,14 +387,19 @@ const Manufacturing = () => {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
           <div className="lg:pt-10 pt-0">
             {/* Heading */}
-            <div className="text-center mb-7 lg:mb-16">
-              <div className="flex justify-center lg:mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111e38] mb-4 border border-blue-900/50 text-neutral-300 text-[12px] font-regular tracking-[0.15em] uppercase">
-                  <span className="w-1.5 h-1.5 rotate-45 bg-white" />
-                  COMMAND CENTRE
-                </span>
-              </div>
-              <h2 className="text-white font-aleo font-semibold text-1xl sm:text-4xl md:text-[40px] tracking-tight">
+            <div className="text-center md:mb-12 mb-10">
+              <ScrollReveal direction="up" delay={100}>
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-2 px-6 py-3  rounded-full  bg-[#111e38]  lg:mb-4  text-neutral-300 text-[12px] font-medium tracking-[0.15em] tracking-[0.15em] uppercase">
+                    <Diamond className="w-3 h-3" fill="currentColor" />
+                    <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-neutral-300">
+                      COMMAND CENTRE
+                    </span>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <h2 className="text-white font-aleo font-semibold text-[18px] lg:text-4xl md:text-[40px] tracking-tight mb-4 mt-4 lgmt-0">
                 Centralized Industrial Control Dashboard
               </h2>
             </div>
@@ -450,7 +418,7 @@ const Manufacturing = () => {
                   src={RailwayMain}
                   alt="dashboard"
                   loading="lazy"
-                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto  md:-mb-28 xl:-mb-40 xl:h-[660px] object-cover shadow-2xl"
+                  className="rounded-xl relative z-20 w-[90%] sm:w-[80%] xl:w-auto h-auto -mb-10 md:-mb-28 xl:-mb-40 xl:h-[660px] object-cover shadow-2xl"
                 />
 
                 {/* LEFT TOP CARD */}
@@ -509,7 +477,6 @@ const Manufacturing = () => {
         description="From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations."
         buttonText="Book a Demo"
         backgroundImage={whychosesection}
-        sectionClassName="py-32"
         cardClassName="hover:-translate-y-1"
         stats={[
           {
@@ -536,87 +503,41 @@ const Manufacturing = () => {
       />
 
       {/* About Us Sub-section */}
-      <section className="py-12 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <AboutUs variant="industry">
+        {/* CTA Custom Banner for Manufacturing */}
+        <ScrollReveal
+          direction="up"
+          delay={300}
+          className="grid grid-cols-10 max-w-7xl m-auto"
+        >
+          <div className="col-span-12 ">
+            <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${ManufacturingCtaBg})` }}
+              />
 
-          <ScrollReveal direction="up" delay={100} className="flex justify-center mb-6">
-            <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EBF1FF] text-[#2563EB] text-[10px] font-bold tracking-[0.15em] uppercase">
-              <span className="w-1.5 h-1.5 rotate-45 bg-[#2563EB]" />
-              About Us
-            </span>
-          </ScrollReveal>
+              {/* CONTENT */}
+              <div className="relative z-10 max-w-4xl px-6">
 
-          <ScrollReveal direction="up" delay={200}>
-            <h2 className="text-center text-[#111827] font-aleo font-semibold text-3xl sm:text-4xl md:text-[40px] tracking-tight">
-              Built on <span className="text-[#2563EB] font-bold">25+ Years</span> of Infrastructure Excellence
-            </h2>
-          </ScrollReveal>
+                <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[26px]  leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
+                  Transform your manufacturing security
+                  with CamPulse.
+                </h2>
 
-          {/* Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-12 lg:mb-24 px-4 lg:px-12 lg:mt-20 mt-6">
-            {stats.map((stat, idx) => (
-              <ScrollReveal key={idx} direction="up" delay={300 + idx * 100} className="text-center">
-                <p className="text-[#111827] font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-2 tracking-tight">
-                  <AnimatedCounter prefix={stat.prefix} num={stat.num} suffix={stat.suffix} stringVal={stat.stringVal} />
-                </p>
-                <p className="font-roboto text-neutral-600 font-medium text-[11px] sm:text-[13px] uppercase tracking-wide">{stat.label}</p>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ProfileFeature
-            imageSrc={railway_about}
-            variant="image"
-            title={<>CAMPULSE BY TRANSLINE<br />TECHNOLOGIES</>}
-            descriptions={[
-              "CamPulse is built on Transline Technologies' extensive experience in delivering large-scale, mission-critical infrastructure across India.",
-              "Deep engineering capability, field-proven deployment expertise, and an unwavering commitment to seamless integration and service uptime."
-            ]}
-            className="mb-10 mx-auto max-w-7xl"
-          />
-
-          <ScrollReveal direction="up" delay={250} className="mb-16">
-            <CertificationStrip />
-          </ScrollReveal>
-
-          {/* CTA Custom Banner for Manufacturing */}
-          <ScrollReveal
-            direction="up"
-            delay={300}
-            className="grid grid-cols-10 max-w-7xl m-auto"
-          >
-            <div className="col-span-12 ">
-
-              <div className="relative rounded-2xl lg:rounded-xl overflow-hidden h-[240px]  lg:h-[330px] flex items-center justify-center text-center shadow-xl">
-
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${aboutCtaBg})` }}
-                />
-
-                <div className="absolute inset-0 bg-[#0B2A5B]/80" />
-
-                {/* CONTENT */}
-                <div className="relative z-10 max-w-4xl px-6">
-
-                  <h2 className="text-white font-aleo font-semibold lg:text-[50px] text-[22px] leading-[140%] tracking-[-0.01em] text-center leading-[1.3] mb-6">
-                    Transform your manufacturing security
-                    with CamPulse.
-                  </h2>
-
-                  {/* SIMPLE BUTTON */}
-                  <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition">
+                {/* SIMPLE BUTTON */}
+                <Link to="/pricing?type=demo">
+                  <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition cursor-pointer">
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
                   </button>
-                </div>
-
+                </Link>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
 
-        </div>
-      </section>
+        </ScrollReveal>
+      </AboutUs>
     </div >
   );
 };

@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import dashboardMain from "@/assets/dashboard-main.mp4";
 import alertCard from "@/assets/alert-card.png";
 import statsCard from "@/assets/Bannerlefticon.png";
@@ -99,10 +100,10 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-36 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-24 lg:pt-36 lg:pb-12 pb-6 text-center">
         {/* Heading */}
         <motion.h1
-          className="text-white font-calistoga font-normal not-italic text-[24px] md:text-[46px] leading-[1.24] tracking-[0.035em] mb-[14px]"
+          className="text-white font-calistoga font-normal not-italic text-[28px] md:text-[46px] leading-[1.24] tracking-[0.035em] mb-[14px]"
           variants={textContainerVariants}
           initial="hidden"
           animate={showHeading ? "visible" : "hidden"}
@@ -110,7 +111,7 @@ const HeroSection = () => {
           {renderWords("AI-Powered VMS That")} <br /> {renderWords("Integrates Security Systems")}
         </motion.h1>
         <motion.p
-          className="font-roboto font-regular text-white text-sm md:text-lg font-light leading-relaxed max-w-4xl mx-auto"
+          className="font-roboto font-normal text-gray-300 text-[16px] md:text-lg font-light leading-[150%] tracking-[0.005em] max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={showHeading ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -129,47 +130,33 @@ const HeroSection = () => {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 22 }}
-            className="inline-block"
+            className="inline-block lg:py-4"
           >
-            <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-              {/* Gradient Overlay */}
-              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
+            <Link to="/pricing?type=demo">
+              <button className="group relative flex items-center rounded-full h-11 text-[15px] lg:text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer">
+                {/* Gradient Overlay */}
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
 
-              {/* Circle */}
-              <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
-              </span>
+                {/* Circle */}
+                <span className="absolute z-10 left-1.5 group-hover:left-[calc(100%-2.25rem-6px)] w-8 h-8 rounded-full bg-blue-700 group-hover:bg-white flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                  <ArrowUpRight className="w-4 h-4 text-white group-hover:text-blue-700 transition-all duration-500 group-hover:rotate-45" />
+                </span>
 
-              {/* Text */}
-              <span className="absolute z-10 left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
-                Book a Demo
-              </span>
-            </button>
+                {/* Text */}
+                <span className="absolute z-10  left-12 group-hover:left-5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap text-blue-700 group-hover:text-white">
+                  Book a Demo
+                </span>
+              </button>
+            </Link>
           </motion.div>
         </motion.div>
         {/* DASHBOARD SECTION */}
         <motion.div
-          className="relative mt-5 max-w-5xl mx-auto flex justify-center items-center"
+          className="relative mt-5 max-w-6xl mx-auto flex justify-center items-center"
           initial={{ opacity: 0, y: 100 }}
           animate={showDashboard ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.0 }}
         >
-          {/* LEFT CARDS */}
-          <motion.img
-            src={alertCard}
-            className="hidden lg:block absolute -left-[4rem] top-[6%] w-45 rounded-xl shadow-xl"
-            initial={{ opacity: 0, y: 80 }}
-            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.1 }}
-          />
-
-          <motion.img
-            src={statsCard}
-            className="hidden lg:block absolute -left-[8rem] bottom-[4%] w-90 rounded-xl shadow-xl"
-            initial={{ opacity: 0, y: 80 }}
-            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.2 }}
-          />
 
           {/* MAIN DASHBOARD (CENTERED) */}
           <div className="flex justify-center items-center w-full">
@@ -179,26 +166,11 @@ const HeroSection = () => {
               loop
               muted
               playsInline
-              className="mx-auto w-full max-w-2xl object-contain position-relative  rounded-2xl top-[15px]"
+              className="mx-auto w-full  object-contain position-relative rounded-md  lg:rounded-2xl top-[15px]"
             />
           </div>
 
-          {/* RIGHT CARDS */}
-          <motion.img
-            src={gridCard}
-            className="hidden lg:block absolute -right-[3rem] top-[0%] w-48 rounded-xl "
-            initial={{ opacity: 0, y: 80 }}
-            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.15 }}
-          />
 
-          <motion.img
-            src={faceMatchCard}
-            className="hidden lg:block absolute  -right-[8rem]  bottom-[2%] w-90 rounded-xl"
-            initial={{ opacity: 0, y: 80 }}
-            animate={showDashboard ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.25 }}
-          />
         </motion.div>
       </div>
     </section>

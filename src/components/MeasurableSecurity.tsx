@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowUpRight, TrendingDown, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, TrendingDown, ShieldCheck, Diamond } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import { CrowdIcon, RapidIcon } from './icons/HomeIcons';
 import whychosesection from "@/assets/whychosesection.png";
@@ -16,6 +17,7 @@ interface MeasurableSecurityProps {
   titlePath2?: string;
   description?: string;
   buttonText?: string;
+  buttonHref?: string;
   stats?: StatInfo[];
   backgroundImage?: string;
   sectionClassName?: string;
@@ -51,6 +53,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
   titlePath2 = "Measurable Security.",
   description = "From faster incident response to reduced risks, CamPulse transforms surveillance into actionable intelligence that drives safer, smarter operations.",
   buttonText = "Book a Demo",
+  buttonHref = "/pricing?type=demo",
   stats = defaultStats,
   backgroundImage = whychosesection,
   sectionClassName = "",
@@ -58,7 +61,7 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
 }) => {
   return (
     <section
-      className={`py-8 lg:py-24 relative overflow-hidden bg-cover bg-center bg-no-repeat ${sectionClassName}`}
+      className={`lg:py-16 py-12 lg:pt-20 lg:pb-20 relative overflow-hidden bg-cover bg-center bg-no-repeat ${sectionClassName}`}
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
@@ -76,74 +79,68 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
 
         {/* LEFT */}
-        <div className="lg:w-[40%] text-left">
+        <div className="lg:w-[40%] text-center md:text-left">
           <ScrollReveal direction="up">
 
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DBEAFE66] border border-gray-300 shadow-sm lg:mb-8 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#DBEAFE66] border border-gray-300 shadow-sm lg:mb-8 mb-4"
             >
-              <span className="w-2 h-2 rotate-45 bg-blue-600" />
-
-              <span className="text-blue-600 font-roboto text-[13px] font-medium tracking-[0.1em] uppercase">
+              <Diamond className="w-3 h-3 text-blue-700" fill="currentColor" />
+              <span className="text-[14px] lg:text-md font-roboto font-semibold leading-[150%] tracking-[0.005em] uppercase text-blue-700">
                 {badgeTitle}
               </span>
             </div>
 
+
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-3xl md:text-[40px] leading-[1.2] tracking-tight lg:mb-6 mb-2 text-[#171717]">
+            <h2 className="font-aleo font-semibold text-[26px] md:text-[40px] leading-[1.5] lg:leading-[1.2] tracking-tight text-center md:text-left lg:mb-6 mb-2 text-[#171717]">
               <span className="text-blue-700">
                 {titlePath1}
               </span>
-
               <br />
-
               {titlePath2}
             </h2>
 
             {/* Description */}
-            <p className="font-roboto text-[16px] text-black leading-[1.6] lg:mb-8 mb-4 text-black">
+            <p className="font-roboto  text-[16px] lg:text-[16px] text-black leading-[150%] tracking-[0.005em] lg:mb-8 mb-4 text-black">
               {description}
             </p>
 
             {/* Button */}
-            <button
-              className="
-    group
-    relative
-    inline-flex items-center justify-center gap-2
-
-    h-[42px] sm:h-[45px]
-    px-5 sm:px-8
-
-    text-[13px] sm:text-[15px]
-    font-semibold
-    text-white
-
-    rounded-full
-
-    w-50 sm:w-auto
-    bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
-
-
-    transition-all duration-300 ease-out
-
-    hover:-translate-y-[2px]
-    hover:scale-[1.02]
-  "
-            >
-              <span>Book a Demo</span>
-
-              <ArrowUpRight
+            <Link to={buttonHref}>
+              <button
                 className="
-      w-4 h-4
-      transition-transform duration-300
-      group-hover:translate-x-0.5
-      group-hover:-translate-y-0.5
+                    group
+                    relative
+                    inline-flex items-center justify-center gap-1.5 sm:gap-2
+                    h-[46px] lg:h-[45px]
+                    px-6 sm:px-8
+                    text-[16px] sm:text-[15px]
+                    font-semibold
+                    text-white
+                    rounded-full
+                    w-auto
+                    bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-[2px]
+                    hover:scale-[1.02]
+                    cursor-pointer
     "
-                strokeWidth={2.5}
-              />
-            </button>
+              >
+                <span>{buttonText}</span>
+
+                <ArrowUpRight
+                  className="
+                    w-4 h-4 sm:w-4 sm:h-4
+                    transition-transform duration-300
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
+                  strokeWidth={2.5}
+                />
+              </button>
+            </Link>
           </ScrollReveal>
         </div>
 
@@ -159,7 +156,8 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
                 className={`
                   bg-white
                   rounded-lg
-                  p-7
+                  p-5
+                  lg:p-7
                   shadow-[0_2px_10px_rgba(0,0,0,0.02)]
                   border
                   border-white
@@ -169,15 +167,15 @@ const MeasurableSecurity: React.FC<MeasurableSecurityProps> = ({
                   ${cardClassName}
                 `}
               >
-                <div className="text-[#2563EB] mb-3">
+                <div className="text-[#2563EB] lg:mb-3 mb-2 lg:mb-1">
                   <stat.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
 
-                <h3 className="font-roboto font-medium text-lg text-neutral-800 mb-[5px]">
+                <h3 className="font-roboto font-medium lg:text-lg text-[20px] text-neutral-800 mb-1">
                   {stat.title}
                 </h3>
 
-                <p className="font-roboto text-[14px] text-neutral-500 leading-[1.6]">
+                <p className="font-roboto text-[16px] lg:text-[14px] text-neutral-500 leading-[150%] tracking-[0.005em]">
                   {stat.desc}
                 </p>
               </ScrollReveal>

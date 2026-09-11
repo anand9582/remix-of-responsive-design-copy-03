@@ -116,7 +116,7 @@ const cardVariants = {
 
 const IndustriesWeServe = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
+  const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(0);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isClickScroll = useRef(false);
 
@@ -164,7 +164,7 @@ const IndustriesWeServe = () => {
   }, []);
 
   return (
-    <section className="bg-background py-16 sm:py-24" id="industries">
+    <section className="bg-background py-6 lg:py-22 lg:pt-26 sm:pb-20 sm:pt-24" id="industries">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* DESKTOP */}
         <div className="hidden lg:flex flex-col lg:flex-row gap-10 lg:gap-14">
@@ -176,14 +176,16 @@ const IndustriesWeServe = () => {
             viewport={{ once: true, amount: 0.15 }}
           >
             {/* Badge */}
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEF2FF] text-[#2563EB] text-[11px] font-bold tracking-[0.08em] uppercase mb-8">
-              <Diamond className="w-3.5 h-3.5 text-blue-700 leading-none mb-[1px]" fill="currentColor" />
-              INDUSTRIES WE SERVE
-            </motion.div>
 
+            <motion.div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-3 mb-6">
+              <Diamond className="w-3 h-3 text-blue-700" fill="currentColor" />
+              <span className="text-xs text-md font-roboto font-semibold tracking-widest uppercase text-blue-700">
+                INDUSTRIES WE SERVE
+              </span>
+            </motion.div>
             {/* Heading */}
             <motion.h2 variants={itemVariants} className="font-aleo font-semibold text-[30px] sm:text-[40px] text-[#2563EB] leading-[1.2] lg:mb-10 tracking-tight text-center lg:text-left">
-              Security That Adapts <span className="text-[#111827]">to<br />Every Industry</span>
+              Security That Adapts  <span className="text-[#111827]">to<br />Every Industry</span>
             </motion.h2>
 
             <div className="space-y-1">
@@ -210,7 +212,7 @@ const IndustriesWeServe = () => {
                       />
                     )}
                     <industry.icon className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={1.5} />
-                    <span className="font-roboto font-medium text-[15px]">{industry.label}</span>
+                    <span className="font-roboto font-medium text-[16px] lg:text-[15px]">{industry.label}</span>
                   </motion.button>
                 );
               })}
@@ -230,8 +232,8 @@ const IndustriesWeServe = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="text-[28px] font-sans font-bold text-[#111827] tracking-tight">
+                <div className="flex items-start justify-between items-center gap-4 mb-3">
+                  <h3 className="font-roboto text-[24px] font-semibold leading-[126%] text-neutral-800 tracking-[-0.01em]">
                     {industry.title}
                   </h3>
                   <Link
@@ -243,7 +245,7 @@ const IndustriesWeServe = () => {
                   </Link>
                 </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
+                <p className="font-roboto font-regular text-neutral-500 text-[12px] lg:text-[15px] leading-[150%] tracking-[0.005em] mb-6 max-w-xl">
                   {industry.description}
                 </p>
 
@@ -270,24 +272,28 @@ const IndustriesWeServe = () => {
         {/* MOBILE ACCORDION */}
         <div className="lg:hidden">
           <motion.div
-            className="mb-8"
+            className="md:mb-8 mb-4 text-center flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           >
-            <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
-              <Diamond className="w-3.5 h-3.5 text-primary" fill="currentColor" />
-              <span className="text-xs font-semibold tracking-widest uppercase text-primary">
+            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-3 lg:mb-6 mb-4">
+              <Diamond className="w-3 h-3 text-blue-600" fill="currentColor" />
+              <span className="text-[15px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-blue-600">
                 Industries We Serve
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground leading-snug">
-              Security That <span className="text-primary italic">Adapts</span> to Every Industry
+
+            <h2 className="lg:text-2xl  text-[24px] font-aleo font-semibold tracking-wide leading-snug text-blue-700">
+              Security That Adapts to
+              <span className="block text-black mt-1">
+                Every Industry
+              </span>
             </h2>
           </motion.div>
 
-          <div className="space-y-3">
+          <div className="space-y-0">
             {industries.map((industry, index) => {
               const isOpen = mobileOpenIndex === index;
               return (
@@ -297,15 +303,18 @@ const IndustriesWeServe = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: index * 0.05 }}
-                  className="border border-border rounded-xl overflow-hidden bg-card"
+                  className="border-t  border-border lg:rounded-xl overflow-hidden bg-card"
                 >
                   <button
                     onClick={() => toggleMobileAccordion(index)}
                     className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left"
                   >
                     <div className="flex items-center gap-3">
-                      <industry.icon className="w-5 h-5 text-primary flex-shrink-0" strokeWidth={1.5} />
-                      <span className="font-medium text-sm text-foreground">
+                      <industry.icon
+                        className="w-5 h-5 text-[#525252] flex-shrink-0"
+                        strokeWidth={2}
+                      />
+                      <span className="font-roboto text-[18px] lg:text-[14px] font-semibold leading-[21px] tracking-[0.005em] text-neutral-700">
                         {industry.label}
                       </span>
                     </div>
@@ -323,12 +332,12 @@ const IndustriesWeServe = () => {
                         className="overflow-hidden"
                       >
                         <div className="px-5 pb-5 pt-0">
-                          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                          <p className="font-roboto text-[18px] lg:text-[16px] font-normal tracking-[0.015em] text-neutral-500 mb-4">
                             {industry.description}
                           </p>
                           <Link
                             to={industry.href}
-                            className="inline-flex items-center gap-1 text-[#2563EB] text-[13px] font-semibold hover:underline mb-4 transition-colors hover:text-blue-700"
+                            className="inline-flex items-center gap-1 text-[#2563EB] text-[15px] lg:text-[14px] font-semibold hover:underline mb-4 transition-colors hover:text-blue-700"
                           >
                             Learn more
                             <ArrowUpRight className="w-3.5 h-3.5 ml-[2px]" strokeWidth={2.5} />

@@ -56,9 +56,9 @@ const TrustedBy = () => {
   const allLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className="bg-white py-16 sm:py-10 border-t border-slate-100 overflow-hidden relative">
+    <section className="bg-white py-10 pb-5 sm:pt-10 lg:pb-32 border-slate-100 overflow-hidden relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10">
-        <p className="text-center font-roboto font-medium text-base leading-[150%] tracking-normal text-gray-400 uppercase">
+        <p className="text-center text-lg lg:text-[16px] font-roboto font-medium leading-6 text-gray-400 uppercase mb-8">
           Trusted By Industry Leaders
         </p>
       </div>
@@ -72,16 +72,17 @@ const TrustedBy = () => {
         <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
         {/* Marquee Slider */}
-        <div className="flex items-center animate-marquee-left w-max" style={{ animationDuration: "90s" }}>
+        <div className="flex items-center gap-8 md:gap-20 px-12 md:px-12 animate-marquee-left w-max mx-auto" style={{ animationDuration: "90s" }}>
           {allLogos.map((logo, i) => (
             <div
               key={i}
-              className="w-48 sm:w-64 shrink-0 flex items-center justify-center"
+              className="flex-none flex items-center justify-center"
             >
               <img
                 src={logo}
                 alt={`Trusted partner logo ${i + 1}`}
-                className="max-h-8 sm:max-h-12 w-auto object-contain hover:scale-105 transition-transform duration-500"
+                style={{ height: "32px" }}
+                className="w-auto object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           ))}

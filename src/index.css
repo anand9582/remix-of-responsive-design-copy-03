@@ -224,3 +224,117 @@
   width: 20px;
   border-radius: 3px;
 }
+
+/* ========================================
+   THANK YOU PAGE ANIMATIONS
+======================================== */
+
+@keyframes thankyou-float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.03);
+  }
+}
+
+@keyframes thankyou-ring-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes thankyou-particle {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+
+  30% {
+    transform: translate(calc(var(--particle-x) * 0.5),
+        calc(var(--particle-y) * 0.5)) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--particle-x),
+        var(--particle-y)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes thankyou-scale-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes thankyou-fade-in-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes thankyou-draw-check {
+  0% {
+    stroke-dashoffset: 32;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-float {
+  animation: thankyou-float 5s ease-in-out infinite;
+}
+
+.animate-ring-pulse {
+  animation: thankyou-ring-pulse 3s ease-out infinite;
+}
+
+.animate-particle {
+  animation: thankyou-particle 2s ease-out forwards;
+}
+
+.animate-scale-pop {
+  animation: thankyou-scale-pop 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: thankyou-fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-draw-check {
+  animation: thankyou-draw-check 0.8s ease-out 0.4s forwards;
+}

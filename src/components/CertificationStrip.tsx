@@ -17,7 +17,7 @@ const certifications = [
 const CertificationStrip = () => {
   return (
     <div className="w-full flex justify-center  sm:px-6 lg:px-0">
-      <div className="w-full bg-[#f8fafc] border border-slate-100 rounded-[24px] lg:p-5 grid grid-cols-2 gap-4 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:bg-white lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:px-6 lg:py-5 lg:rounded-2xl lg:border-none lg:max-w-7xl">
+      <div className="w-full bg-[#f8fafc] border border-slate-100 rounded-[24px]  lg:p-5 grid grid-cols-2 gap-3 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:bg-white lg:shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:px-16 lg:py-5 lg:rounded-2xl lg:border-none lg:max-w-7xl">
 
         {certifications.map((item, idx) => (
           <div
@@ -28,9 +28,9 @@ const CertificationStrip = () => {
             <img
               src={item.img}
               alt={item.label}
-              className="h-10 mb-2 object-contain"
+              className="h-12 mb-2 object-contain"
             />
-            <p className="text-[12px] text-gray-600 font-semibold leading-tight">
+            <p className="text-[16px] font-roboto lg:text-[14px] text-neutral-800 font-medium lg:leading-[18px] tracking-[0.015em] mt-1">
               {item.label}
             </p>
           </div>

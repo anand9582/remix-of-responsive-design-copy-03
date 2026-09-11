@@ -1,11 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import statsCard from "@/assets/stats-card.png";
 import alertCard from "@/assets/cta-bg.png";
 
 const CTABanner = () => {
   return (
-    <section className="bg-background py-10 sm:py-16">
+    <section className="py-7 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
 
         <div
@@ -14,7 +15,6 @@ const CTABanner = () => {
            bg-[linear-gradient(300.97deg,_#121C31_-1.06%,_#1C3468_99.48%)]
           px-6 sm:px-12 py-12 lg:py-16 sm:py-20 
           text-center 
-          shadow-[0_20px_60px_rgba(0,0,0,0.25)]
         "
         >
           {/* Glow effect */}
@@ -31,7 +31,7 @@ const CTABanner = () => {
           </div>
 
           {/* RIGHT FLOATING CARD */}
-          <div className="absolute -right-6 top-[65%] sm:top-1/2 -translate-y-1/2 rotate-[8deg] z-10 w-[75px] sm:w-[130px] lg:w-auto">
+          <div className="absolute -right-4 top-[35%] sm:top-[200px] -translate-y-1/2 rotate-[7deg] z-10 w-[75px] sm:w-[130px] lg:w-auto">
             <img
               src={alertCard}
               alt="Alert Card"
@@ -41,40 +41,41 @@ const CTABanner = () => {
           </div>
 
           {/* CONTENT */}
-          <div className="relative z-20 max-w-3xl mx-auto flex flex-col  items-center justify-center">
+          <div className="relative z-20 max-w-3xl mx-auto flex flex-col items-center">
+
+            {/* BADGE */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-6">
+              READY TO SCALE?
+            </div>
 
             {/* HEADING */}
-            <h2
-              className="
-              text-white font-aleo font-medium 
-              text-[25px] sm:text-4xl md:text-[47px] 
-              leading-[1.2] tracking-tight mb-4
-            "
-            >
-              Built in India.<br className="sm:hidden" /> Made for the World.
+            <h2 className="text-white text-[24px] lg:text-[40px] font-semibold lg:font-bold tracking-tight mb-4 leading-tight">
+              Centralized Video Intelligence <br /> Built for Multi-Site Scale
             </h2>
 
             {/* SUBTEXT */}
-            <p className="text-[#D4D4D4] text-[15px] sm:text-[16px] mb-8 font-roboto max-w-[280px] sm:max-w-none mx-auto">
-              Deploy intelligent surveillance built for scale, speed and resilience.
+            <p className="text-[#D4D4D4] text-[18px] sm:text-[16px] lg:mb-8  mb-5 font-roboto max-w-[280px] sm:max-w-none mx-auto">
+              Deploy intelligent surveillance built for scale, speed and resilienced.
             </p>
 
             {/* BUTTON */}
-            <Button
-              className="
-              bg-white hover:bg-slate-100 
-              text-[#2563EB] 
-              rounded-full 
-              px-5 py-5
-              text-[15px] font-semibold 
-              flex items-center gap-2 
-              shadow-lg hover:shadow-xl 
-              transition-all duration-300
-            "
-            >
-              Book a Demo
-              <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
-            </Button>
+            <Link to="/pricing?type=demo">
+              <Button
+                className="
+                bg-white hover:bg-slate-100 
+                text-[#2563EB] 
+                rounded-full 
+                px-4 py-3 lg:px-5 lg:py-5
+                text-[15px] font-semibold 
+                flex items-center gap-2 
+                shadow-lg hover:shadow-xl 
+                transition-all duration-300
+              "
+              >
+                Book a Demo
+                <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
+              </Button>
+            </Link>
 
           </div>
         </div>

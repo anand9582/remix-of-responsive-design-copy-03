@@ -1,4 +1,5 @@
 import { ArrowUpRight, Diamond } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -22,33 +23,74 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-2 sm:py-28 bg-[#FAFAFA]">
+    <section id="faq" className="py-6 sm:py-16 bg-[#FAFAFA]">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start ">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 items-start ">
 
           {/* Left side */}
           <div className="lg:sticky lg:top-32 flex flex-col items-center lg:items-start">
             {/* Badge */}
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 font-roboto font-regular rounded-full bg-[#EEF2FF] text-[#2563EB] text-[11px] font-bold tracking-[0.08em] uppercase mb-8">
-              <Diamond className="w-3.5 h-3.5 text-blue" fill="currentColor" />
-              FAQ
+            <span className="inline-flex items-center gap-2 px-5 py-2 font-roboto font-regular rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold tracking-[0.08em] uppercase lg:mb-8 mb-4">
+              <Diamond className="w-3 h-3 text-blue-600" fill="currentColor" />
+              <span className="text-xs md:text-[14px] font-roboto font-medium leading-[21px] tracking-[0.005em]   uppercase text-blue-700">
+                FAQ
+              </span>
             </span>
 
             {/* Heading */}
-            <h2 className="font-aleo font-semibold text-[32px] sm:text-[40px] text-[#111827] leading-[1.2] mb-5 tracking-tight text-center lg:text-left">
-              <span className="text-[#2563EB]">Your Questions</span> Answered
+            <h2 className="font-aleo font-semibold text-[26px] sm:text-[40px] text-[#111827] leading-[1.2] mb-3 lg:mb-4 tracking-tight text-center lg:text-left">
+              <span className="text-blue-700">Your Questions</span> Answered
             </h2>
 
             {/* Paragraph */}
-            <p className="text-black text-[15px] font-roboto font-normal leading-[1.7] mb-4 md:mb-10 max-w-[340px] mx-auto lg:mx-0 text-center lg:text-left">
+            <p className="text-black text-[16px] md:text-[16px] font-roboto font-normal  mb-4 md:mb-8 max-w-[389px] mx-auto lg:mx-0 text-center lg:text-left">
               We're here to help you and solve objections. Find answers to the most common questions below.
             </p>
 
-            {/* Button */}
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:bg-[#1E40AF] text-white rounded-full px-8 py-6 text-[15px] font-semibold flex items-center justify-center gap-[6px] shadow-[0_8px_20px_rgba(29,78,216,0.3)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(29,78,216,0.4)] hover:-translate-y-0.5">
-              Book a Demo
-              <ArrowUpRight className="w-4 h-4 ml-[2px]" strokeWidth={2.5} />
-            </Button>
+            <Link to="/pricing?type=demo">
+              <Button
+                className="
+      h-[44px]
+
+      px-[30px]
+      rounded-full
+
+      bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_45%,#153885_100%)]
+    font-roboto
+
+      text-white
+      text-[16px]
+      lg-[16px]
+      font-medium
+
+      inline-flex items-center justify-center
+      gap-[6px]
+
+      transition-all duration-300 ease-out
+
+      hover:-translate-y-[1px]
+      hover:shadow-[0_10px_18px_rgba(0,0,0,0.14)]
+
+      lg:h-[43px]
+      lg:px-[26px]
+      lg:text-[15px]
+      h-[46px]
+      px-[25px]
+    "
+              >
+                <span>Book a Demo</span>
+
+                <ArrowUpRight
+                  className="
+                w-[16px] h-[16px]
+                transition-transform duration-300
+                group-hover:translate-x-[1px]
+                group-hover:-translate-y-[1px]
+              "
+                  strokeWidth={2.5}
+                />
+              </Button>
+            </Link>
           </div>
 
           {/* Right side - Accordion */}
@@ -58,12 +100,12 @@ const FAQ = () => {
                 <AccordionItem
                   key={i}
                   value={`item-${i}`}
-                  className="border border-[#E5E7EB] bg-white rounded-[8px] px-6 mb-3 hover:border-[#D1D5DB] data-[state=open]:border-[#93C5FD] data-[state=open]:shadow-sm transition-all duration-200 overflow-hidden"
+                  className="border border-[#E5E7EB] bg-white rounded-[8px] lg:px-6 px-4 mb-3 hover:border-[#D1D5DB] data-[state=open]:border-[#93C5FD] data-[state=open]:shadow-sm transition-all duration-200 overflow-hidden"
                 >
-                  <AccordionTrigger className="text-[14px] text-left sm:text-[15px] font-roboto font-medium text-[#334155] hover:text-[#0F172A] hover:no-underline py-5 outline-none [&[data-state=open]]:text-[#1D4ED8]">
+                  <AccordionTrigger className="text-[16px] text-left sm:text-[16px] font-roboto font-medium text-[#334155] hover:text-[#0F172A] hover:no-underline py-3 outline-none [&[data-state=open]]:text-[#1D4ED8]">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#64748b] font-roboto text-justify text-[14px] leading-[1.7] pb-5">
+                  <AccordionContent className="text-neutral-500 font-roboto text-justify text-[16px]  sm:text-[16px] leading-[1.7] pb-5">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>

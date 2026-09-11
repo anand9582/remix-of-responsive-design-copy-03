@@ -178,22 +178,24 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
           style={{
             boxShadow:
               index === totalLength - 1
-                ? "none"
-                : boxShadow,
+                ? boxShadow
+                : "0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1)",
           }}
           className="bg-background rounded-2xl overflow-hidden min-h-[450px] lg:h-[450px]"
         >
           <div
             className={`flex flex-col ${solution.imagePosition === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
-              } h-full gap-6 lg:gap-0`}
+              } h-full gap-2 lg:gap-0`}
           >
+
+
             {/* Text */}
-            <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-              <h3 className="text-xl sm:text-2xl font-roboto font-medium text-neutral-800 mb-4">
+            <div className="flex-1 p-6 pb-0 sm:p-8 lg:p-10 flex flex-col justify-center">
+              <h3 className="font-roboto text-[1.3rem] sm:text-xl lg:text-[24px] font-medium leading-[150%] lg:leading-[33px] tracking-[-0.01em] text-neutral-800 mb-2 lg:mb-3">
                 {solution.title}
               </h3>
 
-              <p className="text-neutral-600 text-sm sm:text-base font-roboto leading-relaxed mb-6">
+              <p className="text-neutral-600 text-[16px]  lg:text-lg  font-roboto  mb-6 lg:mb-3">
                 {solution.description}
               </p>
 
@@ -204,7 +206,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
                       className={`w-5 h-5 ${bullet.color} flex-shrink-0 transition-colors duration-300`}
                       strokeWidth={1.5}
                     />
-                    <span className="font-roboto font-normal  text-gray-600 leading-6 tracking-normal">
+                    <span className="font-roboto lg:text-lg text-[16px] font-normal  text-gray-600 lg:leading-6 lg:tracking-normal">
                       {bullet.text}
                     </span>
                   </div>
@@ -213,7 +215,7 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
             </div>
 
             {/* Image */}
-            <div className="flex-1 p-4 lg:p-6 flex items-stretch justify-center h-full">
+            <div className="flex-1 p-4 pt-3 lg:p-6 flex items-stretch justify-center h-full">
               {solution.isVideo ? (
                 isInView ? (
                   <video
@@ -243,19 +245,20 @@ const SolutionCard = ({ solution, index, totalLength }: { solution: any, index: 
 
 const OurSolutions = () => {
   return (
-    <section className="bg-background pb-3 sm:pb-48 lg:pb-32 pt-0 relative" id="solutions">
+    <section className="bg-background pb-3 sm:pb-48 lg:pb-32 lg:pt-5 relative" id="solutions">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Header */}
-        <div className="sticky top-20 z-50 bg-background/95 backdrop-blur-md pt-8 sm:pt-12 pb-6 px-4 -mx-4 sm:px-0 sm:mx-0 text-center mb-10   shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)]">
+        <div className="sticky top-20 z-50 bg-background/95 backdrop-blur-md pt-10 sm:pt-0 lg:pb-6 px-4 -mx-4 sm:px-0 sm:mx-0 text-center shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)]">
           <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-3 mb-6">
-            <Diamond className="w-3.5 h-3.5 text-blue-700" fill="currentColor" />
-            <span className="text-xs font-semibold tracking-widest uppercase text-blue-700">
+            <Diamond className="w-3 h-3 text-blue-700" fill="currentColor" />
+            <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em] uppercase text-blue-700">
               Our Solutions
             </span>
           </div>
 
-          <h2 className="font-aleo font-semibold text-2xl sm:text-3xl md:text-3xl text-neutral-800 leading-snug">
+
+          <h2 className="font-aleo font-semibold text-3xl  sm:text-3xl mb-6 md:text-3xl text-neutral-800 leading-snug">
             Proven for{" "}
             <span className="text-blue-700">Real-World Security</span>{" "}
             Challenges

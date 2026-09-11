@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import bgImage from "@/assets/campulse-bg.png";
-import dashboardImage from "@/assets/dashboard-home.jpg";
+import dashboardImage from "@/assets/dashboard-home.png";
 const badgeVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -123,8 +123,8 @@ const WhatIsCamPulse = () => {
   const imageOpacity = useTransform(smoothImageProgress, [0, 0.3], [0, 1]);
 
   return (
-    <section className="relative  overflow-hidden">
-      <div className="relative pt-20 sm:pt-16 pb-12 sm:pb-16">
+    <section className="relative overflow-hidden scroll-mt-20" id="what-is-campulse">
+      <div className="relative pt-6  pb-12 sm:pb-5 lg:pt-0">
         {/* Background */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -145,10 +145,10 @@ const WhatIsCamPulse = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.8 }}
-            className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-5 h-[44px] mb-8 justify-center"
+            className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-6 h-[44px] mb-6 lg:mb-8 justify-center"
           >
-            <Diamond className="w-3.5 h-3.5 text-blue-600" fill="currentColor" />
-            <span className="text-sm font-roboto font-semibold tracking-widest uppercase text-blue-600">
+            <Diamond className="w-3 h-3 text-blue-600" fill="currentColor" />
+            <span className="text-[14px] lg:text-[13px] font-roboto font-medium leading-[150%] tracking-[0.005em]  uppercase text-blue-600">
               What is CamPulse
             </span>
           </motion.div>
@@ -156,7 +156,7 @@ const WhatIsCamPulse = () => {
           {/* Heading */}
           <h2
             ref={textRef}
-            className="font-martina font-semibold text-[24px] md:text-[30px] leading-[150%] tracking-[0.01em] mb-2"
+            className="text-xl font-martina font-semibold text-[16px] md:text-[32px]  tracking-[0.01em]  mb-2"
           >
             {lines.map((line, lineIndex) => {
               const lineWords = wordsData.filter(
@@ -169,7 +169,7 @@ const WhatIsCamPulse = () => {
               return (
                 <span
                   key={lineIndex}
-                  className={`block leading-[1.8] ${line.className}`}
+                  className={`block leading-[1.6] ${line.className}`}
                 >
                   {lineWords.map((wordData, i) => {
                     const globalIdx = startIndex + i;
@@ -198,27 +198,27 @@ const WhatIsCamPulse = () => {
         </div>
       </div>
       {/* Scaled Image on Scroll */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-20 sm:pb-16">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:pb-20 pb-5 sm:pb-16">
         <motion.div
           ref={imageRef}
-          className="w-full relative rounded-2xl overflow-hidden bg-white shadow-2xl ring-1 ring-black/5"
+          className="w-full relative  rounded-[10px] lg:rounded-2xl overflow-hidden"
           style={
             isMobile
               ? {
-                  scale: 1,
-                  opacity: 1,
-                }
+                scale: 1,
+                opacity: 1,
+              }
               : {
-                  scale: imageScale,
-                  opacity: imageOpacity,
-                  willChange: "transform, opacity",
-                }
+                scale: imageScale,
+                opacity: imageOpacity,
+                willChange: "transform, opacity",
+              }
           }
         >
           <img
             src={dashboardImage}
             alt="Hero Dashboard"
-            className="w-full h-auto object-cover object-center"
+            className="w-full h-auto"
           />
         </motion.div>
       </div>

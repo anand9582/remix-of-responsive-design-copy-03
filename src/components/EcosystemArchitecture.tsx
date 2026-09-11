@@ -290,17 +290,19 @@ const EcosystemArchitecture = () => {
       <div className="relative w-full  px-2 sm:px-6">
         <div className="absolute inset-x-2 sm:inset-x-8 inset-y-0 rounded-[1.6rem] border border-blue-500/10 bg-[linear-gradient(113.96deg,_#121C31_5.62%,_#1C3468_109.2%)] p-6" />
 
-        <div className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-16  w-full flex flex-col items-center">
+        <div className="relative z-10 px-4 sm:px-8 pt-12 sm:pt-20  w-full flex flex-col items-center">
           {/* Header */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-[#1A253E] border border-[#2B3F6C] rounded-full px-4 py-1.5 mb-6 shadow-md">
-              <Diamond className="w-3.5 h-3.5 text-neutral-300" fill="currentColor" />
-              <span className="text-[10px] font-bold tracking-widest uppercase text-neutral-300">Enterprise Architecture</span>
+            <div className="inline-flex items-center gap-2 bg-[#1E40AF33]  rounded-full px-6 py-2 mb-6 shadow-md">
+              <Diamond className="w-3 h-3 text-neutral-300" fill="currentColor" />
+              <span className="text-14px lg:text-[13px]  font-roboto font-medium tracking-widest  text-neutral-300 uppercase">
+                Enterprise Architecture
+              </span>
             </div>
-            <h2 className="text-white font-display font-bold text-3xl sm:text-4xl md:text-[42px] mb-4">
+            <h2 className="text-white font-aleo font-bold text-3xl sm:text-4xl md:text-[40px] mb-4">
               Campulse Ecosystem
             </h2>
-            <p className="text-[#8496B5] text-[15px] sm:text-[16px] max-w-2xl mx-auto font-light">
+            <p className="text-[#D4D4D4] text-[15px] sm:text-[16px] max-w-2xl mx-auto font-light">
               Intelligent Enterprise Architecture Connecting Everything Securely
             </p>
           </div>
