@@ -76,9 +76,7 @@ const Index = () => {
         <ComplianceSecurity />
       </ScrollReveal>
 
-      <ScrollReveal direction="up">
-        <FAQ />
-      </ScrollReveal>
+
 
       <ScrollReveal direction="up">
         <CTABanner />
