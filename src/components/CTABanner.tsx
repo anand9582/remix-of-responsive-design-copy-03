@@ -59,7 +59,7 @@ const CTABanner = () => {
             </p>
 
             {/* BUTTON */}
-            <Link to="/pricing?type=demo">
+            <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
               <Button
                 className="
                 bg-white hover:bg-slate-100 

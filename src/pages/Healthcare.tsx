@@ -162,7 +162,7 @@ const Healthcare = () => {
             </p>
           </motion.div>
           <div className="flex justify-center">
-            <Link to="/pricing?type=demo">
+            <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
               <button
                 className="
                               inline-flex items-center justify-center gap-2
@@ -251,7 +251,7 @@ const Healthcare = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 className="inline-block"
               >
-                <Link to="/pricing?type=demo">
+                <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
                   <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer">
                     {/* Gradient Overlay */}
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
@@ -537,7 +537,7 @@ const Healthcare = () => {
                 </h2>
 
                 {/* SIMPLE BUTTON */}
-                <Link to="/pricing?type=demo">
+                <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-sm font-medium shadow-md hover:shadow-lg transition cursor-pointer">
 
                     Book a Demo

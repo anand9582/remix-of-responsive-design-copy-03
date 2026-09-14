@@ -47,7 +47,7 @@ const FAQ = () => {
               We're here to help you and solve objections. Find answers to the most common questions below.
             </p>
 
-            <Link to="/pricing?type=demo">
+            <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
               <Button
                 className="
       h-[44px]

@@ -33,7 +33,7 @@ const navLinks = [
   { label: "Our Solutions", href: "#solutions" },
   { label: "Industries", href: "#industries", hasDropdown: true },
   { label: "FAQ", href: "#faq" },
-  { label: "Pricing", href: "/pricing?type=pricing" }
+  { label: "Pricing", href: "https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09" }
 ];
 
 const industryItems = [
@@ -231,7 +231,7 @@ const Navbar = () => {
             >
               Login
             </a>
-            <Link to="/pricing?type=demo">
+            <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
               <Button
                 className="
                   group
@@ -381,7 +381,7 @@ const Navbar = () => {
                 </a>
 
                 <Link
-                  to="/pricing?type=demo"
+                  to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09"
                   onClick={() => setMobileOpen(false)}
                   className="block text-center w-full bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] hover:bg-[linear-gradient(96.6deg,#2753B5_5.01%,#00226C_92.14%)] text-white rounded-full text-sm font-semibold py-2.5 shadow-md transition-all"
                 >

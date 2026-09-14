@@ -100,8 +100,8 @@ const Railway = () => {
 
   return (
     <div className="min-h-screen bg-white pt-16 lg:pt-0">
-      <SEO 
-        title="Railway & Transit Video Security Solutions | CamPulse" 
+      <SEO
+        title="Railway & Transit Video Security Solutions | CamPulse"
         description="Protect railway networks, transit tracks, and command hubs with CamPulse. AI-powered real-time track intrusion alerts and automated crowd surveillance."
         keywords="railway security, transit VMS, track intrusion detection, station command center, crowd monitoring"
         path="/railway"
@@ -161,7 +161,7 @@ const Railway = () => {
           </motion.div>
 
           <div className="flex justify-center">
-            <Link to="/pricing?type=demo">
+            <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
               <button
                 className="
                   w-full
@@ -256,7 +256,7 @@ const Railway = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 className="inline-block"
               >
-                <Link to="/pricing?type=demo">
+                <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
                   <button className="group relative flex items-center rounded-full h-11 text-sm font-semibold shadow-lg overflow-hidden w-[164px] bg-white hover:bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer">
                     {/* Gradient Overlay */}
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(96.6deg,#2563EB_5.01%,#153885_92.14%)]" />
@@ -550,7 +550,7 @@ const Railway = () => {
                 </h2>
 
                 {/* SIMPLE BUTTON */}
-                <Link to="/pricing?type=demo">
+                <Link to="https://calendly.com/suparv-translineindia/ai-based-cctv-analytics-storepulse-demo-1?month=2026-09">
                   <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-700 text-[16px] lg:text-sm font-medium shadow-md hover:shadow-lg transition cursor-pointer">
                     Book a Demo
                     <ArrowUpRight className="w-4 h-4" />
